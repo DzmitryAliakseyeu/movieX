@@ -8,7 +8,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:movieX": "node dist/movieX/server/server.mjs",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "format": "prettier --write .",
+    "lint:fix": "ng lint --fix && prettier --write ."
   },
   "prettier": {
     "printWidth": 100,
@@ -45,8 +47,11 @@
     "@types/node": "^20.17.19",
     "angular-eslint": "21.1.0",
     "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
     "eslint-plugin-unused-imports": "^4.3.0",
     "jsdom": "^27.1.0",
+    "prettier": "^3.8.1",
     "typescript": "~5.9.2",
     "typescript-eslint": "8.47.0",
     "vitest": "^4.0.8"
