@@ -1,2 +1,3 @@
 #!/bin/sh
+echo COMMIT VALIDATION
 npx --no -- commitlint --edit "$1"
