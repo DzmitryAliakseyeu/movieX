@@ -1,5 +1,6 @@
 #!/bin/sh
 echo "PRE-COMMIT HOOK IS RUNNING"
 
-# npm run lint
+
+npm run lint
 
