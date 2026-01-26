@@ -10,7 +10,8 @@
     "serve:ssr:movieX": "node dist/movieX/server/server.mjs",
     "lint": "ng lint",
     "format": "prettier --write .",
-    "lint:fix": "ng lint --fix && prettier --write ."
+    "lint:fix": "ng lint --fix && prettier --write .",
+    "prepare": "husky install"
   },
   "prettier": {
     "printWidth": 100,
@@ -50,6 +51,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
     "eslint-plugin-unused-imports": "^4.3.0",
+    "husky": "^9.1.7",
     "jsdom": "^27.1.0",
     "prettier": "^3.8.1",
     "typescript": "~5.9.2",
