@@ -1,3 +1,2 @@
 #!/bin/sh
-echo HOOK RUNNING
-exit 1
+npm run lint:fix
