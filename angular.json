@@ -16,7 +16,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "moviex",
       "architect": {
         "build": {
           "builder": "@angular/build:application",
@@ -28,7 +28,8 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              { "glob": "**/*", "input": "src/assets", "output": "assets" }
             ],
             "styles": ["src/styles.scss"],
             "server": "src/main.server.ts",
