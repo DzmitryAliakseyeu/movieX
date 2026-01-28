@@ -1,0 +1,23 @@
+@use '../../../variables' as *;
+
+:host {
+  background-color: $darkThemeMainBackround;
+  height: 100%;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 0;
+  .content-section {
+    justify-content: center;
+    height: 450px;
+  }
+  .poster {
+    background-image: url('/poster.png');
+    background-size: contain;
+    background-repeat:repeat-x;
+  }
+}
