@@ -1,0 +1,19 @@
+@use '../../../variables' as *;
+
+:host {
+  // background-color: #fff;
+  height: 100px;
+
+  .catalog-header {
+    align-items: center;
+    gap: 10px;
+    h2 {
+      color: $darkThemeMainTextColor;;
+    }
+    .catalog-buttons {
+      gap: 10px;
+    }
+
+  }
+
+}

@@ -3,7 +3,6 @@ import { Header } from './header/header';
 import { Footer } from './footer/footer';
 import { RouterOutlet } from '@angular/router';
 
-
 @Component({
   selector: 'moviex-layout',
   standalone: true,

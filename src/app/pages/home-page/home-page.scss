@@ -13,11 +13,14 @@
   padding: 20px 0;
   .content-section {
     justify-content: center;
-    height: 450px;
+    gap: 30px;
+    align-items: center;
+      .poster {
+        background-image: url('/poster.png');
+        background-size: contain;
+        background-repeat: repeat-x;
+        height: 450px;
+      }
   }
-  .poster {
-    background-image: url('/poster.png');
-    background-size: contain;
-    background-repeat:repeat-x;
-  }
+
 }
