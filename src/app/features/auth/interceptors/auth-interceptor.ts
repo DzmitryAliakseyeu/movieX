@@ -6,7 +6,7 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { catchError, Observable, retry, throwError, timer } from 'rxjs';
-import { environment } from '../../../../environments/environment.prod';
+import { environment } from '../../../../environments/environment';
 
 export const authInterceptor: HttpInterceptorFn = (
   request: HttpRequest<unknown>,

@@ -37,7 +37,7 @@ import {
   TvShowQueryOptions,
   UpcomingMovies,
 } from 'tmdb-ts';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 import {
   Genres,
   MovieSearchOptions,
@@ -67,7 +67,7 @@ export class TmdbApi {
   // collections
 
   getCollectionDetails(collection_id: number, params?: LanguageOption): Observable<Collection> {
-    const httpParams = new HttpParams({ fromObject: { ...params } as Record<string, string> });
+    const httpParams = new HttpParams({ fromObject: { ...params } });
     return this.http.get<Collection>(`${environment.tmdbBaseUrl}/collection/${collection_id}`, {
       params: httpParams,
     });
@@ -88,7 +88,7 @@ export class TmdbApi {
     collection_id: number,
     params?: CollectionImageOptions,
   ): Observable<Translations> {
-    const httpParams = new HttpParams({ fromObject: { ...params } as Record<string, string> });
+    const httpParams = new HttpParams({ fromObject: { ...params } });
     return this.http.get<Translations>(
       `${environment.tmdbBaseUrl}/collection/${collection_id}/translations`,
       { params: httpParams },
@@ -98,7 +98,7 @@ export class TmdbApi {
   // credits
 
   getCreditDetails(credit_id: string, params?: LanguageOption): Observable<CreditResponse> {
-    const httpParams = new HttpParams({ fromObject: { ...params } as Record<string, string> });
+    const httpParams = new HttpParams({ fromObject: { ...params } });
     return this.http.get<CreditResponse>(`${environment.tmdbBaseUrl}/credit/${credit_id}`, {
       params: httpParams,
     });
@@ -107,14 +107,14 @@ export class TmdbApi {
   // discover
 
   discoverMovie(params?: MovieQueryOptions): Observable<MovieDiscoverResult> {
-    const httpParams = new HttpParams({ fromObject: { ...params } as Record<string, string> });
+    const httpParams = new HttpParams({ fromObject: { ...params } });
     return this.http.get<Search<Movie>>(`${environment.tmdbBaseUrl}/discover/movie`, {
       params: httpParams,
     });
   }
 
   discoverTvShow(params?: TvShowQueryOptions): Observable<TvShowDiscoverResult> {
-    const httpParams = new HttpParams({ fromObject: { ...params } as Record<string, string> });
+    const httpParams = new HttpParams({ fromObject: { ...params } });
     return this.http.get<TvShowDiscoverResult>(`${environment.tmdbBaseUrl}/discover/tv`, {
       params: httpParams,
     });
@@ -132,14 +132,14 @@ export class TmdbApi {
   // genres
 
   getMovieGenres(params?: LanguageOption): Observable<Genres> {
-    const httpParams = new HttpParams({ fromObject: { ...params } as Record<string, string> });
+    const httpParams = new HttpParams({ fromObject: { ...params } });
     return this.http.get<Genres>(`${environment.tmdbBaseUrl}/genre/movie/list`, {
       params: httpParams,
     });
   }
 
   getTvShowGenres(params?: LanguageOption): Observable<Genres> {
-    const httpParams = new HttpParams({ fromObject: { ...params } as Record<string, string> });
+    const httpParams = new HttpParams({ fromObject: { ...params } });
     return this.http.get<Genres>(`${environment.tmdbBaseUrl}/genre/tv/list`, {
       params: httpParams,
     });
@@ -156,14 +156,14 @@ export class TmdbApi {
   getNowPlayingMovieList(
     params?: PageOption & LanguageOption & RegionOption,
   ): Observable<MoviesPlayingNow> {
-    const httpParams = new HttpParams({ fromObject: { ...params } as Record<string, string> });
+    const httpParams = new HttpParams({ fromObject: { ...params } });
     return this.http.get<MoviesPlayingNow>(`${environment.tmdbBaseUrl}/movie/now_playing`, {
       params: httpParams,
     });
   }
 
   getPopularMovieList(params?: PageOption & LanguageOption): Observable<PopularMovies> {
-    const httpParams = new HttpParams({ fromObject: { ...params } as Record<string, string> });
+    const httpParams = new HttpParams({ fromObject: { ...params } });
     return this.http.get<PopularMovies>(`${environment.tmdbBaseUrl}/movie/popular`, {
       params: httpParams,
     });
@@ -172,7 +172,7 @@ export class TmdbApi {
   getTopRatedMovieList(
     params?: PageOption & LanguageOption & RegionOption,
   ): Observable<TopRatedMovies> {
-    const httpParams = new HttpParams({ fromObject: { ...params } as Record<string, string> });
+    const httpParams = new HttpParams({ fromObject: { ...params } });
     return this.http.get<TopRatedMovies>(`${environment.tmdbBaseUrl}/movie/top_rated`, {
       params: httpParams,
     });
@@ -181,7 +181,7 @@ export class TmdbApi {
   getUpcomingMovieList(
     params?: PageOption & LanguageOption & RegionOption,
   ): Observable<UpcomingMovies> {
-    const httpParams = new HttpParams({ fromObject: { ...params } as Record<string, string> });
+    const httpParams = new HttpParams({ fromObject: { ...params } });
     return this.http.get<UpcomingMovies>(`${environment.tmdbBaseUrl}/movie/upcoming`, {
       params: httpParams,
     });
@@ -194,7 +194,7 @@ export class TmdbApi {
     appendToResponse?: AppendToResponseMovieKey[],
     params?: LanguageOption,
   ): Observable<AppendToResponse<MovieDetails, AppendToResponseMovieKey[] | undefined, 'movie'>> {
-    let httpParams = new HttpParams({ fromObject: { ...params } as Record<string, string> });
+    let httpParams = new HttpParams({ fromObject: { ...params } });
 
     if (appendToResponse?.length) {
       httpParams = httpParams.set('append_to_response', appendToResponse.join(','));
@@ -206,7 +206,7 @@ export class TmdbApi {
   }
 
   getMovieCredits(movie_id: number, params?: LanguageOption): Observable<Credits> {
-    const httpParams = new HttpParams({ fromObject: { ...params } as Record<string, string> });
+    const httpParams = new HttpParams({ fromObject: { ...params } });
     return this.http.get<Credits>(`${environment.tmdbBaseUrl}/movie/${movie_id}/credits`, {
       params: httpParams,
     });
@@ -217,7 +217,7 @@ export class TmdbApi {
   }
 
   getMovieImages(movie_id: number, params?: MoviesImageSearchOptions): Observable<Images> {
-    const httpParams = new HttpParams({ fromObject: { ...params } as Record<string, string> });
+    const httpParams = new HttpParams({ fromObject: { ...params } });
     return this.http.get<Images>(`${environment.tmdbBaseUrl}/movie/${movie_id}/images`, {
       params: httpParams,
     });
@@ -227,7 +227,7 @@ export class TmdbApi {
     movie_id: number,
     params?: LanguageOption & PageOption,
   ): Observable<Recommendations> {
-    const httpParams = new HttpParams({ fromObject: { ...params } as Record<string, string> });
+    const httpParams = new HttpParams({ fromObject: { ...params } });
     return this.http.get<Recommendations>(
       `${environment.tmdbBaseUrl}/movie/${movie_id}/recommendations`,
       { params: httpParams },
@@ -235,7 +235,7 @@ export class TmdbApi {
   }
 
   getMovieReviews(movie_id: number, params?: LanguageOption & PageOption): Observable<Reviews> {
-    const httpParams = new HttpParams({ fromObject: { ...params } as Record<string, string> });
+    const httpParams = new HttpParams({ fromObject: { ...params } });
     return this.http.get<Reviews>(`${environment.tmdbBaseUrl}/movie/${movie_id}/reviews`, {
       params: httpParams,
     });
@@ -245,7 +245,7 @@ export class TmdbApi {
     movie_id: number,
     params?: LanguageOption & PageOption,
   ): Observable<SimilarMovies> {
-    const httpParams = new HttpParams({ fromObject: { ...params } as Record<string, string> });
+    const httpParams = new HttpParams({ fromObject: { ...params } });
     return this.http.get<SimilarMovies>(`${environment.tmdbBaseUrl}/movie/${movie_id}/similar`, {
       params: httpParams,
     });
@@ -256,7 +256,7 @@ export class TmdbApi {
   getPeopleListOrderedByPopularity(
     params?: LanguageOption & PageOption,
   ): Observable<PopularPeople> {
-    const httpParams = new HttpParams({ fromObject: { ...params } as Record<string, string> });
+    const httpParams = new HttpParams({ fromObject: { ...params } });
     return this.http.get<PopularPeople>(`${environment.tmdbBaseUrl}/person/popular`, {
       params: httpParams,
     });
@@ -347,14 +347,14 @@ export class TmdbApi {
   // TV series lists
 
   getPopularTvShowsList(params?: PageOption & LanguageOption): Observable<PopularTvShows> {
-    const httpParams = new HttpParams({ fromObject: { ...params } as Record<string, string> });
+    const httpParams = new HttpParams({ fromObject: { ...params } });
     return this.http.get<PopularTvShows>(`${environment.tmdbBaseUrl}/tv/popular`, {
       params: httpParams,
     });
   }
 
   getTopRatedTvShowsList(params?: PageOption & LanguageOption): Observable<TopRatedTvShows> {
-    const httpParams = new HttpParams({ fromObject: { ...params } as Record<string, string> });
+    const httpParams = new HttpParams({ fromObject: { ...params } });
     return this.http.get<TopRatedTvShows>(`${environment.tmdbBaseUrl}/tv/top_rated`, {
       params: httpParams,
     });
