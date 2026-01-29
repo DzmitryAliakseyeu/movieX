@@ -66,40 +66,32 @@ export class TmdbApi {
 
   // collections
 
-  getCollectionDetails(collection_id: number, params?: LanguageOption): Observable<Collection> {
+  getCollectionDetails(id: number, params?: LanguageOption): Observable<Collection> {
     const httpParams = new HttpParams({ fromObject: { ...params } });
-    return this.http.get<Collection>(`${environment.tmdbBaseUrl}/collection/${collection_id}`, {
+    return this.http.get<Collection>(`${environment.tmdbBaseUrl}/collection/${id}`, {
       params: httpParams,
     });
   }
 
-  getCollectionImages(
-    collection_id: number,
-    params?: CollectionImageOptions,
-  ): Observable<ImageCollection> {
+  getCollectionImages(id: number, params?: CollectionImageOptions): Observable<ImageCollection> {
     const httpParams = new HttpParams({ fromObject: { ...params } as Record<string, string> });
-    return this.http.get<ImageCollection>(
-      `${environment.tmdbBaseUrl}/collection/${collection_id}/images`,
-      { params: httpParams },
-    );
+    return this.http.get<ImageCollection>(`${environment.tmdbBaseUrl}/collection/${id}/images`, {
+      params: httpParams,
+    });
   }
 
-  getCollectionTranslations(
-    collection_id: number,
-    params?: CollectionImageOptions,
-  ): Observable<Translations> {
+  getCollectionTranslations(id: number, params?: CollectionImageOptions): Observable<Translations> {
     const httpParams = new HttpParams({ fromObject: { ...params } });
-    return this.http.get<Translations>(
-      `${environment.tmdbBaseUrl}/collection/${collection_id}/translations`,
-      { params: httpParams },
-    );
+    return this.http.get<Translations>(`${environment.tmdbBaseUrl}/collection/${id}/translations`, {
+      params: httpParams,
+    });
   }
 
   // credits
 
-  getCreditDetails(credit_id: string, params?: LanguageOption): Observable<CreditResponse> {
+  getCreditDetails(id: string, params?: LanguageOption): Observable<CreditResponse> {
     const httpParams = new HttpParams({ fromObject: { ...params } });
-    return this.http.get<CreditResponse>(`${environment.tmdbBaseUrl}/credit/${credit_id}`, {
+    return this.http.get<CreditResponse>(`${environment.tmdbBaseUrl}/credit/${id}`, {
       params: httpParams,
     });
   }
@@ -122,9 +114,9 @@ export class TmdbApi {
 
   // find
 
-  findByExternalId(external_id: string, params: ExternalIdOptions): Observable<FindResult> {
+  findByExternalId(id: string, params: ExternalIdOptions): Observable<FindResult> {
     const httpParams = new HttpParams({ fromObject: { ...params } });
-    return this.http.get<FindResult>(`${environment.tmdbBaseUrl}/find/${external_id}`, {
+    return this.http.get<FindResult>(`${environment.tmdbBaseUrl}/find/${id}`, {
       params: httpParams,
     });
   }
@@ -147,8 +139,8 @@ export class TmdbApi {
 
   // keywords
 
-  getKeywordDetails(keyword_id: number): Observable<Keyword> {
-    return this.http.get<Keyword>(`${environment.tmdbBaseUrl}/keyword/${keyword_id}`);
+  getKeywordDetails(id: number): Observable<Keyword> {
+    return this.http.get<Keyword>(`${environment.tmdbBaseUrl}/keyword/${id}`);
   }
 
   // movie lists
@@ -190,7 +182,7 @@ export class TmdbApi {
   // movies
 
   getDetailsById(
-    movie_id: number,
+    id: number,
     appendToResponse?: AppendToResponseMovieKey[],
     params?: LanguageOption,
   ): Observable<AppendToResponse<MovieDetails, AppendToResponseMovieKey[] | undefined, 'movie'>> {
@@ -202,51 +194,48 @@ export class TmdbApi {
 
     return this.http.get<
       AppendToResponse<MovieDetails, AppendToResponseMovieKey[] | undefined, 'movie'>
-    >(`${environment.tmdbBaseUrl}/movie/${movie_id}`, { params: httpParams });
+    >(`${environment.tmdbBaseUrl}/movie/${id}`, { params: httpParams });
   }
 
-  getMovieCredits(movie_id: number, params?: LanguageOption): Observable<Credits> {
+  getMovieCredits(id: number, params?: LanguageOption): Observable<Credits> {
     const httpParams = new HttpParams({ fromObject: { ...params } });
-    return this.http.get<Credits>(`${environment.tmdbBaseUrl}/movie/${movie_id}/credits`, {
+    return this.http.get<Credits>(`${environment.tmdbBaseUrl}/movie/${id}/credits`, {
       params: httpParams,
     });
   }
 
-  getMovieExternalIds(movie_id: number): Observable<ExternalIds> {
-    return this.http.get<ExternalIds>(`${environment.tmdbBaseUrl}/movie/${movie_id}/external_ids`);
+  getMovieExternalIds(id: number): Observable<ExternalIds> {
+    return this.http.get<ExternalIds>(`${environment.tmdbBaseUrl}/movie/${id}/external_ids`);
   }
 
-  getMovieImages(movie_id: number, params?: MoviesImageSearchOptions): Observable<Images> {
+  getMovieImages(id: number, params?: MoviesImageSearchOptions): Observable<Images> {
     const httpParams = new HttpParams({ fromObject: { ...params } });
-    return this.http.get<Images>(`${environment.tmdbBaseUrl}/movie/${movie_id}/images`, {
+    return this.http.get<Images>(`${environment.tmdbBaseUrl}/movie/${id}/images`, {
       params: httpParams,
     });
   }
 
   getMovieRecommendations(
-    movie_id: number,
+    id: number,
     params?: LanguageOption & PageOption,
   ): Observable<Recommendations> {
     const httpParams = new HttpParams({ fromObject: { ...params } });
     return this.http.get<Recommendations>(
-      `${environment.tmdbBaseUrl}/movie/${movie_id}/recommendations`,
+      `${environment.tmdbBaseUrl}/movie/${id}/recommendations`,
       { params: httpParams },
     );
   }
 
-  getMovieReviews(movie_id: number, params?: LanguageOption & PageOption): Observable<Reviews> {
+  getMovieReviews(id: number, params?: LanguageOption & PageOption): Observable<Reviews> {
     const httpParams = new HttpParams({ fromObject: { ...params } });
-    return this.http.get<Reviews>(`${environment.tmdbBaseUrl}/movie/${movie_id}/reviews`, {
+    return this.http.get<Reviews>(`${environment.tmdbBaseUrl}/movie/${id}/reviews`, {
       params: httpParams,
     });
   }
 
-  getMoviesSimilar(
-    movie_id: number,
-    params?: LanguageOption & PageOption,
-  ): Observable<SimilarMovies> {
+  getMoviesSimilar(id: number, params?: LanguageOption & PageOption): Observable<SimilarMovies> {
     const httpParams = new HttpParams({ fromObject: { ...params } });
-    return this.http.get<SimilarMovies>(`${environment.tmdbBaseUrl}/movie/${movie_id}/similar`, {
+    return this.http.get<SimilarMovies>(`${environment.tmdbBaseUrl}/movie/${id}/similar`, {
       params: httpParams,
     });
   }
@@ -265,7 +254,7 @@ export class TmdbApi {
   // people
 
   getPersonDetails(
-    person_id: number,
+    id: number,
     appendToResponse?: AppendToResponsePersonKey[],
     language?: string,
   ): Observable<
@@ -283,13 +272,13 @@ export class TmdbApi {
 
     return this.http.get<
       AppendToResponse<PersonDetails, AppendToResponsePersonKey[] | undefined, 'person'>
-    >(`${environment.tmdbBaseUrl}/person/${person_id}`, { params: httpParams });
+    >(`${environment.tmdbBaseUrl}/person/${id}`, { params: httpParams });
   }
 
   // reviews
 
-  getMovieOrTVShowReviewDetails(review_id: string): Observable<ReviewDetails> {
-    return this.http.get<ReviewDetails>(`${environment.tmdbBaseUrl}/review/${review_id}`);
+  getMovieOrTVShowReviewDetails(id: string): Observable<ReviewDetails> {
+    return this.http.get<ReviewDetails>(`${environment.tmdbBaseUrl}/review/${id}`);
   }
 
   // search
@@ -363,7 +352,7 @@ export class TmdbApi {
   // tv series
 
   getTvShowDetails(
-    series_id: number,
+    id: number,
     appendToResponse?: AppendToResponseTvKey[],
     language?: string,
   ): Observable<AppendToResponse<TvShowDetails, AppendToResponseTvKey[] | undefined, 'tvShow'>> {
@@ -379,6 +368,6 @@ export class TmdbApi {
 
     return this.http.get<
       AppendToResponse<TvShowDetails, AppendToResponseTvKey[] | undefined, 'tvShow'>
-    >(`${environment.tmdbBaseUrl}/tv/${series_id}`, { params: httpParams });
+    >(`${environment.tmdbBaseUrl}/tv/${id}`, { params: httpParams });
   }
 }
