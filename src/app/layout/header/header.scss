@@ -1,12 +1,13 @@
 @use '../../../variables' as *;
 
 :host {
-  width: inherit;
+  width: 100%;
   height: 70px;
   background-color: $darkThemeMainBackround;
   align-items: center;
   padding: 0 50px;
   justify-content: space-between;
+  box-sizing: border-box;
   .navigation {
     gap: 20px;
     .button-logo {

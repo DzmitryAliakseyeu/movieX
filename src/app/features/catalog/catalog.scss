@@ -1,19 +1,26 @@
 @use '../../../variables' as *;
 
 :host {
-  // background-color: #fff;
-  height: 100px;
+  width: 100%;
+  padding: 0 50px;
+  box-sizing: border-box;
 
-  .catalog-header {
-    align-items: center;
-    gap: 10px;
-    h2 {
-      color: $darkThemeMainTextColor;;
-    }
-    .catalog-buttons {
+  .content-block {
+    gap: 20px;
+    .catalog-header {
+      align-items: center;
       gap: 10px;
+      h2 {
+        color: $darkThemeMainTextColor;
+      }
+      .catalog-buttons {
+        gap: 10px;
+      }
     }
 
+    .catalog-content {
+      justify-content: space-between;
+      gap: 5px;
+    }
   }
-
 }

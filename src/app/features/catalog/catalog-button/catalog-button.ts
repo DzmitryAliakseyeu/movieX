@@ -10,6 +10,6 @@ import { Component } from '@angular/core';
 export class CatalogButton {
   getPosters() {
     const posters: [] = [];
-    return posters
+    return posters;
   }
 }
