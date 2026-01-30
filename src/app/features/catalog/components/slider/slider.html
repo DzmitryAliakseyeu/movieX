@@ -1,16 +1,5 @@
-<div class="content-block flex flex-column">
-  <div class="catalog-header flex flex-row">
-    <h2>{{ catalogTitle() }}</h2>
-    <div class="catalog-buttons flex flex-row">
-      <moviex-catalog-button></moviex-catalog-button>
-      <moviex-catalog-button></moviex-catalog-button>
-    </div>
-  </div>
-
-  <moviex-slider></moviex-slider>
-
-  <!-- <div class="catalog-slider">
-    <div class="track flex flex-row" [class.transform]>
+ <div class="catalog-slider" #catalogSlider>
+    <div class="track flex flex-row" [style.transform]="transform">
       <moviex-poster></moviex-poster>
         <moviex-poster></moviex-poster>
         <moviex-poster></moviex-poster>
@@ -22,13 +11,14 @@
         <moviex-poster></moviex-poster>
         <moviex-poster></moviex-poster>
         <moviex-poster></moviex-poster>
-           <moviex-poster></moviex-poster>
         <moviex-poster></moviex-poster>
         <moviex-poster></moviex-poster>
         <moviex-poster></moviex-poster>
         <moviex-poster></moviex-poster>
-    </div> -->
-
-
-  <!-- </div> -->
+        <moviex-poster></moviex-poster>
 </div>
+
+   <div class="slider-buttons">
+      <button (click)="showPrev()">+</button>
+      <button (click)="showNext()">-</button>
+    </div>

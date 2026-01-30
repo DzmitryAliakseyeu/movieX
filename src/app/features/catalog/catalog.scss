@@ -1,9 +1,11 @@
 @use '../../../variables' as *;
 
 :host {
-  width: 100%;
+  // width: 100%;
   padding: 0 50px;
   box-sizing: border-box;
+  max-width: 1440px;
+  width: 100%;
 
   .content-block {
     gap: 20px;
@@ -18,9 +20,17 @@
       }
     }
 
-    .catalog-content {
-      justify-content: space-between;
-      gap: 5px;
-    }
+    // .catalog-slider {
+    //   justify-content: space-between;
+    //   gap: 5px;
+    //   overflow-x: hidden;
+    //   width: 100%;
+
+    //   .track {
+    //     transition: transform 0.3s ease;
+    //     gap: 20px;
+
+    //   }
+    // }
   }
 }

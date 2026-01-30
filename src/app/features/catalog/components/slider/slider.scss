@@ -1,0 +1,15 @@
+:host {
+ .catalog-slider {
+      justify-content: space-between;
+      gap: 5px;
+      overflow-x: hidden;
+      width: 100%;
+
+      .track {
+        transition: transform 0.3s ease;
+        gap: 20px;
+
+      }
+    }
+}
+

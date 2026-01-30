@@ -1,12 +1,13 @@
 import { Component, input } from '@angular/core';
-import { CatalogButton } from './catalog-button/catalog-button';
-import { Poster } from './poster/poster';
+import { CatalogButton } from './components/catalog-button/catalog-button';
+import { Slider } from './components/slider/slider';
 
 @Component({
   selector: 'moviex-catalog',
   standalone: true,
-  imports: [CatalogButton, Poster],
+  imports: [CatalogButton, Slider],
   templateUrl: './catalog.html',
+
   styleUrl: './catalog.scss',
 })
 export class Catalog {
