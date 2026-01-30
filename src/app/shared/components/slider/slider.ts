@@ -1,5 +1,5 @@
 import { Component, computed, ElementRef, viewChild } from '@angular/core';
-import { Poster } from '../poster/poster';
+import { Poster } from '../../../features/home-page/components/poster/poster';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({

@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CatalogButton } from './catalog-button';
+import { SearchField } from './search-field';
 
-describe('CatalogButton', () => {
-  let component: CatalogButton;
-  let fixture: ComponentFixture<CatalogButton>;
+describe('SearchField', () => {
+  let component: SearchField;
+  let fixture: ComponentFixture<SearchField>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CatalogButton],
-    }).compileComponents();
+      imports: [SearchField]
+    })
+    .compileComponents();
 
-    fixture = TestBed.createComponent(CatalogButton);
+    fixture = TestBed.createComponent(SearchField);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
