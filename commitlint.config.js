@@ -1,8 +1,7 @@
 module.exports = {
   parserPreset: {
     parserOpts: {
-      headerPattern:
-      /^(\w+):\s(.+)$/,
+      headerPattern: /^(\w+):\s(.+)$/,
       headerCorrespondence: ['type', 'subject', 'timestamp'],
     },
   },
