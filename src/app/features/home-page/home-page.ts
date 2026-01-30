@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Catalog } from './components/catalog/catalog'
-import { SearchField } from "../../shared/components/search-field/search-field";
+import { Catalog } from './components/catalog/catalog';
+import { SearchField } from '../../shared/components/search-field/search-field';
 
 @Component({
   selector: 'moviex-home-page',

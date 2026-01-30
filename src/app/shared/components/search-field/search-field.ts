@@ -9,6 +9,4 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './search-field.html',
   styleUrl: './search-field.scss',
 })
-export class SearchField {
-
-}
+export class SearchField {}

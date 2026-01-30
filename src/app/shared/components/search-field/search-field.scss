@@ -1,4 +1,4 @@
-@use '../../../../variables' as * ;
+@use '../../../../variables' as *;
 
 :host {
   max-width: 1320px;
@@ -8,14 +8,6 @@
     width: 100%;
     .search-field {
       width: 100%;
-    }
-    .search-input{
-      // width: 100%;
-      // background-color: transparent;
-      // border: 1px solid gray;
-      // height: 30px;
-      // border-radius: 20px;
-      // color: $darkThemeMainTextColor;
     }
   }
 }
