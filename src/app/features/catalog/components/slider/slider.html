@@ -1,24 +1,25 @@
- <div class="catalog-slider" #catalogSlider>
-    <div class="track flex flex-row" [style.transform]="transform">
-      <moviex-poster></moviex-poster>
-        <moviex-poster></moviex-poster>
-        <moviex-poster></moviex-poster>
-        <moviex-poster></moviex-poster>
-        <moviex-poster></moviex-poster>
-        <moviex-poster></moviex-poster>
-         <moviex-poster></moviex-poster>
-        <moviex-poster></moviex-poster>
-        <moviex-poster></moviex-poster>
-        <moviex-poster></moviex-poster>
-        <moviex-poster></moviex-poster>
-        <moviex-poster></moviex-poster>
-        <moviex-poster></moviex-poster>
-        <moviex-poster></moviex-poster>
-        <moviex-poster></moviex-poster>
-        <moviex-poster></moviex-poster>
-</div>
+<div class="catalog-slider flex flex-column" #catalogSlider>
+  <div class="track flex flex-row" [style.transform]="transform">
+    <moviex-poster></moviex-poster>
+    <moviex-poster></moviex-poster>
+    <moviex-poster></moviex-poster>
+    <moviex-poster></moviex-poster>
+    <moviex-poster></moviex-poster>
+    <moviex-poster></moviex-poster>
+    <moviex-poster></moviex-poster>
+    <moviex-poster></moviex-poster>
+    <moviex-poster></moviex-poster>
+    <moviex-poster></moviex-poster>
+    <moviex-poster></moviex-poster>
+    <moviex-poster></moviex-poster>
+    <moviex-poster></moviex-poster>
+    <moviex-poster></moviex-poster>
+    <moviex-poster></moviex-poster>
+    <moviex-poster></moviex-poster>
+  </div>
 
-   <div class="slider-buttons">
-      <button (click)="showPrev()">+</button>
-      <button (click)="showNext()">-</button>
-    </div>
+  <div class="slider-buttons flex flex-row">
+    <button class="slider-button" (click)="showPrev()"><mat-icon>chevron_left</mat-icon></button>
+    <button class="slider-button" (click)="showNext()"><mat-icon>chevron_right</mat-icon></button>
+  </div>
+</div>

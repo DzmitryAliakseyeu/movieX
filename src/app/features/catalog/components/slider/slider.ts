@@ -1,9 +1,10 @@
 import { Component, computed, ElementRef, viewChild } from '@angular/core';
 import { Poster } from '../poster/poster';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'moviex-slider',
-  imports: [Poster],
+  imports: [Poster, MatIconModule],
   templateUrl: './slider.html',
   styleUrl: './slider.scss',
 })
