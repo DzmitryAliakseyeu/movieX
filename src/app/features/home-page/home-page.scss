@@ -11,6 +11,9 @@
   justify-content: space-between;
   gap: 20px;
   padding: 20px 0;
+  .test {
+    background-color: var(--mat-sys-surface-bright);
+  }
   .content-section {
     justify-content: center;
     gap: 30px;
