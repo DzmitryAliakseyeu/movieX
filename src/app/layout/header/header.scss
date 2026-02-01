@@ -3,7 +3,6 @@
 :host {
   width: 100%;
   height: 70px;
-  background-color: $darkThemeMainBackround;
   align-items: center;
   padding: 0 50px;
   justify-content: space-between;
@@ -28,24 +27,11 @@
         gap: 10px;
         li {
           list-style-type: none;
-          button {
-            background-color: transparent;
-            color: $darkThemeMainTextColor;
-            border: none;
-            font-size: 1.5em;
-            padding: 0;
-          }
         }
       }
     }
   }
-  .managment {
+  .management {
     gap: 10px;
-    button {
-      background-color: transparent;
-      border: none;
-      color: $darkThemeMainTextColor;
-      font-size: 1.5em;
-    }
   }
 }
