@@ -1,0 +1,23 @@
+@use '../../../../../variables' as *;
+
+:host {
+  // width: 100%;
+  padding: 0 50px;
+  box-sizing: border-box;
+  max-width: 1440px;
+  width: 100%;
+
+  .content-block {
+    gap: 20px;
+    .catalog-header {
+      align-items: center;
+      gap: 10px;
+      h2 {
+        color: $darkThemeMainTextColor;
+      }
+      .catalog-buttons {
+        gap: 10px;
+      }
+    }
+  }
+}

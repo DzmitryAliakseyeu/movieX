@@ -68,3 +68,25 @@ h4 {
   font-size: 20px;
   font-weight: 400;
 }
+
+.flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.content-section {
+  width: 100%;
+  padding: 0 20px;
+}
+
+.content-block {
+  max-width: 1320px;
+  width: 100%;
+}
