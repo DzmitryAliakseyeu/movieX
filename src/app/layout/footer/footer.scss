@@ -3,9 +3,7 @@
 :host {
   width: inherit;
   height: max-content;
-  background-color: $darkThemeMainBackround;
   align-items: center;
-  padding: 0 50px;
   justify-content: space-between;
   padding: 20px;
   box-sizing: border-box;
@@ -20,27 +18,15 @@
   }
 
   p {
-    color: $darkThemeMainTextColor;
     font-size: 1.5em;
   }
 
   nav {
-    color: $darkThemeMainTextColor;
     gap: 10px;
-    h3 {
-      font-size: 2em;
-    }
+
     ul {
-      color: white;
       font-size: 1.5em;
       gap: 5px;
-      li {
-        list-style-type: none;
-        a {
-          text-decoration: none;
-          color: $darkThemeMainTextColor;
-        }
-      }
     }
   }
 }
