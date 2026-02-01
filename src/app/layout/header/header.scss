@@ -1,0 +1,51 @@
+@use '../../../variables' as *;
+
+:host {
+  width: 100%;
+  height: 70px;
+  background-color: $darkThemeMainBackround;
+  align-items: center;
+  padding: 0 50px;
+  justify-content: space-between;
+  box-sizing: border-box;
+
+  .navigation {
+    gap: 20px;
+    .button-logo {
+      background-color: transparent;
+      border: none;
+      img {
+        width: 100px;
+        height: 50px;
+        cursor: pointer;
+      }
+    }
+
+    nav {
+      align-items: center;
+      ul {
+        padding: 0;
+        gap: 10px;
+        li {
+          list-style-type: none;
+          button {
+            background-color: transparent;
+            color: $darkThemeMainTextColor;
+            border: none;
+            font-size: 1.5em;
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+  .managment {
+    gap: 10px;
+    button {
+      background-color: transparent;
+      border: none;
+      color: $darkThemeMainTextColor;
+      font-size: 1.5em;
+    }
+  }
+}

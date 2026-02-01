@@ -1,0 +1,13 @@
+@use '../../../../variables' as *;
+
+:host {
+  max-width: 1320px;
+  width: 100%;
+  align-self: center;
+  .search-form {
+    width: 100%;
+    .search-field {
+      width: 100%;
+    }
+  }
+}

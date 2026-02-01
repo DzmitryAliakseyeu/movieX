@@ -1,8 +1,9 @@
 import { Component, signal } from '@angular/core';
+import { Layout } from './layout/layout';
 
 @Component({
-  selector: 'app-root',
-  imports: [],
+  selector: 'moviex-root',
+  imports: [Layout],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
