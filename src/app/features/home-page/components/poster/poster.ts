@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { PosterI } from '../../../../core/store/store';
 
 @Component({
   selector: 'moviex-poster',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
   templateUrl: './poster.html',
   styleUrl: './poster.scss',
 })
-export class Poster {}
+export class Poster {
+  poster = input<PosterI>()
+
+}
