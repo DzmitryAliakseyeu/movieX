@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatAnchor, MatButton } from '@angular/material/button';
+import { Store } from '../../core/store/store';
 
 @Component({
   selector: 'moviex-header',
@@ -8,4 +9,10 @@ import { MatAnchor, MatButton } from '@angular/material/button';
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
-export class Header {}
+export class Header {
+  store = inject(Store);
+
+  toggleTheme() {
+    this.store.toggleTheme();
+  }
+}

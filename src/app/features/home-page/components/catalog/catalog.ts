@@ -10,5 +10,5 @@ import { Slider } from '../../../../shared/components/slider/slider';
   styleUrl: './catalog.scss',
 })
 export class Catalog {
-  catalogTitle = input('catalog title');
+  title = input('');
 }
