@@ -9,6 +9,5 @@ import { PosterI } from '../../../../core/store/store';
   styleUrl: './poster.scss',
 })
 export class Poster {
-  poster = input<PosterI>()
-
+  poster = input<PosterI>();
 }

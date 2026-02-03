@@ -1,8 +1,7 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Catalog } from './components/catalog/catalog';
 import { SearchField } from '../../shared/components/search-field/search-field';
 import { Store } from '../../core/store/store';
-import { getState } from '@ngrx/signals';
 
 @Component({
   selector: 'moviex-home-page',
@@ -11,13 +10,12 @@ import { getState } from '@ngrx/signals';
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
 })
-export class HomePage {
+export class HomePage implements OnInit {
   store = inject(Store);
 
-  catalogs = this.store.catalogs
+  catalogs = this.store.catalogs;
 
-
-  ngOnInit(){
+  ngOnInit() {
     this.store.loadAllCatalogs();
   }
 }

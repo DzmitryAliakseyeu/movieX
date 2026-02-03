@@ -1,4 +1,14 @@
-import { Component, computed, ElementRef, inject, signal, viewChild, OnInit, effect, input, ViewChild, viewChildren, QueryList } from '@angular/core';
+import {
+  Component,
+  computed,
+  ElementRef,
+  inject,
+  signal,
+  viewChild,
+  input,
+  viewChildren,
+  AfterViewChecked,
+} from '@angular/core';
 import { Poster } from '../../../features/home-page/components/poster/poster';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,36 +22,33 @@ import { PosterI, Store } from '../../../core/store/store';
   templateUrl: './slider.html',
   styleUrl: './slider.scss',
 })
-export class Slider{
-
+export class Slider implements AfterViewChecked {
   http = inject(TmdbApi);
   store = inject(Store);
 
-  catalogContent = input<PosterI[]>()
-
+  catalogContent = input<PosterI[]>();
 
   index = 0;
   transform = 'translateX(0px)';
 
   catalogSlider = viewChild<ElementRef>('catalogSlider');
-  postersList = viewChildren('posterRef',{ read: ElementRef });
+  postersList = viewChildren('posterRef', { read: ElementRef });
   elCatalogSlider = computed(() => this.catalogSlider()?.nativeElement);
 
-  quantitySliderSections = signal(0)
+  quantitySliderSections = signal(0);
 
-  ngAfterViewChecked(){
-      const el = this.elCatalogSlider();
+  ngAfterViewChecked() {
+    const el = this.elCatalogSlider();
     if (!el) return;
 
     const width = el.clientWidth;
-      const posters = this.postersList();
-      const firstPoster = posters[0].nativeElement as HTMLElement;
-      const posterWidth = firstPoster.clientWidth;
-      const content = this.catalogContent()
-      if(content){
-        this.quantitySliderSections.set(Math.floor(content.length  / (width / (posterWidth + 10))))
-      }
-
+    const posters = this.postersList();
+    const firstPoster = posters[0].nativeElement as HTMLElement;
+    const posterWidth = firstPoster.clientWidth;
+    const content = this.catalogContent();
+    if (content) {
+      this.quantitySliderSections.set(Math.floor(content.length / (width / (posterWidth + 10))));
+    }
   }
 
   update() {
@@ -60,13 +67,10 @@ export class Slider{
   }
 
   showNext() {
-    let avaliableClicks = computed(()=> this.quantitySliderSections())
-      if (this.index < avaliableClicks()) {
-          this.index++;
-          this.update();
-
-      }
-
-
+    const avaliableClicks = computed(() => this.quantitySliderSections());
+    if (this.index < avaliableClicks()) {
+      this.index++;
+      this.update();
+    }
   }
 }

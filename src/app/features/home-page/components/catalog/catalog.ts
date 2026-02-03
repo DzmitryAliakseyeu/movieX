@@ -1,4 +1,4 @@
-import { Component, effect, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { Slider } from '../../../../shared/components/slider/slider';
 import { CatalogI } from '../../../../core/store/store';
 
@@ -11,5 +11,5 @@ import { CatalogI } from '../../../../core/store/store';
   styleUrl: './catalog.scss',
 })
 export class Catalog {
-  catalog = input<CatalogI>()
+  catalog = input<CatalogI>();
 }
