@@ -7,6 +7,4 @@ import { Layout } from './layout/layout';
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {
-  protected readonly title = signal('movieX');
-}
+export class App {}

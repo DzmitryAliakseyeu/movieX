@@ -19,7 +19,7 @@ export interface CatalogI {
 interface State {
   theme: 'light' | 'dark';
   catalogs: CatalogI[];
-  searchResults:PosterI[] | []
+  searchResults: PosterI[] | [];
 }
 
 export const Store = signalStore(
@@ -44,7 +44,7 @@ export const Store = signalStore(
         content: [],
       },
     ],
-    searchResults: []
+    searchResults: [],
   }),
 
   withMethods((store, http = inject(TmdbApi)) => ({
@@ -112,17 +112,16 @@ export const Store = signalStore(
         .subscribe();
     },
 
-    saveSearchResults(results: PosterI[] | []){
+    saveSearchResults(results: PosterI[] | []) {
       patchState(store, {
-    searchResults: results.map((item) => ({
-      id: item.id,
+        searchResults: results.map((item) => ({
+          id: item.id,
 
-      title: item.title,
+          title: item.title,
 
-      date: item.date,
-
-    }))
-  });
-    }
+          date: item.date,
+        })),
+      });
+    },
   })),
 );

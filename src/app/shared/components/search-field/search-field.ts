@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal, OnInit } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
@@ -6,7 +6,6 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
 import { TmdbApi } from '../../../core/services/tmdb-api';
 import { Store } from '../../../core/store/store';
-import { getState } from '@ngrx/signals';
 
 @Component({
   selector: 'moviex-search-field',
@@ -14,12 +13,12 @@ import { getState } from '@ngrx/signals';
   templateUrl: './search-field.html',
   styleUrl: './search-field.scss',
 })
-export class SearchField {
+export class SearchField implements OnInit {
   http = inject(TmdbApi);
   store = inject(Store);
-  isFocusOnInput = signal(false)
+  isFocusOnInput = signal(false);
   searchControl = new FormControl('');
-  serachResults = computed(()=> this.store.searchResults())
+  serachResults = computed(() => this.store.searchResults());
 
   ngOnInit() {
     this.searchControl.valueChanges
@@ -35,13 +34,12 @@ export class SearchField {
       )
       .subscribe({
         next: (response) => {
-          if(!response.results.length) {
-               this.store.saveSearchResults([]);
+          if (!response.results.length) {
+            this.store.saveSearchResults([]);
           }
           const result = response.results
             .map((item) => {
               if (item.media_type === 'movie') {
-
                 return {
                   id: item.id,
                   title: item.title,
@@ -55,25 +53,21 @@ export class SearchField {
                 };
               }
 
-
               return null;
             })
             .filter((item) => item !== null);
-            if(result.length){
-              this.store.saveSearchResults(result);
-            }
-
+          if (result.length) {
+            this.store.saveSearchResults(result);
+          }
         },
       });
   }
 
-  onFocus(){
-
+  onFocus() {
     this.isFocusOnInput.set(true);
   }
 
-  onBlur(){
-
+  onBlur() {
     this.isFocusOnInput.set(false);
   }
 }

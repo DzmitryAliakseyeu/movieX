@@ -12,12 +12,12 @@
     }
   }
   .search-results {
-    background-color:var(--mat-sys-surface);
+    background-color: var(--mat-sys-surface);
     position: absolute;
     z-index: 1001;
     width: 100%;
     .close {
-      align-self:flex-end;
+      align-self: flex-end;
     }
   }
 }

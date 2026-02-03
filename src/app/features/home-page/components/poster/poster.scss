@@ -2,7 +2,7 @@
 
 :host {
   border-radius: 20px;
-  box-shadow: 0 0 5px 0 white;
+  box-shadow: 0 0 5px 0 var(--mat-sys-error);
   height: 400px;
   flex: 0 0 calc(100% / 5 - 20px);
   overflow: hidden;
