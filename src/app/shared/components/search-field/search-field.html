@@ -7,18 +7,19 @@
       id="search"
       type="search"
       placeholder="Search..."
+      autocomplete="off"
       [formControl]="searchControl"
       (focus)="onFocus()"
       (blur)="onBlur()"
     />
   </mat-form-field>
 </form>
-@if (isFocusOnInput()) {
+@if (isFocusOnInput() && searchResults().length > 0) {
   <ul class="search-results flex flex-column">
     <mat-icon matPrefix class="close" (click)="this.isFocusOnInput.set(false)">close</mat-icon>
-    @for (item of this.serachResults(); track item.id) {
-      <li [id]="item.id">
-        <a href="">{{ item.title }}</a>
+    @for (item of this.searchResults(); track item.id) {
+      <li [id]="item.id" (mousedown)="$event.stopPropagation()">
+        <a [routerLink]="item.id.toString()" href="#">{{ item.title }}</a>
       </li>
     }
   </ul>

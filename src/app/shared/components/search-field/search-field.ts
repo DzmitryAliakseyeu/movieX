@@ -6,10 +6,11 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
 import { TmdbApi } from '../../../core/services/tmdb-api';
 import { Store } from '../../../core/store/store';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'moviex-search-field',
-  imports: [MatFormFieldModule, MatInputModule, MatIconModule, ReactiveFormsModule],
+  imports: [MatFormFieldModule, MatInputModule, MatIconModule, ReactiveFormsModule, RouterLink],
   templateUrl: './search-field.html',
   styleUrl: './search-field.scss',
 })
@@ -18,7 +19,7 @@ export class SearchField implements OnInit {
   store = inject(Store);
   isFocusOnInput = signal(false);
   searchControl = new FormControl('');
-  serachResults = computed(() => this.store.searchResults());
+  searchResults = computed(() => this.store.searchResults());
 
   ngOnInit() {
     this.searchControl.valueChanges
@@ -68,6 +69,6 @@ export class SearchField implements OnInit {
   }
 
   onBlur() {
-    this.isFocusOnInput.set(false);
+    setTimeout(() => this.isFocusOnInput.set(false), 150);
   }
 }

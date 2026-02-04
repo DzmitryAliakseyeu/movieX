@@ -43,8 +43,8 @@ export class Slider implements AfterViewChecked {
 
     const width = el.clientWidth;
     const posters = this.postersList();
-    const firstPoster = posters[0].nativeElement as HTMLElement;
-    const posterWidth = firstPoster.clientWidth;
+    const firstPoster = posters[0]?.nativeElement as HTMLElement;
+    const posterWidth = firstPoster?.clientWidth;
     const content = this.catalogContent();
     if (content) {
       this.quantitySliderSections.set(Math.floor(content.length / (width / (posterWidth + 10))));
