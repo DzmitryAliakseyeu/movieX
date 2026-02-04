@@ -4,10 +4,25 @@
   max-width: 1320px;
   width: 100%;
   align-self: center;
+  position: relative;
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
   .search-form {
     width: 100%;
     .search-field {
       width: 100%;
+    }
+  }
+  .search-results {
+    background-color: var(--mat-sys-surface);
+    position: absolute;
+    z-index: 1001;
+    width: 100%;
+    .close {
+      align-self: flex-end;
     }
   }
 }

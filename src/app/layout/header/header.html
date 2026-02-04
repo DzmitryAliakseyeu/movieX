@@ -5,14 +5,15 @@
 
   <nav class="flex">
     <ul class="flex flex-row">
-      <li><a matButton>Link 1</a></li>
-      <li><a matButton>Link 2</a></li>
-      <li><a matButton>Link 3</a></li>
+      <li><a matButton>Movies</a></li>
+      <li><a matButton>TV Shows</a></li>
+      <li><a matButton>People</a></li>
     </ul>
   </nav>
 </div>
 
 <div class="management flex flex-row">
-  <button matButton>link-m</button>
-  <button matButton>link-m</button>
+  <button matButton (click)="toggleTheme()">
+    <mat-icon>{{ themeModeText() }}</mat-icon>
+  </button>
 </div>

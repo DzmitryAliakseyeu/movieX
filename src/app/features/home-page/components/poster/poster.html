@@ -1,7 +1,7 @@
-<div class="poster flex flex-column">
-  <img src="/poster-ex.jpg" alt="poster-img" />
-  <div class="text-content">
-    <h3>Poster title</h3>
-    <p>Date info</p>
+<a class="poster flex flex-column" [routerLink]="(poster()?.id || '').toString()">
+  <img [src]="poster()?.imageUrl" alt="poster-img" />
+  <div class="text-content flex flex-column">
+    <h4>{{ poster()?.title }}</h4>
+    <p>{{ poster()?.date }}</p>
   </div>
-</div>
+</a>

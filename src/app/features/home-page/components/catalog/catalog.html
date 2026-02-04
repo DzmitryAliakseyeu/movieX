@@ -1,8 +1,8 @@
 <div class="content-block flex flex-column">
   <div class="catalog-header flex flex-row">
-    <h2>{{ catalogTitle() }}</h2>
+    <h2>{{ this.catalog()?.title }}</h2>
     <div class="catalog-buttons flex flex-row"></div>
   </div>
 
-  <moviex-slider></moviex-slider>
+  <moviex-slider [catalogContent]="this.catalog()?.content"></moviex-slider>
 </div>
