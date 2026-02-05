@@ -1,5 +1,6 @@
 import { Component, input } from '@angular/core';
 import { Slider } from '../../../../shared/components/slider/slider';
+import { CatalogI } from '../../../../core/store/store';
 
 @Component({
   selector: 'moviex-catalog',
@@ -10,5 +11,5 @@ import { Slider } from '../../../../shared/components/slider/slider';
   styleUrl: './catalog.scss',
 })
 export class Catalog {
-  catalogTitle = input('catalog title');
+  catalog = input<CatalogI>();
 }

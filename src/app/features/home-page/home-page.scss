@@ -2,8 +2,8 @@
 
 :host {
   height: 100%;
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid #fff;
+  border-top: 1px solid var(--mat-sys-outline);
+  border-bottom: 1px solid var(--mat-sys-outline);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,6 +20,16 @@
       background-size: contain;
       background-repeat: repeat-x;
       height: 450px;
+    }
+  }
+}
+
+@media (max-width: 885px) {
+  :host {
+    .content-section {
+      .poster {
+        background-size: cover;
+      }
     }
   }
 }

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Catalog } from './components/catalog/catalog';
 import { SearchField } from '../../shared/components/search-field/search-field';
+import { Store } from '../../core/store/store';
 
 @Component({
   selector: 'moviex-home-page',
@@ -9,4 +10,12 @@ import { SearchField } from '../../shared/components/search-field/search-field';
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
 })
-export class HomePage {}
+export class HomePage implements OnInit {
+  store = inject(Store);
+
+  catalogs = this.store.catalogs;
+
+  ngOnInit() {
+    this.store.loadAllCatalogs();
+  }
+}
