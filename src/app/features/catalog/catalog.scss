@@ -1,0 +1,24 @@
+@use '@angular/material' as mat;
+
+.search-form {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 24px auto 0;
+  max-width: 540px;
+  min-width: 320px;
+}
+
+.year-field,
+.genre-field,
+.search-field {
+  flex-grow: 1;
+}
+
+.genre-field,
+.search-button {
+  margin-left: 20px;
+}
+
+.paginator {
+  margin: 24px auto 0;
+}

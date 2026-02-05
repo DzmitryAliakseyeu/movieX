@@ -1,0 +1,49 @@
+@let genresCollection = genres().genres;
+@let catalog = catalogResource.value();
+
+<form class="search-form" [formGroup]="searchForm" (submit)="submitForm($event)">
+  <mat-form-field class="year-field" appearance="outline">
+    <mat-label>Year</mat-label>
+    <input matInput formControlName="year" type="number" />
+  </mat-form-field>
+
+  <mat-form-field class="genre-field" appearance="outline">
+    <mat-label>Genres</mat-label>
+    <mat-select formControlName="genre">
+      @for (genre of genresCollection; track genre.id) {
+        <mat-option [value]="genre.id">{{ genre.name }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="search-field" appearance="outline">
+    <mat-label>Search</mat-label>
+    <input matInput formControlName="keyword" />
+  </mat-form-field>
+
+  <button class="search-button" matFab type="submit" aria-label="Button Search">
+    <mat-icon>search</mat-icon>
+  </button>
+</form>
+
+@if (catalogResource.status() === 'loading') {
+  <mat-spinner></mat-spinner>
+} @else if (catalogResource.status() === 'resolved') {
+  @let catalogItems = catalog?.results;
+
+  @for (catalogItem of catalogItems; track catalogItem.id) {
+    <div class="catalog-item">{{ catalogItem.id }}</div>
+  }
+
+  <mat-paginator
+    class="paginator"
+    (page)="changePage($event)"
+    [length]="catalog?.total_results"
+    [pageSize]="pageSize"
+    [showFirstLastButtons]="false"
+    [hidePageSize]="true"
+    [pageIndex]="pageIndex()"
+    aria-label="Select page"
+  >
+  </mat-paginator>
+}

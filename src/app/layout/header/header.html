@@ -1,18 +1,22 @@
-<div class="navigation flex flex-row">
-  <button class="button-logo">
-    <img src="logo.svg" alt="logo" />
-  </button>
+<mat-toolbar>
+  <a routerLink="/" class="logo">
+    <img ngSrc="/logo.svg" width="126" height="54" alt="Logo" priority />
+  </a>
 
-  <nav class="flex">
-    <ul class="flex flex-row">
-      <li><a matButton>Link 1</a></li>
-      <li><a matButton>Link 2</a></li>
-      <li><a matButton>Link 3</a></li>
-    </ul>
+  <nav class="nav-links">
+    @for (navItem of navItems; track navItem.id) {
+      <a
+        mat-button
+        [routerLink]="navItem.id"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        {{ navItem.title }}</a
+      >
+    }
   </nav>
-</div>
 
-<div class="management flex flex-row">
-  <button matButton>link-m</button>
-  <button matButton>link-m</button>
-</div>
+  <div class="management flex flex-row">
+    <button matButton>Theme</button>
+  </div>
+</mat-toolbar>
