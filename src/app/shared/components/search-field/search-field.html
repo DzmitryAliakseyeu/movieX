@@ -14,12 +14,25 @@
     />
   </mat-form-field>
 </form>
-@if (isFocusOnInput() && searchResults().length > 0) {
-  <ul class="search-results flex flex-column">
+
+@if(isFocusOnInput() && (searchPostersResults().length > 0 &&  searchPeopleResults().length === 0)){
+    <ul class="search-results flex flex-column">
     <mat-icon matPrefix class="close" (click)="this.isFocusOnInput.set(false)">close</mat-icon>
-    @for (item of this.searchResults(); track item.id) {
+    @for (item of this.searchPostersResults() ; track item.id) {
       <li [id]="item.id" (mousedown)="$event.stopPropagation()">
         <a [routerLink]="item.id.toString()" href="#">{{ item.title }}</a>
+      </li>
+    }
+  </ul>
+}
+
+
+@if (isFocusOnInput() && (searchPostersResults().length === 0 && searchPeopleResults().length > 0)) {
+  <ul class="search-results flex flex-column">
+    <mat-icon matPrefix class="close" (click)="this.isFocusOnInput.set(false)">close</mat-icon>
+    @for (item of this.searchPeopleResults(); track item.id) {
+      <li [id]="item.id" (mousedown)="$event.stopPropagation()">
+        <a [routerLink]="item.id.toString()" href="#">{{ item.name }}</a>
       </li>
     }
   </ul>

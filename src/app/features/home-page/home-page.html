@@ -1,5 +1,5 @@
 <div class="content-section flex flex-column">
-  <moviex-search-field></moviex-search-field>
+  <moviex-search-field id="multi"></moviex-search-field>
   <section class="poster content-block flex flex-row"></section>
   @for (catalog of catalogs(); track catalog.id) {
     <moviex-catalog [catalog]="catalog"></moviex-catalog>

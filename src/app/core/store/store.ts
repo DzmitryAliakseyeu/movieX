@@ -24,7 +24,8 @@ export interface PersonI {
 interface State {
   theme: 'light' | 'dark';
   catalogs: CatalogI[];
-  searchResults: PosterI[] | [];
+  searchPostersResults: PosterI[] | [];
+  searchPeopleResults: PersonI[] | []
   people: PersonI[];
 }
 
@@ -50,7 +51,8 @@ export const Store = signalStore(
         content: [],
       },
     ],
-    searchResults: [],
+    searchPostersResults: [],
+    searchPeopleResults: [],
     people: [],
   }),
 
@@ -119,17 +121,29 @@ export const Store = signalStore(
         .subscribe();
     },
 
-    saveSearchResults(results: PosterI[] | []) {
+    saveSearchPostersResults(results: PosterI[] | []) {
+
       patchState(store, {
-        searchResults: results.map((item) => ({
+        searchPostersResults: results.map((item) => ({
           id: item.id,
 
           title: item.title,
 
           date: item.date,
         })),
+         searchPeopleResults: []
       });
+      return
     },
+
+    saveSearchPeopleResults(results: PersonI[] | []){
+      patchState(store, {
+           searchPostersResults: [],
+      searchPeopleResults: results.map(item => ({ id: item.id, name: item.name, profile_path: item.profile_path})), });
+
+    },
+
+
 
     loadPeople() {
       http
