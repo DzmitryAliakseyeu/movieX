@@ -9,7 +9,7 @@ import { PersonI } from '../../../../core/store/store';
   styleUrl: './person.scss',
   host: {
     '[attr.id]': 'person()?.id',
-    'class': 'item-wrapper',
+    class: 'item-wrapper',
   },
 })
 export class Person {
