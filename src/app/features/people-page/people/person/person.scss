@@ -1,0 +1,11 @@
+:host {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  .image {
+    width: inherit;
+    img {
+      width: inherit;
+    }
+  }
+}

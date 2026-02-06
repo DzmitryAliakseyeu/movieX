@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { signalStore, withState, withMethods, patchState } from '@ngrx/signals';
-import { forkJoin, tap } from 'rxjs';
+import { delay, exhaustMap, forkJoin, map, tap } from 'rxjs';
 import { TmdbApi } from '../services/tmdb-api';
 
 export interface PosterI {
@@ -15,11 +15,17 @@ export interface CatalogI {
   title: string;
   content: PosterI[];
 }
+export interface PersonI {
+  id: number,
+  name: string,
+  profile_path: string
+}
 
 interface State {
   theme: 'light' | 'dark';
   catalogs: CatalogI[];
   searchResults: PosterI[] | [];
+  people: PersonI[]
 }
 
 export const Store = signalStore(
@@ -45,6 +51,7 @@ export const Store = signalStore(
       },
     ],
     searchResults: [],
+    people: []
   }),
 
   withMethods((store, http = inject(TmdbApi)) => ({
@@ -123,5 +130,24 @@ export const Store = signalStore(
         })),
       });
     },
+
+    loadPeople(){
+    http.getPeopleListOrderedByPopularity()
+    .pipe(
+      delay(0),
+      tap(response => {
+        patchState(store, {
+          people: response.results.map(person => ({
+            id: person.id,
+            name: person.original_name,
+            profile_path: `https://image.tmdb.org/t/p/w500${person.profile_path}`,
+          }))
+        })
+      })
+    ).subscribe()
+  }
   })),
+
+
+
 );
