@@ -1,9 +1,7 @@
 import { Component, computed, effect, inject } from '@angular/core';
-import { Person } from "./person/person";
+import { Person } from './person/person';
 import { TmdbApi } from '../../../core/services/tmdb-api';
-import { PersonI, Store } from '../../../core/store/store';
-import { getState } from '@ngrx/signals';
-
+import { Store } from '../../../core/store/store';
 
 @Component({
   selector: 'moviex-people',
@@ -15,17 +13,11 @@ export class People {
   http = inject(TmdbApi);
   store = inject(Store);
 
-  people = computed(() => this.store.people())
+  people = computed(() => this.store.people());
 
-  constructor(){
-    effect(()=> {
-this.people = computed(() => this.store.people())
-    })
-
+  constructor() {
+    effect(() => {
+      this.people = computed(() => this.store.people());
+    });
   }
-
-
-
-
-
 }

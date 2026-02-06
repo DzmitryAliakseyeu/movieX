@@ -2,7 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import { MatAnchor, MatButton } from '@angular/material/button';
 import { Store } from '../../core/store/store';
 import { MatIcon } from '@angular/material/icon';
-import { RouterLink } from "@angular/router";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'moviex-header',

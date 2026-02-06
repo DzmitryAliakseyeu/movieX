@@ -1,5 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
-import { People } from "./people/people";
+import { Component, inject, signal, OnInit } from '@angular/core';
+import { People } from './people/people';
 import { Store } from '../../core/store/store';
 
 @Component({
@@ -9,13 +9,11 @@ import { Store } from '../../core/store/store';
   templateUrl: './people-page.html',
   styleUrl: './people-page.scss',
 })
-export class PeoplePage {
+export class PeoplePage implements OnInit {
   store = inject(Store);
-  isLoaded = signal(false)
+  isLoaded = signal(false);
 
-
-   ngOnInit() {
+  ngOnInit() {
     this.store.loadPeople();
   }
-
 }

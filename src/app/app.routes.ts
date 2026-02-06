@@ -8,9 +8,9 @@ export const routes: Routes = [
 
   {
     path: 'people',
-    loadComponent: () => import('./features/people-page/people-page').then((module) => module.PeoplePage),
+    loadComponent: () =>
+      import('./features/people-page/people-page').then((module) => module.PeoplePage),
   },
-
 
   {
     path: '**',

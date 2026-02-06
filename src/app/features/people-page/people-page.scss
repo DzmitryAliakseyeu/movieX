@@ -4,4 +4,8 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  align-items: center;
+  .content-block {
+    padding-top: 20px;
+  }
 }
