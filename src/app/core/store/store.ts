@@ -19,14 +19,18 @@ export interface PersonI {
   id: number;
   name: string;
   profile_path: string;
+  bio?: string;
+  dateOfBirth?: string;
+  dateOfDead?: string;
 }
 
 interface State {
   theme: 'light' | 'dark';
   catalogs: CatalogI[];
   searchPostersResults: PosterI[] | [];
-  searchPeopleResults: PersonI[] | []
+  searchPeopleResults: PersonI[] | [];
   people: PersonI[];
+  activePerson: PersonI | null;
 }
 
 export const Store = signalStore(
@@ -54,6 +58,7 @@ export const Store = signalStore(
     searchPostersResults: [],
     searchPeopleResults: [],
     people: [],
+    activePerson: null,
   }),
 
   withMethods((store, http = inject(TmdbApi)) => ({
@@ -122,7 +127,6 @@ export const Store = signalStore(
     },
 
     saveSearchPostersResults(results: PosterI[] | []) {
-
       patchState(store, {
         searchPostersResults: results.map((item) => ({
           id: item.id,
@@ -131,19 +135,21 @@ export const Store = signalStore(
 
           date: item.date,
         })),
-         searchPeopleResults: []
+        searchPeopleResults: [],
       });
-      return
+      return;
     },
 
-    saveSearchPeopleResults(results: PersonI[] | []){
+    saveSearchPeopleResults(results: PersonI[] | []) {
       patchState(store, {
-           searchPostersResults: [],
-      searchPeopleResults: results.map(item => ({ id: item.id, name: item.name, profile_path: item.profile_path})), });
-
+        searchPostersResults: [],
+        searchPeopleResults: results.map((item) => ({
+          id: item.id,
+          name: item.name,
+          profile_path: item.profile_path,
+        })),
+      });
     },
-
-
 
     loadPeople() {
       http
@@ -161,6 +167,28 @@ export const Store = signalStore(
           }),
         )
         .subscribe();
+    },
+    savePersonDetail(id: number) {
+      http
+        .getPersonDetails(id)
+        .pipe(
+          tap((response) =>
+            patchState(store, {
+              activePerson: {
+                id: response.id,
+                name: response.name,
+                profile_path: `https://image.tmdb.org/t/p/w500${response.profile_path}`,
+                bio: response.biography,
+                dateOfBirth: response.birthday,
+                dateOfDead: response.deathday,
+              },
+            }),
+          ),
+        )
+        .subscribe();
+    },
+    removePersonDetail() {
+      patchState(store, { activePerson: null });
     },
   })),
 );

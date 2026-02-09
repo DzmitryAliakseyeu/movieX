@@ -1,11 +1,11 @@
 import { Component, computed, effect, inject } from '@angular/core';
-import { Person } from './person/person';
 import { TmdbApi } from '../../../core/services/tmdb-api';
 import { Store } from '../../../core/store/store';
+import { Poster } from '../../../shared/components/poster/poster';
 
 @Component({
   selector: 'moviex-people',
-  imports: [Person],
+  imports: [Poster],
   templateUrl: './people.html',
   styleUrl: './people.scss',
 })

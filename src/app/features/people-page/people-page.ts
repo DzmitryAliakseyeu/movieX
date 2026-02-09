@@ -1,7 +1,7 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { People } from './people/people';
 import { Store } from '../../core/store/store';
-import { SearchField } from "../../shared/components/search-field/search-field";
+import { SearchField } from '../../shared/components/search-field/search-field';
 
 @Component({
   selector: 'moviex-people-page',

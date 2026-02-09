@@ -9,7 +9,7 @@ import {
   viewChildren,
   AfterViewChecked,
 } from '@angular/core';
-import { Poster } from '../../../features/home-page/components/poster/poster';
+import { Poster } from '../poster/poster';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { TmdbApi } from '../../../core/services/tmdb-api';
