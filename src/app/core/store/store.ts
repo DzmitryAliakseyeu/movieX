@@ -25,7 +25,6 @@ export interface PersonI {
 }
 
 interface State {
-  theme: 'light' | 'dark';
   catalogs: CatalogI[];
   searchPostersResults: PosterI[] | [];
   searchPeopleResults: PersonI[] | [];
@@ -37,7 +36,6 @@ export const Store = signalStore(
   { providedIn: 'root' },
 
   withState<State>({
-    theme: 'light',
     catalogs: [
       {
         id: 'movies',
@@ -62,22 +60,6 @@ export const Store = signalStore(
   }),
 
   withMethods((store, http = inject(TmdbApi)) => ({
-    setTheme(theme: 'light' | 'dark') {
-      patchState(store, {
-        theme: theme,
-      });
-      document.body.style.colorScheme = theme;
-    },
-    toggleTheme() {
-      const next = store.theme() === 'light' || '' ? 'dark' : 'light';
-
-      patchState(store, {
-        theme: next,
-      });
-
-      document.body.style.colorScheme = next;
-    },
-
     loadAllCatalogs() {
       forkJoin({
         movies: http.getPopularMovieList(),

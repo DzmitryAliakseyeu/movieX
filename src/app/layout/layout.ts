@@ -13,10 +13,10 @@ import { DatePipe } from '@angular/common';
   templateUrl: './layout.html',
   styleUrl: './layout.scss',
 })
-export class Layout implements OnInit {
+export class Layout {
   store = inject(Store);
 
-  ngOnInit() {
-    this.store.setTheme('dark');
+  constructor() {
+    localStorage.setItem('theme', 'dark');
   }
 }

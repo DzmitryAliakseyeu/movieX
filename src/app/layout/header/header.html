@@ -13,7 +13,7 @@
 </div>
 
 <div class="management flex flex-row">
-  <button matButton (click)="toggleTheme()">
-    <mat-icon>{{ themeModeText() }}</mat-icon>
+  <button matButton (click)="themeService.updateTheme()">
+    <mat-icon>{{ themeModeText() + '_mode' }}</mat-icon>
   </button>
 </div>

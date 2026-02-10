@@ -29,10 +29,13 @@
   }
 }
 
-:host:hover {
-  transform: scale(105%);
-  cursor: pointer;
-  transition: all 0.3s;
+@media (hover: hover) {
+  :host {
+    &:hover {
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+  }
 }
 
 @media (max-width: 1100px) {

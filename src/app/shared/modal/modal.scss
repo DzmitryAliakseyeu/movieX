@@ -1,7 +1,7 @@
 :host {
   position: fixed;
   height: 100%;
-  scroll-behavior: auto;
+  overflow-y: auto;
   width: 100%;
   top: 0;
   left: 0;
@@ -12,10 +12,14 @@
   align-items: center;
 
   .modal {
+    box-sizing: border-box;
     max-width: 1360px;
     padding: 20px;
     width: fit-content;
     gap: 20px;
+    align-items: center;
+    height: inherit;
+
     ::ng-deep {
       .preview {
         flex-wrap: wrap;

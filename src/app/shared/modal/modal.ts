@@ -21,7 +21,6 @@ export class Modal implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // Возвращаем как было
     this.renderer.removeStyle(this.document.documentElement, 'overflow');
   }
 

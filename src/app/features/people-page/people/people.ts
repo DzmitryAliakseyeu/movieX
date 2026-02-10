@@ -12,12 +12,5 @@ import { Poster } from '../../../shared/components/poster/poster';
 export class People {
   http = inject(TmdbApi);
   store = inject(Store);
-
   people = computed(() => this.store.people());
-
-  constructor() {
-    effect(() => {
-      this.people = computed(() => this.store.people());
-    });
-  }
 }
