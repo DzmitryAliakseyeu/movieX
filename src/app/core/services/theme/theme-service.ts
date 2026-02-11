@@ -20,7 +20,9 @@ export class ThemeService {
 
   constructor() {
     this.renderer = this.rendererFactory.createRenderer(null, null);
-    effect(() => this.renderer.setStyle(this.document.body, 'color-scheme', this.theme()));
+    effect(() => {
+      this.renderer.setStyle(this.document.body, 'color-scheme', this.theme())
+  });
   }
 
   updateTheme() {

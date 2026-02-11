@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Header } from './header/header';
 import { Footer } from './footer/footer';
 import { RouterOutlet } from '@angular/router';
@@ -16,7 +16,4 @@ import { DatePipe } from '@angular/common';
 export class Layout {
   store = inject(Store);
 
-  constructor() {
-    localStorage.setItem('theme', 'dark');
-  }
 }

@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { TmdbApi } from '../../../core/services/tmdb-api';
 import { Store } from '../../../core/store/store';
 import { Poster } from '../../../shared/components/poster/poster';
