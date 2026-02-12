@@ -1,7 +1,6 @@
-import { MovieQueryOptions, TvShowQueryOptions } from 'tmdb-ts';
-import { MediaType } from '../../shared/models/common.models';
-
-export type CatalogState =
-  | { mediaType: MediaType.Movie; query: MovieQueryOptions }
-  | { mediaType: MediaType.TVShow; query: TvShowQueryOptions }
-  | { mediaType: undefined; query: object };
+export interface CatalogForm {
+  keywords?: string;
+  year?: string;
+  genre?: { id: number; name: string } | null;
+  page?: number;
+}

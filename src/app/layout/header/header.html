@@ -1,24 +1,19 @@
 <mat-toolbar>
   <a routerLink="/" class="logo">
-    <img ngSrc="/logo.svg" width="126" height="54" alt="Logo" priority />
+    <img ngSrc="/logo.svg" width="144" height="53" alt="Logo" priority />
   </a>
 
   <nav class="nav-links">
     @for (navItem of navItems; track navItem.id) {
-      <a
-        mat-button
-        [routerLink]="navItem.id"
-        routerLinkActive="active-link"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
+      <a mat-button [routerLink]="navItem.id" routerLinkActive="active-link">
         {{ navItem.title }}</a
       >
     }
   </nav>
 
+  <div class="management flex">
+    <button matIconButton (click)="toggleTheme()" aria-label="Toggle Theme">
+      <mat-icon>{{ themeModeText() }}</mat-icon>
+    </button>
+  </div>
 </mat-toolbar>
-<div class="management flex">
-  <button matButton (click)="toggleTheme()">
-    <mat-icon>{{ themeModeText() }}</mat-icon>
-  </button>
-</div>

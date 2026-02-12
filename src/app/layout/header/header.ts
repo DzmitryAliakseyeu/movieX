@@ -1,5 +1,5 @@
 import { Component, computed, inject } from '@angular/core';
-import { MatAnchor, MatButton } from '@angular/material/button';
+import { MatAnchor, MatButton, MatIconButton } from '@angular/material/button';
 import { NavItem } from './header.models';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatToolbar } from '@angular/material/toolbar';
@@ -10,7 +10,16 @@ import { MatIcon } from '@angular/material/icon';
 @Component({
   selector: 'moviex-header',
   standalone: true,
-  imports: [MatAnchor, MatButton, RouterLink, MatToolbar, NgOptimizedImage, RouterLinkActive, MatIcon],
+  imports: [
+    MatAnchor,
+    MatButton,
+    RouterLink,
+    MatToolbar,
+    NgOptimizedImage,
+    RouterLinkActive,
+    MatIcon,
+    MatIconButton,
+  ],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })

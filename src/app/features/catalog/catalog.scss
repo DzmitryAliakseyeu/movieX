@@ -1,11 +1,18 @@
 @use '@angular/material' as mat;
 
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  min-height: 600px;
+}
+
 .search-form {
   display: flex;
   flex-wrap: wrap;
-  margin: 24px auto 0;
-  max-width: 540px;
+  margin: 32px auto 0;
   min-width: 320px;
+  max-width: 540px;
 }
 
 .year-field,
@@ -15,10 +22,22 @@
 }
 
 .genre-field,
-.search-button {
+form button {
   margin-left: 20px;
 }
 
-.paginator {
-  margin: 24px auto 0;
+.catalog-items-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.poster {
+  max-width: 150px;
+
+  img {
+    height: 240px;
+  }
 }

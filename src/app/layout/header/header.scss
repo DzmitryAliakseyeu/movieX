@@ -1,5 +1,10 @@
 @use '../../../variables' as *;
 
+:host {
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+}
+
 .mat-toolbar {
   justify-content: space-between;
 }
@@ -7,21 +12,4 @@
 a.active-link {
   background-color: var(--mat-sys-secondary-container);
   color: var(--mat-sys-on-secondary-container);
-}
-
-@media (max-width: 550px) {
-  :host {
-    height: 100%;
-    padding: 10px 20px;
-    .navigation {
-      flex-direction: column;
-      gap: 5px;
-    }
-    .management {
-      align-self: flex-end;
-      height: inherit;
-      flex-direction: column;
-      align-items: flex-end;
-    }
-  }
 }
