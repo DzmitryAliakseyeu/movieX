@@ -111,10 +111,8 @@ li a {
   transition: all 0.3s;
 }
 
-
 a:hover {
   .poster {
-  box-shadow: $shadow-hover;
-
+    box-shadow: $shadow-hover;
   }
 }
