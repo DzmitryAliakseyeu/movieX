@@ -1,6 +1,10 @@
 <mat-toolbar>
   <a routerLink="/" class="logo">
-    <img ngSrc="/logo.svg" width="144" height="53" alt="Logo" priority />
+    <picture>
+      <source srcset="/logo-mobile.svg" media="(max-width: 767px)" />
+      <source srcset="/logo.svg" media="(min-width: 768px)" />
+      <img src="/logo-mobile.svg" alt="Logo" />
+    </picture>
   </a>
 
   <nav class="nav-links">

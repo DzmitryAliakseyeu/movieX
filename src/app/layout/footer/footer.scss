@@ -4,21 +4,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 32px;
   padding: 20px;
+  color: var(--mat-sys-outline);
+  border-top: 1px solid var(--mat-sys-outline-variant);
+}
 
-  .rss-logo-link {
-    width: 50px;
-    height: 50px;
-    background-color: transparent;
-    border-radius: 100%;
-    border: 1px solid rgb(107, 107, 107);
-  }
+.logos-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
 
-  nav {
-    gap: 10px;
-
-    ul {
-      gap: 5px;
-    }
-  }
+.rss-logo {
+  background-color: transparent;
+  border-radius: 100%;
+  border: 1px solid var(--mat-sys-outline-variant);
 }
