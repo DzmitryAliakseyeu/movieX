@@ -18,7 +18,7 @@ import { ThemeService } from '../../core/services/theme/theme-service';
     MatToolbar,
     NgOptimizedImage,
     RouterLinkActive,
-    MatIcon
+    MatIcon,
   ],
   templateUrl: './header.html',
   styleUrl: './header.scss',
@@ -27,7 +27,7 @@ export class Header {
   protected navItems: NavItem[] = [
     { id: 'movie', title: 'Movie', url: '/movies' },
     { id: 'tv', title: 'TV Shows', url: '/tv' },
-    { id: 'person', title: 'People', url: '/people' },
+    { id: 'people', title: 'People', url: '/people' },
   ];
 
   store = inject(Store);

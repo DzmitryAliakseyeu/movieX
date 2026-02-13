@@ -1,7 +1,7 @@
 <div class="preview-catalog-slider flex flex-column" #previewSlider>
   <div class="track flex flex-row" [style.transform]="transform">
     @for (poster of this.previewSliderContent(); track poster.id) {
-      <moviex-poster [data]="poster" #posterRef [id]="poster.id"></moviex-poster>
+      <moviex-poster [posterData]="poster" #posterRef [id]="poster.id"></moviex-poster>
     }
   </div>
 

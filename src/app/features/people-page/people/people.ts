@@ -1,7 +1,8 @@
 import { Component, computed, inject } from '@angular/core';
-import { TmdbApi } from '../../../core/services/tmdb-api';
+
 import { Store } from '../../../core/store/store';
 import { Poster } from '../../../shared/components/poster/poster';
+import { TmdbApiService } from '../../../core/services/tmdb-api.service';
 
 @Component({
   selector: 'moviex-people',
@@ -10,7 +11,7 @@ import { Poster } from '../../../shared/components/poster/poster';
   styleUrl: './people.scss',
 })
 export class People {
-  http = inject(TmdbApi);
+  http = inject(TmdbApiService);
   store = inject(Store);
   people = computed(() => this.store.people());
 }

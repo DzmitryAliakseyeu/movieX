@@ -1,6 +1,7 @@
 import { Component, input } from '@angular/core';
 import { Slider } from '../../../../shared/components/slider/slider';
-import { CatalogI } from '../../../../core/store/store';
+import { PreviewSliderI } from '../../../../core/store/store';
+
 
 @Component({
   selector: 'moviex-preview-slider',
@@ -11,5 +12,5 @@ import { CatalogI } from '../../../../core/store/store';
   styleUrl: './preview-slider.scss',
 })
 export class PreviewSlider {
-  previewSlider = input<CatalogI>();
+  previewSlider = input<PreviewSliderI>();
 }

@@ -13,7 +13,7 @@ export interface PosterI {
   imageUrl?: string;
 }
 
-export interface CatalogI {
+export interface PreviewSliderI {
   id: string;
   title: string;
   content: PosterI[];
@@ -28,13 +28,16 @@ export interface PersonI {
 }
 
 interface State {
-  catalogs: CatalogI[];
+  catalogs: PreviewSliderI[];
   searchResults: PosterI[] | [];
+  searchPostersResults: PosterI[] | [];
+  searchPeopleResults: PersonI[] | [];
+  people: PersonI[];
+  activePerson: PersonI | null;
   tmdbApiConfiguration: Configuration | undefined;
 }
 
 const initialState: State = {
-  theme: 'dark',
   catalogs: [
     {
       id: 'movies',
@@ -53,45 +56,16 @@ const initialState: State = {
     },
   ],
   searchResults: [],
+  searchPostersResults: [],
+  searchPeopleResults: [],
+  people: [],
+  activePerson: null,
   tmdbApiConfiguration: undefined,
 };
 
 export const Store = signalStore(
   { providedIn: 'root' },
-
   withState<State>(initialState),
-  searchPostersResults: PosterI[] | [];
-  searchPeopleResults: PersonI[] | [];
-  people: PersonI[];
-  activePerson: PersonI | null;
-}
-
-export const Store = signalStore(
-  { providedIn: 'root' },
-
-  withState<State>({
-    catalogs: [
-      {
-        id: 'movies',
-        title: 'Movies',
-        content: [],
-      },
-      {
-        id: 'upcomming-movies',
-        title: 'Upcomming Movies',
-        content: [],
-      },
-      {
-        id: 'tv-shows',
-        title: 'TV Shows',
-        content: [],
-      },
-    ],
-    searchPostersResults: [],
-    searchPeopleResults: [],
-    people: [],
-    activePerson: null,
-  }),
 
   withMethods((store, tmdbApi = inject(TmdbApiService)) => ({
     loadAllCatalogs() {
@@ -166,7 +140,7 @@ export const Store = signalStore(
     },
 
     loadPeople() {
-      http
+      tmdbApi
         .getPeopleListOrderedByPopularity()
         .pipe(
           delay(0),
@@ -183,7 +157,7 @@ export const Store = signalStore(
         .subscribe();
     },
     savePersonDetail(id: number) {
-      http
+      tmdbApi
         .getPersonDetails(id)
         .pipe(
           tap((response) =>

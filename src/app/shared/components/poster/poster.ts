@@ -2,8 +2,9 @@ import { Component, inject, input, signal } from '@angular/core';
 import { PersonI, PosterI, Store } from '../../../core/store/store';
 import { RouterLink } from '@angular/router';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { TmdbApi } from '../../../core/services/tmdb-api';
+
 import { filter, switchMap } from 'rxjs';
+import { TmdbApiService } from '../../../core/services/tmdb-api.service';
 
 @Component({
   selector: 'moviex-poster',
@@ -13,9 +14,9 @@ import { filter, switchMap } from 'rxjs';
   styleUrl: './poster.scss',
 })
 export class Poster {
-  private http = inject(TmdbApi);
+  private http = inject(TmdbApiService);
   private store = inject(Store);
-  public data = input<PosterI | PersonI>();
+  public posterData = input<PosterI | PersonI>();
 
   clickedId = signal<number | null>(null);
   personDetails = toSignal(

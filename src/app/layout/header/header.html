@@ -11,8 +11,9 @@
     }
   </nav>
 
-<div class="management flex flex-row">
-  <button matButton (click)="themeService.updateTheme()">
-    <mat-icon>{{ themeModeText() + '_mode' }}</mat-icon>
-  </button>
-</div>
+  <div class="management flex flex-row">
+    <button matButton (click)="themeService.updateTheme()">
+      <mat-icon>{{ themeModeText() + '_mode' }}</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

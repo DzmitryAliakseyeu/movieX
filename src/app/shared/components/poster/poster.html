@@ -1,10 +1,10 @@
-@let item = data();
+@let item = posterData();
 @if (item && isPerson(item)) {
-  <a
+  <div
     class="poster flex flex-column"
     tabindex="0"
     role="button"
-    (click)="showInfo(data()?.id || 0)"
+    (click)="showInfo(posterData()?.id || 0)"
     (keydown.enter)="showInfo(item.id)"
   >
     <img [src]="item.profile_path" alt="poster-img" />
@@ -12,9 +12,9 @@
     <div class="text-content flex flex-column">
       <h4>{{ item.name }}</h4>
     </div>
-  </a>
+  </div>
 } @else {
-  <a class="poster flex flex-column" [routerLink]="(data()?.id || '').toString()">
+  <a class="poster flex flex-column" [routerLink]="(posterData()?.id || '').toString()">
     <img [src]="item?.imageUrl" alt="poster-img" />
     <div class="text-content flex flex-column">
       <h4>{{ item?.title }}</h4>

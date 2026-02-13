@@ -6,6 +6,7 @@
 
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
+@use './variables' as *;
 
 html {
   color-scheme: light dark;
@@ -108,4 +109,12 @@ li a {
   transform: scale(105%);
   cursor: pointer;
   transition: all 0.3s;
+}
+
+
+a:hover {
+  .poster {
+  box-shadow: $shadow-hover;
+
+  }
 }
