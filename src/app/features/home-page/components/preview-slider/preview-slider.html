@@ -1,0 +1,8 @@
+<div class="content-block flex flex-column">
+  <div class="preview-slider-header flex flex-row">
+    <h2>{{ this.previewSlider()?.title }}</h2>
+    <div class="preview-slider-buttons flex flex-row"></div>
+  </div>
+
+  <moviex-slider [previewSliderContent]="this.previewSlider()?.content"></moviex-slider>
+</div>

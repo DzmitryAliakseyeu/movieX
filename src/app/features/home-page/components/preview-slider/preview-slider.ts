@@ -3,13 +3,13 @@ import { Slider } from '../../../../shared/components/slider/slider';
 import { CatalogI } from '../../../../core/store/store';
 
 @Component({
-  selector: 'moviex-catalog',
+  selector: 'moviex-preview-slider',
   standalone: true,
   imports: [Slider],
-  templateUrl: './catalog.html',
+  templateUrl: './preview-slider.html',
 
-  styleUrl: './catalog.scss',
+  styleUrl: './preview-slider.scss',
 })
-export class Catalog {
-  catalog = input<CatalogI>();
+export class PreviewSlider {
+  previewSlider = input<CatalogI>();
 }

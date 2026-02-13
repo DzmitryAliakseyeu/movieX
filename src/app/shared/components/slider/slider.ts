@@ -26,12 +26,12 @@ export class Slider implements AfterViewChecked {
   http = inject(TmdbApi);
   store = inject(Store);
 
-  catalogContent = input<PosterI[]>();
+  previewSliderContent = input<PosterI[]>();
 
   index = 0;
   transform = 'translateX(0px)';
 
-  catalogSlider = viewChild<ElementRef>('catalogSlider');
+  catalogSlider = viewChild<ElementRef>('previewSlider');
   postersList = viewChildren('posterRef', { read: ElementRef });
   elCatalogSlider = computed(() => this.catalogSlider()?.nativeElement);
 
@@ -45,7 +45,7 @@ export class Slider implements AfterViewChecked {
     const posters = this.postersList();
     const firstPoster = posters[0]?.nativeElement as HTMLElement;
     const posterWidth = firstPoster?.clientWidth;
-    const content = this.catalogContent();
+    const content = this.previewSliderContent();
     if (content) {
       this.quantitySliderSections.set(Math.floor(content.length / (width / (posterWidth + 10))));
     }

@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Catalog } from './catalog';
+import { PreviewSlider } from './preview-slider';
 
 describe('Catalog', () => {
-  let component: Catalog;
-  let fixture: ComponentFixture<Catalog>;
+  let component: PreviewSlider;
+  let fixture: ComponentFixture<PreviewSlider>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Catalog],
+      imports: [PreviewSlider],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Catalog);
+    fixture = TestBed.createComponent(PreviewSlider);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

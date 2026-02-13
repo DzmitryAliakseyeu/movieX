@@ -15,5 +15,4 @@ import { DatePipe } from '@angular/common';
 })
 export class Layout {
   store = inject(Store);
-
 }
