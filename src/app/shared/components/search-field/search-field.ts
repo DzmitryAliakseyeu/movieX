@@ -4,7 +4,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
-import { TmdbApi } from '../../../core/services/tmdb-api';
+import { TmdbApiService } from '../../../core/services/tmdb-api.service';
 import { Store } from '../../../core/store/store';
 import { RouterLink } from '@angular/router';
 
@@ -15,7 +15,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './search-field.scss',
 })
 export class SearchField implements OnInit {
-  http = inject(TmdbApi);
+  http = inject(TmdbApiService);
   store = inject(Store);
   isFocusOnInput = signal(false);
   searchControl = new FormControl('');

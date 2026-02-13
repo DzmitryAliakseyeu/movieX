@@ -1,0 +1,55 @@
+@let genresCollection = catalogService.genres();
+@let catalogResource = catalogService.catalogResource;
+@let totalCatalogItems = catalogResource.value()?.total_results;
+@let catalogCards = catalogService.catalogCards();
+
+<form class="search-form" [formGroup]="searchForm" (submit)="submitForm($event)">
+  <mat-form-field class="year-field" appearance="outline">
+    <mat-label>Year</mat-label>
+    <input matInput formControlName="year" type="number" />
+  </mat-form-field>
+
+  <mat-form-field class="genre-field" appearance="outline">
+    <mat-label>Genres</mat-label>
+    <mat-select formControlName="genre" [compareWith]="compareGenres">
+      <mat-option>--</mat-option>
+      @for (genre of genresCollection; track genre.id) {
+        <mat-option [value]="genre">{{ genre.name }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="search-field" appearance="outline">
+    <mat-label>Search</mat-label>
+    <input matInput formControlName="keywords" />
+  </mat-form-field>
+
+  <button matFab type="submit" aria-label="Button Search">
+    <mat-icon>search</mat-icon>
+  </button>
+</form>
+
+<div class="catalog-items-container">
+  @if (catalogResource.isLoading()) {
+    <mat-spinner></mat-spinner>
+  } @else if (catalogResource.error()) {
+    Something went wrong :( Reload the page.
+  } @else if (catalogResource.hasValue()) {
+    @for (catalogCard of catalogCards; track catalogCard.id) {
+      <moviex-poster [poster]="catalogCard" />
+    } @empty {
+      <div>No items found</div>
+    }
+  }
+</div>
+
+<mat-paginator
+  class="paginator"
+  [length]="totalCatalogItems"
+  [pageSize]="pageSize"
+  [showFirstLastButtons]="false"
+  [hidePageSize]="true"
+  [pageIndex]="page()"
+  (page)="changePageIndex($event)"
+  aria-label="Select page"
+/>

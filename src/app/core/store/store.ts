@@ -1,7 +1,10 @@
 import { inject } from '@angular/core';
-import { signalStore, withState, withMethods, patchState } from '@ngrx/signals';
-import { delay, forkJoin, tap } from 'rxjs';
-import { TmdbApi } from '../services/tmdb-api';
+import { signalStore, withState, withMethods, patchState, withHooks } from '@ngrx/signals';
+import { delay, forkJoin, pipe, switchMap, tap } from 'rxjs';
+import { TmdbApiService } from '../services/tmdb-api.service';
+import { Configuration } from 'tmdb-ts';
+import { rxMethod } from '@ngrx/signals/rxjs-interop';
+import { tapResponse } from '@ngrx/operators';
 
 export interface PosterI {
   id: number;
@@ -26,6 +29,37 @@ export interface PersonI {
 
 interface State {
   catalogs: CatalogI[];
+  searchResults: PosterI[] | [];
+  tmdbApiConfiguration: Configuration | undefined;
+}
+
+const initialState: State = {
+  theme: 'dark',
+  catalogs: [
+    {
+      id: 'movies',
+      title: 'Movies',
+      content: [],
+    },
+    {
+      id: 'upcomming-movies',
+      title: 'Upcomming Movies',
+      content: [],
+    },
+    {
+      id: 'tv-shows',
+      title: 'TV Shows',
+      content: [],
+    },
+  ],
+  searchResults: [],
+  tmdbApiConfiguration: undefined,
+};
+
+export const Store = signalStore(
+  { providedIn: 'root' },
+
+  withState<State>(initialState),
   searchPostersResults: PosterI[] | [];
   searchPeopleResults: PersonI[] | [];
   people: PersonI[];
@@ -59,12 +93,12 @@ export const Store = signalStore(
     activePerson: null,
   }),
 
-  withMethods((store, http = inject(TmdbApi)) => ({
+  withMethods((store, tmdbApi = inject(TmdbApiService)) => ({
     loadAllCatalogs() {
       forkJoin({
-        movies: http.getPopularMovieList(),
-        tvShow: http.getPopularTvShowsList(),
-        upcoming: http.getUpcomingMovieList(),
+        movies: tmdbApi.getPopularMovieList(),
+        tvShow: tmdbApi.getPopularTvShowsList(),
+        upcoming: tmdbApi.getUpcomingMovieList(),
       })
         .pipe(
           tap(({ movies, tvShow, upcoming }) => {
@@ -112,9 +146,7 @@ export const Store = signalStore(
       patchState(store, {
         searchPostersResults: results.map((item) => ({
           id: item.id,
-
           title: item.title,
-
           date: item.date,
         })),
         searchPeopleResults: [],
@@ -172,5 +204,30 @@ export const Store = signalStore(
     removePersonDetail() {
       patchState(store, { activePerson: null });
     },
+
+    _fetchTmdbApiConfiguration: rxMethod<void>(
+      pipe(
+        switchMap(() => {
+          return tmdbApi.getTmdbApiConfiguration().pipe(
+            tapResponse({
+              next: (config) => {
+                patchState(store, {
+                  tmdbApiConfiguration: config,
+                });
+              },
+              error: () => {
+                console.error('Failed to load TMDB API configuration');
+              },
+            }),
+          );
+        }),
+      ),
+    ),
   })),
+
+  withHooks({
+    onInit(store) {
+      store._fetchTmdbApiConfiguration();
+    },
+  }),
 );

@@ -1,16 +1,15 @@
-<div class="navigation flex flex-row">
-  <button class="button-logo" routerLink="/">
-    <img src="logo.svg" alt="logo" />
-  </button>
+<mat-toolbar>
+  <a routerLink="/" class="logo">
+    <img ngSrc="/logo.svg" width="144" height="53" alt="Logo" priority />
+  </a>
 
-  <nav class="flex">
-    <ul class="flex flex-row">
-      <li><a matButton>Movies</a></li>
-      <li><a matButton>TV Shows</a></li>
-      <li><a matButton routerLink="people">People</a></li>
-    </ul>
+  <nav class="nav-links">
+    @for (navItem of navItems; track navItem.id) {
+      <a mat-button [routerLink]="navItem.id" routerLinkActive="active-link">
+        {{ navItem.title }}</a
+      >
+    }
   </nav>
-</div>
 
 <div class="management flex flex-row">
   <button matButton (click)="themeService.updateTheme()">
