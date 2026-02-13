@@ -1,54 +1,15 @@
 @use '../../../variables' as *;
 
 :host {
-  width: 100%;
-  height: 70px;
-  align-items: center;
-  padding: 0 50px;
-  justify-content: space-between;
-  box-sizing: border-box;
-
-  .navigation {
-    gap: 20px;
-    .button-logo {
-      background-color: transparent;
-      border: none;
-      img {
-        width: 100px;
-        height: 50px;
-        cursor: pointer;
-      }
-    }
-
-    nav {
-      align-items: center;
-      ul {
-        padding: 0;
-        gap: 10px;
-        li {
-          list-style-type: none;
-        }
-      }
-    }
-  }
-  .management {
-    gap: 10px;
-  }
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
 }
 
-@media (max-width: 550px) {
-  :host {
-    height: 100%;
-    padding: 10px 20px;
-    .navigation {
-      flex-direction: column;
-      gap: 5px;
-    }
-    .management {
-      align-self: flex-end;
-      height: inherit;
-      flex-direction: column;
-      align-items: flex-end;
-    }
-  }
+.mat-toolbar {
+  justify-content: space-between;
+}
+
+a.active-link {
+  background-color: var(--mat-sys-secondary-container);
+  color: var(--mat-sys-on-secondary-container);
 }

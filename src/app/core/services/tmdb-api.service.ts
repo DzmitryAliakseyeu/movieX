@@ -9,6 +9,7 @@ import {
   Collection,
   CollectionImageOptions,
   Company,
+  Configuration,
   CreditResponse,
   Credits,
   ExternalIdOptions,
@@ -61,7 +62,7 @@ import { PopularPeople } from 'tmdb-ts/dist/types/people';
 @Injectable({
   providedIn: 'root',
 })
-export class TmdbApi {
+export class TmdbApiService {
   private http = inject(HttpClient);
 
   // collections
@@ -297,7 +298,7 @@ export class TmdbApi {
     });
   }
 
-  searchKeywords(params: SearchOptions): Observable<Search<{ id: string; name: string }>> {
+  searchKeywordId(params: SearchOptions): Observable<Search<{ id: string; name: string }>> {
     const httpParams = new HttpParams({ fromObject: { ...params } });
     return this.http.get<Search<{ id: string; name: string }>>(
       `${environment.tmdbBaseUrl}/search/keyword`,
@@ -369,5 +370,11 @@ export class TmdbApi {
     return this.http.get<
       AppendToResponse<TvShowDetails, AppendToResponseTvKey[] | undefined, 'tvShow'>
     >(`${environment.tmdbBaseUrl}/tv/${id}`, { params: httpParams });
+  }
+
+  // configuration
+
+  getTmdbApiConfiguration(): Observable<Configuration> {
+    return this.http.get<Configuration>(`${environment.tmdbBaseUrl}/configuration`);
   }
 }

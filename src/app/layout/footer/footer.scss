@@ -1,15 +1,12 @@
 @use '../../../variables' as *;
 
 :host {
-  width: inherit;
-  height: max-content;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  box-sizing: border-box;
 
   .rss-logo-link {
-    display: inline-block;
     width: 50px;
     height: 50px;
     background-color: transparent;
@@ -17,15 +14,10 @@
     border: 1px solid rgb(107, 107, 107);
   }
 
-  p {
-    font-size: 1.5em;
-  }
-
   nav {
     gap: 10px;
 
     ul {
-      font-size: 1.5em;
       gap: 5px;
     }
   }

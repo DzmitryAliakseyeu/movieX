@@ -12,7 +12,7 @@ import {
 import { Poster } from '../../../features/home-page/components/poster/poster';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { TmdbApi } from '../../../core/services/tmdb-api';
+import { TmdbApiService } from '../../../core/services/tmdb-api.service';
 import { PosterI, Store } from '../../../core/store/store';
 
 @Component({
@@ -23,7 +23,7 @@ import { PosterI, Store } from '../../../core/store/store';
   styleUrl: './slider.scss',
 })
 export class Slider implements AfterViewChecked {
-  http = inject(TmdbApi);
+  http = inject(TmdbApiService);
   store = inject(Store);
 
   catalogContent = input<PosterI[]>();

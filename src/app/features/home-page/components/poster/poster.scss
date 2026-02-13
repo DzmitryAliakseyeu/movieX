@@ -2,8 +2,7 @@
 
 :host {
   border-radius: 20px;
-  box-shadow: 0 0 5px 0 var(--mat-sys-secondary);
-  height: 400px;
+  box-shadow: $shadow;
   flex: 0 0 calc(100% / 5 - 20px);
   overflow: hidden;
   margin: 10px;
@@ -14,20 +13,23 @@
     justify-content: space-between;
     height: 100%;
     img {
-      height: 320px;
+      max-height: 320px;
       object-fit: cover;
     }
 
     .text-content {
-      padding: 0 0 5px 20px;
-
+      padding: 20px 12px;
       gap: 10px;
     }
   }
 }
 
+.date {
+  color: var(--mat-sys-outline);
+}
+
 :host:hover {
-  transform: scale(105%);
+  box-shadow: $shadow-hover;
   cursor: pointer;
   transition: all 0.3s;
 }
