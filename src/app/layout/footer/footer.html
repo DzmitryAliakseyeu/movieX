@@ -1,15 +1,17 @@
-<a class="rss-logo-link" href="https://rs.school/courses/angular" target="_blank">
-  <img src="/rss-logo.svg" alt="rss-logo" />
-</a>
+<div class="logos-container">
+  <a class="rss-logo" href="https://rs.school/courses/angular" target="_blank" rel="noopener">
+    <img ngSrc="/rss-logo.svg" width="40" height="40" alt="RSS logo" />
+  </a>
+  <a href="https://www.themoviedb.org/" target="_blank" rel="noopener">
+    <img
+      src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_1-5bdc75aaebeb75dc7ae79426ddd9be3b2be1e342510f8202baf6bffa71d7f5c4.svg"
+      width="60"
+      height="43"
+      alt="TMDB logo"
+    />
+  </a>
+</div>
 
 <p>2026</p>
 
-<nav class="flex flex-column">
-  <ul class="flex flex-column">
-    @for (teamMember of teamMembers; track $index) {
-      <li>
-        <a [href]="teamMember.githubUrl" target="_blank">{{ teamMember.fullName }}</a>
-      </li>
-    }
-  </ul>
-</nav>
+<a href="/about" target="_blank" rel="noopener"> About </a>

@@ -66,11 +66,22 @@ h4 {
   font-weight: 400;
 }
 
+h5 {
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+p {
+  letter-spacing: 0.04em;
+  line-height: 156%;
+}
+
 li {
   list-style-type: none;
 }
 
-li a {
+a {
   text-decoration: none;
 }
 

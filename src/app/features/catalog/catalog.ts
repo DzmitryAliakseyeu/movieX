@@ -59,7 +59,7 @@ export class Catalog {
       this.page.set(urlPage - 1);
 
       const genreId = params['with_genres'];
-      const selectedGenre = genres?.find((genre) => `${genre.id}` === `${genreId}`);
+      const selectedGenre = genres.find((genre) => `${genre.id}` === `${genreId}`);
 
       untracked(() => {
         this.searchForm.patchValue(

@@ -1,0 +1,64 @@
+@use '../../../variables' as vars;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin: 32px auto 0;
+  max-width: 800px;
+}
+
+p:nth-child(n + 2) {
+  margin-top: 12px;
+}
+
+.header {
+  margin-bottom: 12px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.team-members {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+}
+
+.team-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  min-width: 214px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: vars.$border-radius-s;
+  transition: border-color 0.3s;
+}
+
+.team-member .avatar {
+  border-radius: 50%;
+}
+
+.name {
+  margin-top: 4px;
+  color: var(--mat-sys-outline);
+  transition: color 0.3s;
+}
+
+@media screen and (max-width: 767px) {
+  .team-members {
+    flex-direction: column;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .team-member:hover {
+    border-color: var(--mat-sys-secondary);
+
+    .name {
+      color: var(--mat-sys-secondary);
+    }
+  }
+}
