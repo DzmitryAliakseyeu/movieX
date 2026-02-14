@@ -34,6 +34,7 @@ p:nth-child(n + 2) {
   min-width: 214px;
   border: 1px solid var(--mat-sys-outline-variant);
   border-radius: vars.$border-radius-s;
+  transition: border-color 0.3s;
 }
 
 .team-member .avatar {
@@ -54,6 +55,8 @@ p:nth-child(n + 2) {
 
 @media (hover: hover) and (pointer: fine) {
   .team-member:hover {
+    border-color: var(--mat-sys-secondary);
+
     .name {
       color: var(--mat-sys-secondary);
     }
