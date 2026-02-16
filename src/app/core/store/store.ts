@@ -2,40 +2,9 @@ import { inject } from '@angular/core';
 import { signalStore, withState, withMethods, patchState, withHooks } from '@ngrx/signals';
 import { delay, forkJoin, pipe, switchMap, tap } from 'rxjs';
 import { TmdbApiService } from '../services/tmdb-api.service';
-import { Configuration } from 'tmdb-ts';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
-
-export interface PosterI {
-  id: number;
-  title: string;
-  date: string;
-  imageUrl?: string;
-}
-
-export interface PreviewSliderI {
-  id: string;
-  title: string;
-  content: PosterI[];
-}
-export interface PersonI {
-  id: number;
-  name: string;
-  profile_path: string;
-  bio?: string;
-  dateOfBirth?: string;
-  dateOfDead?: string;
-}
-
-interface State {
-  catalogs: PreviewSliderI[];
-  searchResults: PosterI[] | [];
-  searchPostersResults: PosterI[] | [];
-  searchPeopleResults: PersonI[] | [];
-  people: PersonI[];
-  activePerson: PersonI | null;
-  tmdbApiConfiguration: Configuration | undefined;
-}
+import { PersonI, PosterI, State } from './store.model';
 
 const initialState: State = {
   catalogs: [

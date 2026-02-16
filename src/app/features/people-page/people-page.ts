@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { People } from './people/people';
 import { Store } from '../../core/store/store';
 import { SearchField } from '../../shared/components/search-field/search-field';
@@ -12,7 +12,6 @@ import { SearchField } from '../../shared/components/search-field/search-field';
 })
 export class PeoplePage {
   store = inject(Store);
-  isLoaded = signal(false);
 
   constructor() {
     this.store.loadPeople();

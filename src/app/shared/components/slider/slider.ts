@@ -13,7 +13,8 @@ import { Poster } from '../poster/poster';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { TmdbApiService } from '../../../core/services/tmdb-api.service';
-import { PosterI, Store } from '../../../core/store/store';
+import { Store } from '../../../core/store/store';
+import { PosterI } from '../../../core/store/store.model';
 
 @Component({
   selector: 'moviex-slider',

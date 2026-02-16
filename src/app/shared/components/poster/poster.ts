@@ -1,10 +1,11 @@
 import { Component, inject, input, signal } from '@angular/core';
-import { PersonI, PosterI, Store } from '../../../core/store/store';
+import { Store } from '../../../core/store/store';
 import { RouterLink } from '@angular/router';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 
 import { filter, switchMap } from 'rxjs';
 import { TmdbApiService } from '../../../core/services/tmdb-api.service';
+import { PersonI, PosterI } from '../../../core/store/store.model';
 
 @Component({
   selector: 'moviex-poster',
