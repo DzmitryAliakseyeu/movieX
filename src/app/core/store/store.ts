@@ -1,10 +1,10 @@
 import { inject } from '@angular/core';
 import { signalStore, withState, withMethods, patchState, withHooks } from '@ngrx/signals';
-import { delay, forkJoin, pipe, switchMap, tap } from 'rxjs';
+import { forkJoin, pipe, switchMap, tap } from 'rxjs';
 import { TmdbApiService } from '../services/tmdb-api.service';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
-import { PersonI, PosterI, State } from './store.model';
+import { PosterI, State } from './store.model';
 
 const initialState: State = {
   catalogs: [

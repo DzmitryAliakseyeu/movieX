@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { Store } from '../../../core/store/store';
 import { Poster } from '../../../shared/components/poster/poster';
 import { PeopleService } from '../../../core/services/people-service/people-service';
 
