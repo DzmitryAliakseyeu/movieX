@@ -6,7 +6,6 @@ export const routes: Routes = [
     path: '',
     loadComponent: () => import('./features/home-page/home-page').then((module) => module.HomePage),
   },
-
   {
     path: '404',
     loadComponent: () => import('./features/not-found/not-found').then((module) => module.NotFound),
@@ -16,6 +15,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/people-page/people-page').then((module) => module.PeoplePage),
   },
+  {
+    path: 'about',
+    loadComponent: () => import('./features/about/about').then((module) => module.About),
+  },
+
   {
     path: ':mediaType',
     canActivate: [catalogGuard],

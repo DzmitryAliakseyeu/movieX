@@ -1,0 +1,54 @@
+<div class="about-project">
+  <h4 class="header">About project</h4>
+  <p class="description">
+    This project was developed as a final task within the
+    <a href="https://rs.school/courses/angular">RS School Angular course</a>. It serves as a
+    practical showcase of building a scalable, high-performance web application, demonstrating the
+    core principles of modern frontend development and the power of the Angular ecosystem.
+    <br />
+    <span
+      >* This product uses the <a href="https://www.themoviedb.org/">TMDB</a> API but is not
+      endorsed or certified by TMDB</span
+    >
+  </p>
+</div>
+
+<div class="acknowledgements">
+  <h4 class="header">Acknowledgements</h4>
+  <p>
+    We would like to express our gratitude to
+    <a href="https://rs.school">The Rolling Scopes School</a>. for providing a comprehensive
+    learning platform and a vibrant community. Special thanks to our mentors
+    <a href="https://github.com/anvianvi">Pavel</a> and
+    <a href="https://github.com/mariia22">Maria</a> for their guidance, valuable feedback, helping
+    us navigate the complexities of modern web development, for supporting us during our journey and
+    for the welcoming atmosphere you've created.
+  </p>
+
+  <p>
+    We extend our thanks to <a href="https://www.themoviedb.org/">TMDB</a> for keeping their API
+    accessible to the developer community. Their generous free tier and lack of restrictive rate
+    limits were instrumental in allowing us to build and test this application without boundaries.
+  </p>
+</div>
+
+<div class="team">
+  <h4 class="header">Our team</h4>
+  <div class="team-members">
+    @for (teamMember of teamMembers; track $index) {
+      <a [href]="teamMember.githubUrl" target="_blank" rel="noopener">
+        <div class="team-member">
+          <img
+            class="avatar"
+            [ngSrc]="`${teamMember.githubUrl}.png`"
+            width="80"
+            height="80"
+            alt="Avatar"
+          />
+          <h5 class="name">{{ teamMember.fullName }}</h5>
+          <span>gitHub</span>
+        </div>
+      </a>
+    }
+  </div>
+</div>
