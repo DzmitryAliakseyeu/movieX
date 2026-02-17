@@ -1,19 +1,19 @@
 <moviex-header class="flex flex-row" />
 <router-outlet></router-outlet>
-@if (store.activePerson()) {
+@if (peopleService.activePerson()) {
   <moviex-modal>
     <div class="preview flex flex-row">
-      <img [src]="store.activePerson()?.profile_path" alt="person-image" />
+      <img [src]="peopleService.activePerson()?.profile_path" alt="person-image" />
       <div class="info flex flex-column">
-        <h2>{{ store.activePerson()?.name }}</h2>
+        <h2>{{ peopleService.activePerson()?.name }}</h2>
         <p>
-          {{ store.activePerson()?.dateOfBirth | date: 'longDate' }} -
-          {{ (store.activePerson()?.dateOfDead | date: 'longDate') || 'now' }}
+          {{ peopleService.activePerson()?.dateOfBirth | date: 'longDate' }} -
+          {{ (peopleService.activePerson()?.dateOfDead | date: 'longDate') || 'now' }}
         </p>
       </div>
     </div>
     <h3>Biography:</h3>
-    <p>{{ store.activePerson()?.bio || 'We nothing have about this person' }}</p>
+    <p>{{ peopleService.activePerson()?.bio || 'We nothing have about this person' }}</p>
   </moviex-modal>
 }
 

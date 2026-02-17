@@ -26,9 +26,6 @@ const initialState: State = {
   ],
   searchResults: [],
   searchPostersResults: [],
-  searchPeopleResults: [],
-  people: [],
-  activePerson: null,
   tmdbApiConfiguration: undefined,
 };
 
@@ -92,8 +89,8 @@ export const Store = signalStore(
           title: item.title,
           date: item.date,
         })),
-        searchPeopleResults: [],
       });
+
       return;
     },
 

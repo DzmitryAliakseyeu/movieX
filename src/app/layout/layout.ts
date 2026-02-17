@@ -5,6 +5,7 @@ import { RouterOutlet } from '@angular/router';
 import { Store } from '../core/store/store';
 import { Modal } from '../shared/modal/modal';
 import { DatePipe } from '@angular/common';
+import { PeopleService } from '../core/services/people-service/people-service';
 
 @Component({
   selector: 'moviex-layout',
@@ -15,4 +16,5 @@ import { DatePipe } from '@angular/common';
 })
 export class Layout {
   store = inject(Store);
+  protected peopleService = inject(PeopleService);
 }

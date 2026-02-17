@@ -8,35 +8,37 @@ import { TmdbImageService } from '../tmdb-image.service';
   providedIn: 'root',
 })
 export class PeopleService {
-  people = signal<PersonI[]>([]);
-  searchPeopleResults = signal<PersonI[]>([]);
-  peopleLoading = signal(false);
-  peopleError = signal<string | null>(null);
-  tmdbApi = inject(TmdbApiService);
-  TmdbImageService = inject(TmdbImageService);
-  activePerson = signal<PersonI | null>(null);
+  private tmdbApi = inject(TmdbApiService);
+  private tmdbImageService = inject(TmdbImageService);
+  public people = signal<PersonI[]>([]);
+  public searchPeopleResults = signal<PersonI[]>([]);
+  public isLoading = signal(false);
+  public peopleError = signal<string | null>(null);
+  public activePerson = signal<PersonI | null>(null);
+  public pagesLength = signal(0);
+  public pageSize = 20;
 
-  loadPeople() {
-    this.peopleLoading.set(true);
+  loadPeople(page: number = 1) {
+    this.isLoading.set(true);
     this.peopleError.set(null);
 
     this.tmdbApi
-      .getPeopleListOrderedByPopularity()
+      .getPeopleListOrderedByPopularity({ page })
       .pipe(
         tapResponse({
           next: (response) => {
-            this.people.set(
-              response.results.map((person) => ({
-                id: person.id,
-                name: person.original_name,
-                profile_path: `https://image.tmdb.org/t/p/w500${person.profile_path}`,
-              })),
-            );
-            this.peopleLoading.set(false);
+            this.pagesLength.set(response.total_pages);
+            const mappedPeople = response.results.map((person) => ({
+              id: person.id,
+              name: person.original_name,
+              profile_path: `https://image.tmdb.org/t/p/w500${person.profile_path}`,
+            }));
+            this.people.set(mappedPeople);
+            this.isLoading.set(false);
           },
           error: (error: Error) => {
             this.peopleError.set(error.message || 'Failed to load people');
-            this.peopleLoading.set(false);
+            this.isLoading.set(false);
           },
         }),
       )
@@ -54,6 +56,8 @@ export class PeopleService {
   }
 
   savePersonDetail(id: number) {
+    this.isLoading.set(true);
+    this.peopleError.set(null);
     this.tmdbApi
       .getPersonDetails(id)
       .pipe(
@@ -67,10 +71,12 @@ export class PeopleService {
               dateOfBirth: response.birthday,
               dateOfDead: response.deathday,
             });
+            this.isLoading.set(false);
           },
 
           error: (error: Error) => {
-            console.error('Failed to load person details:', error);
+            this.peopleError.set(error.message || 'Failed to load person details');
+            this.isLoading.set(false);
           },
         }),
       )
@@ -80,15 +86,4 @@ export class PeopleService {
   removePersonDetail() {
     this.activePerson.set(null);
   }
-
-  //   saveSearchPeopleResults(results: PersonI[] | []) {
-  //   patchState(store, {
-  //     searchPostersResults: [],
-  //     searchPeopleResults: results.map((item) => ({
-  //       id: item.id,
-  //       name: item.name,
-  //       profile_path: item.profile_path,
-  //     })),
-  //   });
-  // },
 }

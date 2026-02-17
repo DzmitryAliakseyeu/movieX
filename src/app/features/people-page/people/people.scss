@@ -1,7 +1,17 @@
+@use '@angular/material' as mat;
+
 :host {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: space-around;
+
+  .person-items-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
 }

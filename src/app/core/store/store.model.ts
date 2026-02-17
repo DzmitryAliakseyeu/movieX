@@ -1,4 +1,5 @@
 import { Configuration } from 'tmdb-ts';
+import { PersonI } from '../services/people-service/people.model';
 
 export interface PosterI {
   id: number;
@@ -12,21 +13,10 @@ export interface PreviewSliderI {
   title: string;
   content: PosterI[];
 }
-export interface PersonI {
-  id: number;
-  name: string;
-  profile_path: string;
-  bio?: string;
-  dateOfBirth?: string;
-  dateOfDead?: string;
-}
 
 export interface State {
   catalogs: PreviewSliderI[];
   searchResults: PosterI[] | [];
   searchPostersResults: PosterI[] | [];
-  searchPeopleResults: PersonI[] | [];
-  people: PersonI[];
-  activePerson: PersonI | null;
   tmdbApiConfiguration: Configuration | undefined;
 }

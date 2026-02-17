@@ -3,8 +3,9 @@ import { RouterLink } from '@angular/router';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { filter, switchMap } from 'rxjs';
 import { TmdbApiService } from '../../../core/services/tmdb-api.service';
-import { PersonI, PosterI } from '../../../core/store/store.model';
+import { PosterI } from '../../../core/store/store.model';
 import { PeopleService } from '../../../core/services/people-service/people-service';
+import { PersonI } from '../../../core/services/people-service/people.model';
 
 @Component({
   selector: 'moviex-poster',

@@ -1,7 +1,6 @@
 import { Component, DOCUMENT, inject, Renderer2, OnInit, OnDestroy } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatAnchor } from '@angular/material/button';
-import { Store } from '../../core/store/store';
 import { PeopleService } from '../../core/services/people-service/people-service';
 
 @Component({
@@ -12,7 +11,6 @@ import { PeopleService } from '../../core/services/people-service/people-service
   styleUrl: './modal.scss',
 })
 export class Modal implements OnInit, OnDestroy {
-  private store = inject(Store);
   private renderer = inject(Renderer2);
   private document = inject(DOCUMENT);
   private peopleService = inject(PeopleService);
@@ -26,7 +24,7 @@ export class Modal implements OnInit, OnDestroy {
   }
 
   closeModal() {
-    if (this.store.activePerson()) {
+    if (this.peopleService.activePerson()) {
       this.peopleService.removePersonDetail();
     }
   }
