@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TeamMember } from './about.models';
+import { TeamMember } from './models/about.models';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({

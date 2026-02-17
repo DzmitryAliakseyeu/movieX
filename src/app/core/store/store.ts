@@ -19,7 +19,7 @@ export interface CatalogI {
   content: PosterI[];
 }
 
-interface State {
+export interface State {
   theme: 'light' | 'dark';
   catalogs: CatalogI[];
   searchResults: PosterI[] | [];
@@ -62,7 +62,7 @@ export const Store = signalStore(
       document.body.style.colorScheme = theme;
     },
     toggleTheme() {
-      const next = store.theme() === 'light' || '' ? 'dark' : 'light';
+      const next = store.theme() === 'light' ? 'dark' : 'light';
 
       patchState(store, {
         theme: next,

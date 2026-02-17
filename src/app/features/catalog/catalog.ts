@@ -1,7 +1,7 @@
 import { Component, effect, inject, input, signal, untracked } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MediaType } from '../../shared/models/common.models';
-import { CatalogService } from './catalog-service';
+import { CatalogService } from './services/catalog-service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatFabButton } from '@angular/material/button';
 import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
@@ -10,7 +10,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Poster } from '../home-page/components/poster/poster';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CatalogForm } from './catalog.models';
+import { CatalogForm } from './models/catalog.models';
 import { Genre } from 'tmdb-ts';
 
 @Component({

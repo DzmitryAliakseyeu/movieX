@@ -15,11 +15,10 @@ export class TmdbImageService {
     const config = this.store.tmdbApiConfiguration();
 
     if (!config) {
-      console.warn('TmdbApiConfiguration is not loaded yet');
       return '';
     }
 
     const baseUrl = config.images.secure_base_url;
-    return `${baseUrl}${size}${path}`;
+    return `${baseUrl}/${size}/${path}`;
   }
 }
