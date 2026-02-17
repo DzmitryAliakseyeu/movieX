@@ -18,7 +18,7 @@ export class PeopleService {
   public pagesLength = signal(0);
   public pageSize = 20;
 
-  loadPeople(page: number = 1) {
+  loadPeople(page = 1) {
     this.isLoading.set(true);
     this.peopleError.set(null);
 

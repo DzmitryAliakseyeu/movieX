@@ -1,5 +1,4 @@
 import { Configuration } from 'tmdb-ts';
-import { PersonI } from '../services/people-service/people.model';
 
 export interface PosterI {
   id: number;
