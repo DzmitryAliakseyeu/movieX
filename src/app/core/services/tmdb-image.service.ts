@@ -20,6 +20,6 @@ export class TmdbImageService {
     }
 
     const baseUrl = config.images.secure_base_url;
-    return `${baseUrl}${size}${path}`;
+    return `${baseUrl}/${size}/${path}`;
   }
 }
