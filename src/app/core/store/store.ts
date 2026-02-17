@@ -97,57 +97,6 @@ export const Store = signalStore(
       return;
     },
 
-    saveSearchPeopleResults(results: PersonI[] | []) {
-      patchState(store, {
-        searchPostersResults: [],
-        searchPeopleResults: results.map((item) => ({
-          id: item.id,
-          name: item.name,
-          profile_path: item.profile_path,
-        })),
-      });
-    },
-
-    loadPeople() {
-      tmdbApi
-        .getPeopleListOrderedByPopularity()
-        .pipe(
-          delay(0),
-          tap((response) => {
-            patchState(store, {
-              people: response.results.map((person) => ({
-                id: person.id,
-                name: person.original_name,
-                profile_path: `https://image.tmdb.org/t/p/w500${person.profile_path}`,
-              })),
-            });
-          }),
-        )
-        .subscribe();
-    },
-    savePersonDetail(id: number) {
-      tmdbApi
-        .getPersonDetails(id)
-        .pipe(
-          tap((response) =>
-            patchState(store, {
-              activePerson: {
-                id: response.id,
-                name: response.name,
-                profile_path: `https://image.tmdb.org/t/p/w500${response.profile_path}`,
-                bio: response.biography,
-                dateOfBirth: response.birthday,
-                dateOfDead: response.deathday,
-              },
-            }),
-          ),
-        )
-        .subscribe();
-    },
-    removePersonDetail() {
-      patchState(store, { activePerson: null });
-    },
-
     _fetchTmdbApiConfiguration: rxMethod<void>(
       pipe(
         switchMap(() => {

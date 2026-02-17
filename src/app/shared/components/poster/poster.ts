@@ -1,11 +1,10 @@
 import { Component, inject, input, signal } from '@angular/core';
-import { Store } from '../../../core/store/store';
 import { RouterLink } from '@angular/router';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-
 import { filter, switchMap } from 'rxjs';
 import { TmdbApiService } from '../../../core/services/tmdb-api.service';
 import { PersonI, PosterI } from '../../../core/store/store.model';
+import { PeopleService } from '../../../core/services/people-service/people-service';
 
 @Component({
   selector: 'moviex-poster',
@@ -16,8 +15,8 @@ import { PersonI, PosterI } from '../../../core/store/store.model';
 })
 export class Poster {
   private http = inject(TmdbApiService);
-  private store = inject(Store);
   public posterData = input<PosterI | PersonI>();
+  private peopleService = inject(PeopleService);
 
   clickedId = signal<number | null>(null);
   personDetails = toSignal(
@@ -32,6 +31,6 @@ export class Poster {
   }
 
   showInfo(id: number) {
-    this.store.savePersonDetail(id);
+    this.peopleService.savePersonDetail(id);
   }
 }

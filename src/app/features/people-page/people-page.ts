@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { People } from './people/people';
-import { Store } from '../../core/store/store';
 import { SearchField } from '../../shared/components/search-field/search-field';
+import { PeopleService } from '../../core/services/people-service/people-service';
 
 @Component({
   selector: 'moviex-people-page',
@@ -11,9 +11,9 @@ import { SearchField } from '../../shared/components/search-field/search-field';
   styleUrl: './people-page.scss',
 })
 export class PeoplePage {
-  store = inject(Store);
+  peopleService = inject(PeopleService);
 
   constructor() {
-    this.store.loadPeople();
+    this.peopleService.loadPeople();
   }
 }

@@ -2,6 +2,7 @@ import { Component, DOCUMENT, inject, Renderer2, OnInit, OnDestroy } from '@angu
 import { MatIcon } from '@angular/material/icon';
 import { MatAnchor } from '@angular/material/button';
 import { Store } from '../../core/store/store';
+import { PeopleService } from '../../core/services/people-service/people-service';
 
 @Component({
   selector: 'moviex-modal',
@@ -11,10 +12,10 @@ import { Store } from '../../core/store/store';
   styleUrl: './modal.scss',
 })
 export class Modal implements OnInit, OnDestroy {
-  store = inject(Store);
-
+  private store = inject(Store);
   private renderer = inject(Renderer2);
   private document = inject(DOCUMENT);
+  private peopleService = inject(PeopleService);
 
   ngOnInit() {
     this.renderer.setStyle(this.document.documentElement, 'overflow', 'hidden');
@@ -26,7 +27,7 @@ export class Modal implements OnInit, OnDestroy {
 
   closeModal() {
     if (this.store.activePerson()) {
-      this.store.removePersonDetail();
+      this.peopleService.removePersonDetail();
     }
   }
 }

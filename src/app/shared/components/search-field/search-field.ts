@@ -7,6 +7,7 @@ import { debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
 import { TmdbApiService } from '../../../core/services/tmdb-api.service';
 import { Store } from '../../../core/store/store';
 import { RouterLink } from '@angular/router';
+import { PeopleService } from '../../../core/services/people-service/people-service';
 
 @Component({
   selector: 'moviex-search-field',
@@ -15,17 +16,18 @@ import { RouterLink } from '@angular/router';
   styleUrl: './search-field.scss',
 })
 export class SearchField implements OnInit {
-  http = inject(TmdbApiService);
-  store = inject(Store);
+  private http = inject(TmdbApiService);
+  private store = inject(Store);
+  private peopleService = inject(PeopleService);
   isFocusOnInput = signal(false);
   searchControl = new FormControl('');
   searchPostersResults = computed(() => this.store.searchPostersResults());
-  searchPeopleResults = computed(() => this.store.searchPeopleResults());
+  searchPeopleResults = computed(() => this.peopleService.searchPeopleResults());
   id = input();
 
   ngOnInit() {
     this.store.saveSearchPostersResults([]);
-    this.store.saveSearchPeopleResults([]);
+    this.peopleService.saveSearchPeopleResults([]);
 
     if (this.id() === 'multi') {
       this.searchControl.valueChanges
@@ -41,7 +43,7 @@ export class SearchField implements OnInit {
         )
         .subscribe({
           next: (response) => {
-            this.store.saveSearchPeopleResults([]);
+            this.peopleService.saveSearchPeopleResults([]);
             if (!response.results.length) {
               this.store.saveSearchPostersResults([]);
             }
@@ -88,7 +90,7 @@ export class SearchField implements OnInit {
           next: (response) => {
             this.store.saveSearchPostersResults([]);
             if (!response.results.length) {
-              this.store.saveSearchPeopleResults([]);
+              this.peopleService.saveSearchPeopleResults([]);
             }
             const result = response.results
               .map((item) => {
@@ -100,7 +102,7 @@ export class SearchField implements OnInit {
               })
               .filter((item) => item !== null);
             if (result.length) {
-              this.store.saveSearchPeopleResults(result);
+              this.peopleService.saveSearchPeopleResults(result);
             }
           },
         });
