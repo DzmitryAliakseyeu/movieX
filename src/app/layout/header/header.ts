@@ -10,7 +10,7 @@ import { ThemeService } from '../../core/services/theme/theme-service';
 @Component({
   selector: 'moviex-header',
   standalone: true,
-  imports: [MatAnchor, MatButton, RouterLink, MatToolbar, RouterLinkActive, MatIcon, MatIconButton],
+  imports: [MatAnchor, MatButton, RouterLink, MatToolbar, RouterLinkActive, MatIcon],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
