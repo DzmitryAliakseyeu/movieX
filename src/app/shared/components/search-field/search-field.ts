@@ -117,4 +117,8 @@ export class SearchField implements OnInit {
   onBlur() {
     setTimeout(() => this.isFocusOnInput.set(false), 150);
   }
+
+  showInfo(id: number) {
+    this.peopleService.savePersonDetail(id);
+  }
 }

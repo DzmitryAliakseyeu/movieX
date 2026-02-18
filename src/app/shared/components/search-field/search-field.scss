@@ -21,6 +21,9 @@
     position: absolute;
     z-index: 1001;
     width: 100%;
+    li {
+      cursor: pointer;
+    }
     .close {
       align-self: flex-end;
     }

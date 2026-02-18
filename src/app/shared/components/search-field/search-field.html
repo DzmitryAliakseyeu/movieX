@@ -30,8 +30,7 @@
   <ul class="search-results flex flex-column">
     <mat-icon matPrefix class="close" (click)="this.isFocusOnInput.set(false)">close</mat-icon>
     @for (item of this.searchPeopleResults(); track item.id) {
-      <li [id]="item.id" (mousedown)="$event.stopPropagation()">
-        <a [routerLink]="item.id.toString()" href="#">{{ item.name }}</a>
+      <li tabindex="0" (mousedown)="$event.stopPropagation()"  (click)="showInfo(item.id)" (keydown.enter)="showInfo(item.id)">{{ item.name }}
       </li>
     }
   </ul>
