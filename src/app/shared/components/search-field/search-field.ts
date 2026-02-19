@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal, OnInit, input } from '@angular/core';
+import { Component, computed, inject, signal, OnInit, input, DestroyRef } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,6 +8,7 @@ import { TmdbApiService } from '../../../core/services/tmdb-api.service';
 import { Store } from '../../../core/store/store';
 import { RouterLink } from '@angular/router';
 import { PeopleService } from '../../../core/services/people-service/people-service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'moviex-search-field',
@@ -19,11 +20,12 @@ export class SearchField implements OnInit {
   private http = inject(TmdbApiService);
   private store = inject(Store);
   private peopleService = inject(PeopleService);
-  isFocusOnInput = signal(false);
-  searchControl = new FormControl('');
-  searchPostersResults = computed(() => this.store.searchPostersResults());
-  searchPeopleResults = computed(() => this.peopleService.searchPeopleResults());
-  id = input();
+  private destroyRef = inject(DestroyRef);
+  protected isFocusOnInput = signal(false);
+  protected searchControl = new FormControl('');
+  protected searchPostersResults = computed(() => this.store.searchPostersResults());
+  protected searchPeopleResults = computed(() => this.peopleService.searchPeopleResults());
+  protected id = input();
 
   ngOnInit() {
     this.store.saveSearchPostersResults([]);
@@ -34,6 +36,7 @@ export class SearchField implements OnInit {
         .pipe(
           debounceTime(300),
           distinctUntilChanged(),
+          takeUntilDestroyed(this.destroyRef),
           switchMap((query) => {
             if (query && query.length > 0) {
               return this.http.searchMulti({ query });
@@ -79,6 +82,7 @@ export class SearchField implements OnInit {
         .pipe(
           debounceTime(300),
           distinctUntilChanged(),
+          takeUntilDestroyed(this.destroyRef),
           switchMap((query) => {
             if (query && query.length > 0) {
               return this.http.searchPerson({ query });
