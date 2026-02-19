@@ -9,11 +9,12 @@ import {
   viewChildren,
   AfterViewChecked,
 } from '@angular/core';
-import { Poster } from '../../../features/home-page/components/poster/poster';
+import { Poster } from '../poster/poster';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { TmdbApiService } from '../../../core/services/tmdb-api.service';
-import { PosterI, Store } from '../../../core/store/store';
+import { Store } from '../../../core/store/store';
+import { PosterI } from '../../../core/store/store.model';
 
 @Component({
   selector: 'moviex-slider',
@@ -26,12 +27,12 @@ export class Slider implements AfterViewChecked {
   http = inject(TmdbApiService);
   store = inject(Store);
 
-  catalogContent = input<PosterI[]>();
+  previewSliderContent = input<PosterI[]>();
 
   index = 0;
   transform = 'translateX(0px)';
 
-  catalogSlider = viewChild<ElementRef>('catalogSlider');
+  catalogSlider = viewChild<ElementRef>('previewSlider');
   postersList = viewChildren('posterRef', { read: ElementRef });
   elCatalogSlider = computed(() => this.catalogSlider()?.nativeElement);
 
@@ -45,7 +46,7 @@ export class Slider implements AfterViewChecked {
     const posters = this.postersList();
     const firstPoster = posters[0]?.nativeElement as HTMLElement;
     const posterWidth = firstPoster?.clientWidth;
-    const content = this.catalogContent();
+    const content = this.previewSliderContent();
     if (content) {
       this.quantitySliderSections.set(Math.floor(content.length / (width / (posterWidth + 10))));
     }

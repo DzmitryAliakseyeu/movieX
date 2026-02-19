@@ -1,0 +1,45 @@
+:host {
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: color-mix(in srgb, var(--mat-sys-surface), transparent 12%);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal {
+    box-sizing: border-box;
+    max-width: 1360px;
+    padding: 20px;
+    width: fit-content;
+    gap: 20px;
+    align-items: center;
+    height: inherit;
+
+    ::ng-deep {
+      .preview {
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 20px;
+
+        img {
+          width: 320px;
+        }
+
+        .info {
+          gap: 10px;
+        }
+      }
+    }
+
+    button {
+      width: 50px;
+      height: 50px;
+      align-self: flex-end;
+    }
+  }
+}

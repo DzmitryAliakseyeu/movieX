@@ -1,0 +1,24 @@
+<div class="person-items-container">
+  @if (peopleService.isLoading()) {
+    <mat-spinner></mat-spinner>
+  } @else if (peopleService.peopleError()) {
+    Something went wrong :( Reload the page.
+  } @else if (!peopleService.isLoading() && !peopleService.peopleError()) {
+    @for (person of people(); track person.id) {
+      <moviex-poster [posterData]="person"></moviex-poster>
+    } @empty {
+      <div>No items found</div>
+    }
+  }
+</div>
+
+<mat-paginator
+  class="paginator paginator-cust"
+  [length]="peopleService.pagesLength()"
+  [pageSize]="peopleService.pageSize"
+  [showFirstLastButtons]="false"
+  [hidePageSize]="true"
+  [pageIndex]="page()"
+  (page)="changePageIndex($event)"
+  aria-label="Select page"
+></mat-paginator>

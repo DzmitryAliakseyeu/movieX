@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Catalog } from './catalog';
+import { PreviewSlider } from './preview-slider';
 import { Configuration } from 'tmdb-ts';
 import { signal } from '@angular/core';
 import { Store } from '../../../../core/store/store';
 
 describe('Catalog', () => {
-  let component: Catalog;
-  let fixture: ComponentFixture<Catalog>;
+  let component: PreviewSlider;
+  let fixture: ComponentFixture<PreviewSlider>;
   const mockConfig: Partial<Configuration> = {
     images: {
       secure_base_url: 'https://image.tmdb.org/t/p',
@@ -26,11 +26,11 @@ describe('Catalog', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Catalog],
+      imports: [PreviewSlider],
       providers: [{ provide: Store, useValue: mockStore }],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Catalog);
+    fixture = TestBed.createComponent(PreviewSlider);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

@@ -5,29 +5,9 @@ import { TmdbApiService } from '../services/tmdb-api.service';
 import { Configuration } from 'tmdb-ts';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
-
-export interface PosterI {
-  id: number;
-  title: string;
-  date: string;
-  imageUrl?: string;
-}
-
-export interface CatalogI {
-  id: string;
-  title: string;
-  content: PosterI[];
-}
-
-export interface State {
-  theme: 'light' | 'dark';
-  catalogs: CatalogI[];
-  searchResults: PosterI[] | [];
-  tmdbApiConfiguration: Configuration | undefined;
-}
+import { PosterI, State } from './store.model';
 
 const initialState: State = {
-  theme: 'dark',
   catalogs: [
     {
       id: 'movies',
@@ -46,7 +26,8 @@ const initialState: State = {
     },
   ],
   searchResults: [],
-  tmdbApiConfiguration: undefined,
+  searchPostersResults: [],
+  tmdbApiConfiguration: Configuration | undefined,
 };
 
 export const Store = signalStore(
@@ -55,22 +36,6 @@ export const Store = signalStore(
   withState<State>(initialState),
 
   withMethods((store, tmdbApi = inject(TmdbApiService)) => ({
-    setTheme(theme: 'light' | 'dark') {
-      patchState(store, {
-        theme: theme,
-      });
-      document.body.style.colorScheme = theme;
-    },
-    toggleTheme() {
-      const next = store.theme() === 'light' ? 'dark' : 'light';
-
-      patchState(store, {
-        theme: next,
-      });
-
-      document.body.style.colorScheme = next;
-    },
-
     loadAllCatalogs() {
       forkJoin({
         movies: tmdbApi.getPopularMovieList(),
@@ -119,14 +84,16 @@ export const Store = signalStore(
         .subscribe();
     },
 
-    saveSearchResults(results: PosterI[] | []) {
+    saveSearchPostersResults(results: PosterI[] | []) {
       patchState(store, {
-        searchResults: results.map((item) => ({
+        searchPostersResults: results.map((item) => ({
           id: item.id,
           title: item.title,
           date: item.date,
         })),
       });
+
+      return;
     },
 
     _fetchTmdbApiConfiguration: rxMethod<void>(

@@ -8,10 +8,11 @@ import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { MatIcon } from '@angular/material/icon';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { Poster } from '../home-page/components/poster/poster';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { CatalogForm } from './models/catalog.models';
 import { Genre } from 'tmdb-ts';
+import { Poster } from '../../shared/components/poster/poster';
 
 @Component({
   selector: 'moviex-catalog',

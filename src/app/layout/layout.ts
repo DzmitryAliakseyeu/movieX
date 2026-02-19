@@ -1,20 +1,20 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Header } from './header/header';
 import { Footer } from './footer/footer';
 import { RouterOutlet } from '@angular/router';
 import { Store } from '../core/store/store';
+import { Modal } from '../shared/modal/modal';
+import { DatePipe } from '@angular/common';
+import { PeopleService } from '../core/services/people-service/people-service';
 
 @Component({
   selector: 'moviex-layout',
   standalone: true,
-  imports: [Header, Footer, RouterOutlet],
+  imports: [Header, Footer, RouterOutlet, Modal, DatePipe],
   templateUrl: './layout.html',
   styleUrl: './layout.scss',
 })
-export class Layout implements OnInit {
+export class Layout {
   store = inject(Store);
-
-  ngOnInit() {
-    this.store.setTheme('dark');
-  }
+  protected peopleService = inject(PeopleService);
 }

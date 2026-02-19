@@ -16,8 +16,10 @@
   </nav>
 
   <div class="management flex">
-    <button matIconButton (click)="toggleTheme()" aria-label="Toggle Theme">
-      <mat-icon>{{ themeModeText() }}</mat-icon>
+    <button matIconButton (click)="themeService.updateTheme()" aria-label="Toggle Theme">
+      <mat-icon>
+        {{ themeModeText() }}
+      </mat-icon>
     </button>
   </div>
 </mat-toolbar>
