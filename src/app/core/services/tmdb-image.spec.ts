@@ -9,7 +9,7 @@ describe('TmdbImage', () => {
   const mockConfig: Partial<Configuration> = {
     images: {
       secure_base_url: 'https://image.tmdb.org/t/p',
-      base_url: 'http://image.tmdb.org/t/p/',
+      base_url: 'https://image.tmdb.org/t/p/',
       backdrop_sizes: [],
       logo_sizes: [],
       poster_sizes: ['w500'],
@@ -37,12 +37,13 @@ describe('TmdbImage', () => {
 
   describe('buildImageUrl', () => {
     it('should get image url if config is loaded', () => {
-      const result = service.buildImageUrl({
-        path: 'test-path.jpg',
-        size: 'w500',
-      });
+      const size = 'w500';
+      const path = 'test-path.jpg';
+      const result = service.buildImageUrl({ path, size });
 
-      expect(result).toBe('https://image.tmdb.org/t/p/w500/test-path.jpg');
+      expect(result).toBe(
+        `${mockConfig.images?.base_url.replace(/\/$/, '')}/${size.replace(/^\//, '')}/${path.replace(/^\//, '')}`,
+      );
     });
 
     it('should return an empty string if there is no config', () => {
