@@ -1,20 +1,22 @@
-<moviex-header class="flex flex-row" />
-<router-outlet></router-outlet>
-@if (peopleService.activePerson()) {
-  <moviex-modal>
-    <div class="preview flex flex-row">
-      <img [src]="peopleService.activePerson()?.profile_path" alt="person-image" />
-      <div class="info flex flex-column">
-        <h2>{{ peopleService.activePerson()?.name }}</h2>
-        <p>
-          {{ peopleService.activePerson()?.dateOfBirth | date: 'longDate' }} -
-          {{ (peopleService.activePerson()?.dateOfDead | date: 'longDate') || 'now' }}
-        </p>
+<moviex-header class="flex" />
+<main>
+  <router-outlet></router-outlet>
+  @if (peopleService.activePerson()) {
+    <moviex-modal>
+      <div class="preview flex">
+        <img [src]="peopleService.activePerson()?.profile_path" alt="person-image" />
+        <div class="info flex flex-column">
+          <h2>{{ peopleService.activePerson()?.name }}</h2>
+          <p>
+            {{ peopleService.activePerson()?.dateOfBirth | date: 'longDate' }} -
+            {{ (peopleService.activePerson()?.dateOfDead | date: 'longDate') || 'now' }}
+          </p>
+        </div>
       </div>
-    </div>
-    <h3>Biography:</h3>
-    <p>{{ peopleService.activePerson()?.bio || 'We nothing have about this person' }}</p>
-  </moviex-modal>
-}
+      <h3>Biography:</h3>
+      <p>{{ peopleService.activePerson()?.bio || 'We nothing have about this person' }}</p>
+    </moviex-modal>
+  }
+</main>
 
-<moviex-footer class="flex flex-row"></moviex-footer>
+<moviex-footer class="flex"></moviex-footer>

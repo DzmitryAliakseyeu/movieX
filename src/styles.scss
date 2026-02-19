@@ -108,22 +108,3 @@ a {
   width: 100%;
   gap: 20px;
 }
-
-.item-wrapper {
-  border-radius: 20px;
-  box-shadow: 0 0 5px 0 var(--mat-sys-secondary);
-  overflow: hidden;
-  margin: 10px;
-}
-
-.item-wrapper:hover {
-  transform: scale(105%);
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-a:hover {
-  .poster {
-    box-shadow: $shadow-hover;
-  }
-}
