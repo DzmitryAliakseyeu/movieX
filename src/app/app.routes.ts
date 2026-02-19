@@ -11,10 +11,15 @@ export const routes: Routes = [
     loadComponent: () => import('./features/not-found/not-found').then((module) => module.NotFound),
   },
   {
+    path: 'people',
+    loadComponent: () =>
+      import('./features/people-page/people-page').then((module) => module.PeoplePage),
+  },
+  {
     path: 'about',
     loadComponent: () => import('./features/about/about').then((module) => module.About),
   },
-  // { path: 'person' },
+
   {
     path: ':mediaType',
     canActivate: [catalogGuard],

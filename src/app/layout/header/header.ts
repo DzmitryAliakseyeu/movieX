@@ -4,6 +4,7 @@ import { NavItem } from './header.models';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatToolbar } from '@angular/material/toolbar';
 import { Store } from '../../core/store/store';
+import { ThemeService } from '../../core/services/theme/theme-service';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
@@ -17,14 +18,10 @@ export class Header {
   protected navItems: NavItem[] = [
     { id: 'movie', title: 'Movie', url: '/movies' },
     { id: 'tv', title: 'TV Shows', url: '/tv' },
-    { id: 'person', title: 'People', url: '/people' },
+    { id: 'people', title: 'People', url: '/people' },
   ];
 
   store = inject(Store);
-  themeMode = computed(() => this.store.theme());
-  themeModeText = computed(() => `${this.themeMode()}_mode`);
-
-  toggleTheme() {
-    this.store.toggleTheme();
-  }
+  themeService = inject(ThemeService);
+  themeModeText = computed(() => this.themeService.theme() + '_mode');
 }

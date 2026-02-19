@@ -6,6 +6,7 @@
 
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
+@use './variables' as *;
 
 html {
   color-scheme: light dark;
@@ -41,7 +42,7 @@ body {
   // Default the application to a light color theme. This can be changed to
   // `dark` to enable the dark color theme, or to `light dark` to defer to the
   // user's system settings.
-  color-scheme: dark;
+  color-scheme: light dark;
 
   // Set a default background, font and text colors for the application using
   // Angular Material's system-level CSS variables. Learn more about these
@@ -105,4 +106,5 @@ a {
 .content-block {
   max-width: 1320px;
   width: 100%;
+  gap: 20px;
 }

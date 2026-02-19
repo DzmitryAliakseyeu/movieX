@@ -36,7 +36,7 @@
     Something went wrong :( Reload the page.
   } @else if (catalogResource.hasValue()) {
     @for (catalogCard of catalogCards; track catalogCard.id) {
-      <moviex-poster [poster]="catalogCard" />
+      <moviex-poster [posterData]="catalogCard" />
     } @empty {
       <div>No items found</div>
     }
