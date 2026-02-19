@@ -31,6 +31,7 @@ const initialState: State = {
 
 export const Store = signalStore(
   { providedIn: 'root' },
+
   withState<State>(initialState),
 
   withMethods((store, tmdbApi = inject(TmdbApiService)) => ({

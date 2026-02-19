@@ -81,7 +81,7 @@ export class TmdbApiService {
     });
   }
 
-  getCollectionTranslations(id: number, params?: CollectionImageOptions): Observable<Translations> {
+  getCollectionTranslations(id: number, params?: LanguageOption): Observable<Translations> {
     const httpParams = new HttpParams({ fromObject: { ...params } });
     return this.http.get<Translations>(`${environment.tmdbBaseUrl}/collection/${id}/translations`, {
       params: httpParams,
