@@ -2,7 +2,6 @@ import {
   Component,
   computed,
   ElementRef,
-  inject,
   signal,
   viewChild,
   input,
@@ -23,14 +22,11 @@ import { PosterI } from '../../../core/store/store.model';
 })
 export class Slider implements AfterViewChecked {
   public previewSliderContent = input<PosterI[]>();
-
   private index = signal(0);
   protected transform = signal('translateX(0px)');
-
   private catalogSlider = viewChild<ElementRef>('previewSlider');
   private postersList = viewChildren('posterRef', { read: ElementRef });
   protected elCatalogSlider = computed(() => this.catalogSlider()?.nativeElement);
-
   private quantitySliderSections = signal(0);
 
   ngAfterViewChecked() {

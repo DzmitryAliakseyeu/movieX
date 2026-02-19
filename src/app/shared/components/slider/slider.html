@@ -6,7 +6,11 @@
   </div>
 
   <div class="slider-buttons flex flex-row">
-    <button matMiniFab [disabled]="!canShowPrev()" (click)="showPrev()"><mat-icon>chevron_left</mat-icon></button>
-    <button matMiniFab [disabled]="!canShowNext()" (click)="showNext()"><mat-icon>chevron_right</mat-icon></button>
+    <button matMiniFab [disabled]="!canShowPrev()" (click)="showPrev()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <button matMiniFab [disabled]="!canShowNext()" (click)="showNext()">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
   </div>
 </div>
