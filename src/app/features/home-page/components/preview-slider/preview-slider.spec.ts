@@ -21,7 +21,6 @@ describe('Catalog', () => {
   };
   const mockStore = {
     tmdbApiConfiguration: signal(mockConfig),
-    theme: signal('dark'),
   };
 
   beforeEach(async () => {

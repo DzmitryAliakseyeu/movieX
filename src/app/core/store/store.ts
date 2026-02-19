@@ -2,7 +2,6 @@ import { inject } from '@angular/core';
 import { signalStore, withState, withMethods, patchState, withHooks } from '@ngrx/signals';
 import { forkJoin, pipe, switchMap, tap } from 'rxjs';
 import { TmdbApiService } from '../services/tmdb-api.service';
-import { Configuration } from 'tmdb-ts';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
 import { PosterI, State } from './store.model';
@@ -27,7 +26,7 @@ const initialState: State = {
   ],
   searchResults: [],
   searchPostersResults: [],
-  tmdbApiConfiguration: Configuration | undefined,
+  tmdbApiConfiguration: undefined,
 };
 
 export const Store = signalStore(

@@ -88,7 +88,6 @@ describe('TmdbApi service', () => {
         provideHttpClientTesting(),
         TmdbApiService,
         { provide: Store, useValue: mockStore },
-        { provide: mockStore.setTheme, useValue: mockConfig },
       ],
     });
 

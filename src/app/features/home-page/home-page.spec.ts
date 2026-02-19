@@ -25,9 +25,8 @@ describe('HomePage', () => {
         content: [],
       },
     ],
-    loadAllCatalogs: () => {
-      //
-    },
+    loadAllCatalogs: vi.fn,
+    saveSearchPostersResults: vi.fn,
   };
 
   beforeEach(async () => {

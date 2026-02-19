@@ -21,7 +21,7 @@ describe('SearchField', () => {
   };
   const mockStore = {
     tmdbApiConfiguration: signal(mockConfig),
-    theme: signal('dark'),
+    saveSearchPostersResults: vi.fn,
   };
 
   beforeEach(async () => {
