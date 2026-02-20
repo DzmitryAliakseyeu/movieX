@@ -25,7 +25,7 @@ export class SearchField implements OnInit {
   protected searchControl = new FormControl('');
   protected searchPostersResults = computed(() => this.store.searchPostersResults());
   protected searchPeopleResults = computed(() => this.peopleService.searchPeopleResults());
-  protected id = input();
+  public id = input();
 
   ngOnInit() {
     this.store.saveSearchPostersResults([]);
