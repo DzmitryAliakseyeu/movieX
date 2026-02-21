@@ -9,6 +9,13 @@
   gap: 20px;
   padding: 20px 0;
 
+  .loader-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .content-section {
     justify-content: center;
     gap: 30px;
