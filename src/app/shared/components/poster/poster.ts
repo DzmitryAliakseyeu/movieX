@@ -1,9 +1,9 @@
 import { Component, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { PosterI } from '../../../core/store/store.model';
 import { PeopleService } from '../../../core/services/people-service/people-service';
 import { PersonI } from '../../../core/services/people-service/people.model';
 import { CommonModule } from '@angular/common';
+import { PosterI } from '../../../core/services/poster-service/poster-service.model';
 
 @Component({
   selector: 'moviex-poster',

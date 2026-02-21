@@ -1,8 +1,9 @@
-import { Component, inject, OnInit, signal, effect } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { PreviewSlider } from './components/preview-slider/preview-slider';
 import { SearchField } from '../../shared/components/search-field/search-field';
 import { Store } from '../../core/store/store';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { PosterService } from '../../core/services/poster-service/poster-service';
 
 @Component({
   selector: 'moviex-home-page',
@@ -13,21 +14,16 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 })
 export class HomePage implements OnInit {
   store = inject(Store);
+  posterService = inject(PosterService);
 
-  previewCatalogs = this.store.catalogs;
+  previewCatalogs = this.posterService.catalogs;
   isLoading = signal(false);
-
-  constructor() {
-    effect(() => {
-      const catalogs = this.store.catalogs();
-      if (catalogs.every((c) => c.content.length > 0)) {
-        this.isLoading.set(false);
-      }
-    });
-  }
 
   ngOnInit() {
     this.isLoading.set(true);
-    this.store.loadAllCatalogs();
+    this.posterService.loadAllCatalogs().subscribe({
+      next: () => this.isLoading.set(false),
+      error: () => this.isLoading.set(false),
+    });
   }
 }

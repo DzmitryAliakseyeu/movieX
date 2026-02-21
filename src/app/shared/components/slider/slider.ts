@@ -11,7 +11,7 @@ import {
 import { Poster } from '../poster/poster';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { PosterI } from '../../../core/store/store.model';
+import { PosterI } from '../../../core/services/poster-service/poster-service.model';
 
 @Component({
   selector: 'moviex-slider',

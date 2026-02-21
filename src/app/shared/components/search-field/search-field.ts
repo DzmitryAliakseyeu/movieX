@@ -5,10 +5,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
 import { TmdbApiService } from '../../../core/services/tmdb-api.service';
-import { Store } from '../../../core/store/store';
 import { RouterLink } from '@angular/router';
 import { PeopleService } from '../../../core/services/people-service/people-service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { PosterService } from '../../../core/services/poster-service/poster-service';
 
 @Component({
   selector: 'moviex-search-field',
@@ -18,23 +18,23 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class SearchField implements OnInit {
   private http = inject(TmdbApiService);
-  private store = inject(Store);
   private peopleService = inject(PeopleService);
+  private posterService = inject(PosterService);
   private destroyRef = inject(DestroyRef);
   protected isFocusOnInput = signal(false);
   protected searchControl = new FormControl('');
-  protected searchPostersResults = computed(() => this.store.searchPostersResults());
+  protected searchPostersResults = computed(() => this.posterService.searchPostersResults());
   protected searchPeopleResults = computed(() => this.peopleService.searchPeopleResults());
   public id = input();
 
   ngOnInit() {
-    this.store.saveSearchPostersResults([]);
+    this.posterService.saveSearchPostersResults([]);
     this.peopleService.saveSearchPeopleResults([]);
 
     if (this.id() === 'multi') {
       this.searchControl.valueChanges
         .pipe(
-          debounceTime(300),
+          debounceTime(500),
           distinctUntilChanged(),
           takeUntilDestroyed(this.destroyRef),
           switchMap((query) => {
@@ -48,7 +48,7 @@ export class SearchField implements OnInit {
           next: (response) => {
             this.peopleService.saveSearchPeopleResults([]);
             if (!response.results.length) {
-              this.store.saveSearchPostersResults([]);
+              this.posterService.saveSearchPostersResults([]);
             }
             const result = response.results
               .map((item) => {
@@ -70,7 +70,7 @@ export class SearchField implements OnInit {
               })
               .filter((item) => item !== null);
             if (result.length) {
-              this.store.saveSearchPostersResults(result);
+              this.posterService.saveSearchPostersResults(result);
             }
           },
         });
@@ -80,7 +80,7 @@ export class SearchField implements OnInit {
     if (this.id() === 'people') {
       this.searchControl.valueChanges
         .pipe(
-          debounceTime(300),
+          debounceTime(500),
           distinctUntilChanged(),
           takeUntilDestroyed(this.destroyRef),
           switchMap((query) => {
@@ -92,7 +92,7 @@ export class SearchField implements OnInit {
         )
         .subscribe({
           next: (response) => {
-            this.store.saveSearchPostersResults([]);
+            this.posterService.saveSearchPostersResults([]);
             if (!response.results.length) {
               this.peopleService.saveSearchPeopleResults([]);
             }
