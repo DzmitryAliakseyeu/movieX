@@ -18,7 +18,7 @@ export class HomePage implements OnInit {
   isLoading = signal(false);
 
   constructor() {
-     effect(() => {
+    effect(() => {
       const catalogs = this.store.catalogs();
       if (catalogs.every((c) => c.content.length > 0)) {
         this.isLoading.set(false);
@@ -29,6 +29,5 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.isLoading.set(true);
     this.store.loadAllCatalogs();
-
   }
 }
