@@ -1,10 +1,10 @@
 import { computed, inject, Injectable } from '@angular/core';
-import { TmdbApiService } from '../../core/services/tmdb-api.service';
-import { MediaType } from '../../shared/models/common.models';
+import { TmdbApiService } from '../../../core/services/tmdb-api.service';
+import { MediaType } from '../../../shared/models/common.models';
 import { rxResource, toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { MovieDiscoverResult, TvShowDiscoverResult } from 'tmdb-ts/dist/types/discover';
 import { forkJoin, map, Observable, of, switchMap } from 'rxjs';
-import { TmdbImageService } from '../../core/services/tmdb-image.service';
+import { TmdbImageService } from '../../../core/services/tmdb-image.service';
 import { MovieQueryOptions, TvShowQueryOptions } from 'tmdb-ts';
 import { ActivatedRoute, Params } from '@angular/router';
 
