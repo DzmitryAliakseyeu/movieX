@@ -14,8 +14,13 @@ describe('ThemeService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should have default theme as light', () => {
-    expect(service.theme()).toBe('light');
+  it('should set theme during initialization', () => {
+    let theme = localStorage.getItem('theme');
+    if (theme) {
+      expect(service.theme()).toBe(theme);
+    } else {
+      expect(service.theme()).toBe('light');
+    }
   });
 
   it('should update theme correctly', () => {
