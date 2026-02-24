@@ -46,5 +46,5 @@ describe('Modal', () => {
     const closeButton = fixture.debugElement.query(By.css('button')).nativeElement as HTMLElement;
     closeButton.click();
     expect(spy).toHaveBeenCalled();
-  })
+  });
 });
