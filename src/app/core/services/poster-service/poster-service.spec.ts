@@ -31,7 +31,6 @@ describe('PosterService', () => {
     expect(catalogs[0].id).toBe('movies');
     expect(catalogs[1].id).toBe('tv-shows');
     expect(catalogs[2].id).toBe('upcoming-movies');
-  
   });
 
   it('should have empty search results by default', () => {
@@ -93,4 +92,4 @@ describe('PosterService', () => {
     const searchPosters = service.searchPostersResults();
     expect(searchPosters.length).toBeGreaterThan(0);
   });
-});   
+});
