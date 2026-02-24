@@ -8,8 +8,8 @@ import { TmdbImageService } from '../tmdb-image.service';
   providedIn: 'root',
 })
 export class PeopleService {
-  private tmdbApi = inject(TmdbApiService);
-  private tmdbImageService = inject(TmdbImageService);
+  public tmdbApi = inject(TmdbApiService);
+  public tmdbImageService = inject(TmdbImageService);
   public people = signal<PersonI[]>([]);
   public searchPeopleResults = signal<PersonI[]>([]);
   public isLoading = signal(false);
