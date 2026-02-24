@@ -4,7 +4,6 @@ import { SearchField } from './search-field';
 import { Configuration } from 'tmdb-ts';
 import { signal } from '@angular/core';
 import { Store } from '../../../core/store/store';
-import { TmdbApiService } from '../../../core/services/tmdb-api.service';
 import { By } from '@angular/platform-browser';
 
 describe('SearchField', () => {
