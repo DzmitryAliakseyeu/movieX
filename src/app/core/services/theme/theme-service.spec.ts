@@ -13,4 +13,15 @@ describe('ThemeService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should have default theme as light', () => {
+    expect(service.theme()).toBe('light');
+  });
+
+  it('should update theme correctly', () => {
+    service.updateTheme();
+    expect(service.theme()).toBe('dark');
+    service.updateTheme();
+    expect(service.theme()).toBe('light');
+  });
 });
