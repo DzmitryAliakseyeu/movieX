@@ -8,8 +8,8 @@ import { TmdbImageService } from '../tmdb-image.service';
   providedIn: 'root',
 })
 export class PosterService {
-  private tmdbApi = inject(TmdbApiService);
-  private tmdbImageService = inject(TmdbImageService);
+  public tmdbApi = inject(TmdbApiService);
+  public tmdbImageService = inject(TmdbImageService);
 
   catalogs = signal<PreviewSliderI[]>([
     { id: 'movies', title: 'Movies', content: [] },
