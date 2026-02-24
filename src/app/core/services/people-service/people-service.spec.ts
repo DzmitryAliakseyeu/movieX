@@ -46,17 +46,14 @@ describe('PeopleService', () => {
 
   beforeEach(() => {
     tmdbApiMock = {
-      getPeopleListOrderedByPopularity: vi
-        .fn()
-        .mockReturnValue(of(mockPeopleResponse)),
-      getPersonDetails: vi
-        .fn()
-        .mockReturnValue(of(mockPersonDetails)),
+      getPeopleListOrderedByPopularity: vi.fn().mockReturnValue(of(mockPeopleResponse)),
+      getPersonDetails: vi.fn().mockReturnValue(of(mockPersonDetails)),
     };
 
     tmdbImageServiceMock = {
-      buildImageUrl: vi.fn((config: { path: string; size: string }) =>
-        `https://image.tmdb.org/t/p/${config.size}${config.path}`
+      buildImageUrl: vi.fn(
+        (config: { path: string; size: string }) =>
+          `https://image.tmdb.org/t/p/${config.size}${config.path}`,
       ),
     };
 
@@ -256,9 +253,7 @@ describe('PeopleService', () => {
     });
 
     it('should replace previous search results', () => {
-      const results1: PersonI[] = [
-        { id: 1, name: 'Actor 1', profile_path: 'path1' },
-      ];
+      const results1: PersonI[] = [{ id: 1, name: 'Actor 1', profile_path: 'path1' }];
       const results2: PersonI[] = [
         { id: 2, name: 'Actor 2', profile_path: 'path2' },
         { id: 3, name: 'Actor 3', profile_path: 'path3' },
@@ -336,9 +331,7 @@ describe('PeopleService', () => {
     it('should handle API error with generic message', async () => {
       const error = new Error();
       (error as Error).message = '';
-      tmdbApiMock.getPersonDetails = vi
-        .fn()
-        .mockReturnValue(throwError(() => error));
+      tmdbApiMock.getPersonDetails = vi.fn().mockReturnValue(throwError(() => error));
 
       service.savePersonDetail(1);
       await waitForAsync();
