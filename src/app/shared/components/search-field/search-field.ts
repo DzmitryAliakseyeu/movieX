@@ -17,11 +17,11 @@ import { PosterService } from '../../../core/services/poster-service/poster-serv
   styleUrl: './search-field.scss',
 })
 export class SearchField implements OnInit {
-  private http = inject(TmdbApiService);
-  private peopleService = inject(PeopleService);
-  private posterService = inject(PosterService);
+  public http = inject(TmdbApiService);
+  public peopleService = inject(PeopleService);
+  public posterService = inject(PosterService);
   private destroyRef = inject(DestroyRef);
-  protected isFocusOnInput = signal(false);
+  public isFocusOnInput = signal(false);
   protected searchControl = new FormControl('');
   protected searchPostersResults = computed(() => this.posterService.searchPostersResults());
   protected searchPeopleResults = computed(() => this.peopleService.searchPeopleResults());

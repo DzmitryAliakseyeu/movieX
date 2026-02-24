@@ -15,7 +15,7 @@ describe('ThemeService', () => {
   });
 
   it('should set theme during initialization', () => {
-    let theme = localStorage.getItem('theme');
+    const theme = localStorage.getItem('theme');
     if (theme) {
       expect(service.theme()).toBe(theme);
     } else {
