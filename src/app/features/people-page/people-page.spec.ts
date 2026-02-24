@@ -70,4 +70,5 @@ describe('PeoplePage', () => {
     fixture.detectChanges();
     const peopleComponent = fixture.debugElement.query(By.css('moviex-people'));
     expect(peopleComponent).toBeTruthy();
-  });});
+  });
+});
