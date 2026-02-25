@@ -13,4 +13,22 @@ describe('ThemeService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should set theme during initialization', () => {
+    const theme = localStorage.getItem('theme');
+    if (theme) {
+      expect(service.theme()).toBe(theme);
+    } else {
+      expect(service.theme()).toBe('light');
+    }
+  });
+
+  it('should update theme correctly', () => {
+    service.updateTheme();
+    if (service.theme() === 'dark') {
+      expect(service.theme()).toBe('dark');
+    } else {
+      expect(service.theme()).toBe('light');
+    }
+  });
 });

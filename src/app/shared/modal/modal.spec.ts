@@ -4,6 +4,7 @@ import { Modal } from './modal';
 import { Configuration } from 'tmdb-ts';
 import { signal } from '@angular/core';
 import { Store } from '../../core/store/store';
+import { By } from '@angular/platform-browser';
 
 describe('Modal', () => {
   let component: Modal;
@@ -37,5 +38,13 @@ describe('Modal', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should close modal on close button click', () => {
+    fixture.detectChanges();
+    const spy = vi.spyOn(component, 'closeModal');
+    const closeButton = fixture.debugElement.query(By.css('button')).nativeElement as HTMLElement;
+    closeButton.click();
+    expect(spy).toHaveBeenCalled();
   });
 });

@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { Slider } from '../../../../shared/components/slider/slider';
-import { PreviewSliderI } from '../../../../core/store/store.model';
+import { PreviewSliderI } from '../../../../core/services/poster-service/poster-service.model';
 
 @Component({
   selector: 'moviex-preview-slider',

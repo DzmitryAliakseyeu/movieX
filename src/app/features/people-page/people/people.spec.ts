@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { People } from './people';
-import { provideRouter } from '@angular/router';
+import { provideRouter, Router, ActivatedRoute } from '@angular/router';
 import { Configuration } from 'tmdb-ts';
 import { signal } from '@angular/core';
 import { Store } from '../../../core/store/store';
+import { PageEvent } from '@angular/material/paginator';
 
 describe('People', () => {
   let component: People;
@@ -37,5 +37,27 @@ describe('People', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should navigate with correct query params when changePageIndex is called', () => {
+    const router = TestBed.inject(Router);
+    const activatedRoute = TestBed.inject(ActivatedRoute);
+    const navigateSpy = vi.spyOn(router, 'navigate');
+
+    const mockPageEvent: PageEvent = {
+      pageIndex: 2,
+      pageSize: 10,
+      length: 100,
+    };
+
+    component.changePageIndex(mockPageEvent);
+
+    expect(navigateSpy).toHaveBeenCalledWith([], {
+      relativeTo: activatedRoute,
+      queryParams: {
+        page: 3,
+      },
+      queryParamsHandling: 'merge',
+    });
   });
 });

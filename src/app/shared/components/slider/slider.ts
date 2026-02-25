@@ -2,7 +2,6 @@ import {
   Component,
   computed,
   ElementRef,
-  inject,
   signal,
   viewChild,
   input,
@@ -12,9 +11,7 @@ import {
 import { Poster } from '../poster/poster';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { TmdbApiService } from '../../../core/services/tmdb-api.service';
-import { Store } from '../../../core/store/store';
-import { PosterI } from '../../../core/store/store.model';
+import { PosterI } from '../../../core/services/poster-service/poster-service.model';
 
 @Component({
   selector: 'moviex-slider',
@@ -24,19 +21,13 @@ import { PosterI } from '../../../core/store/store.model';
   styleUrl: './slider.scss',
 })
 export class Slider implements AfterViewChecked {
-  http = inject(TmdbApiService);
-  store = inject(Store);
-
-  previewSliderContent = input<PosterI[]>();
-
-  index = 0;
-  transform = 'translateX(0px)';
-
-  catalogSlider = viewChild<ElementRef>('previewSlider');
-  postersList = viewChildren('posterRef', { read: ElementRef });
-  elCatalogSlider = computed(() => this.catalogSlider()?.nativeElement);
-
-  quantitySliderSections = signal(0);
+  public previewSliderContent = input<PosterI[]>();
+  private index = signal(0);
+  protected transform = signal('translateX(0px)');
+  private catalogSlider = viewChild<ElementRef>('previewSlider');
+  private postersList = viewChildren('posterRef', { read: ElementRef });
+  protected elCatalogSlider = computed(() => this.catalogSlider()?.nativeElement);
+  private quantitySliderSections = signal(0);
 
   ngAfterViewChecked() {
     const el = this.elCatalogSlider();
@@ -52,25 +43,27 @@ export class Slider implements AfterViewChecked {
     }
   }
 
+  protected canShowPrev = computed(() => this.index() > 0);
+  protected canShowNext = computed(() => this.index() < this.quantitySliderSections());
+
   update() {
     const el = this.elCatalogSlider();
     if (!el) return;
 
     const width = el.clientWidth;
-    this.transform = `translateX(-${this.index * width}px)`;
+    this.transform.set(`translateX(-${this.index() * width}px)`);
   }
 
   showPrev() {
-    if (this.index > 0) {
-      this.index--;
+    if (this.canShowPrev()) {
+      this.index.set(this.index() - 1);
       this.update();
     }
   }
 
   showNext() {
-    const avaliableClicks = computed(() => this.quantitySliderSections());
-    if (this.index < avaliableClicks()) {
-      this.index++;
+    if (this.canShowNext()) {
+      this.index.set(this.index() + 1);
       this.update();
     }
   }

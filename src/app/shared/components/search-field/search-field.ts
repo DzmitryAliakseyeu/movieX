@@ -1,13 +1,14 @@
-import { Component, computed, inject, signal, OnInit, input } from '@angular/core';
+import { Component, computed, inject, signal, OnInit, input, DestroyRef } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
 import { TmdbApiService } from '../../../core/services/tmdb-api.service';
-import { Store } from '../../../core/store/store';
 import { RouterLink } from '@angular/router';
 import { PeopleService } from '../../../core/services/people-service/people-service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { PosterService } from '../../../core/services/poster-service/poster-service';
 
 @Component({
   selector: 'moviex-search-field',
@@ -16,24 +17,26 @@ import { PeopleService } from '../../../core/services/people-service/people-serv
   styleUrl: './search-field.scss',
 })
 export class SearchField implements OnInit {
-  private http = inject(TmdbApiService);
-  private store = inject(Store);
-  private peopleService = inject(PeopleService);
-  isFocusOnInput = signal(false);
-  searchControl = new FormControl('');
-  searchPostersResults = computed(() => this.store.searchPostersResults());
-  searchPeopleResults = computed(() => this.peopleService.searchPeopleResults());
-  id = input();
+  public http = inject(TmdbApiService);
+  public peopleService = inject(PeopleService);
+  public posterService = inject(PosterService);
+  private destroyRef = inject(DestroyRef);
+  public isFocusOnInput = signal(false);
+  protected searchControl = new FormControl('');
+  protected searchPostersResults = computed(() => this.posterService.searchPostersResults());
+  protected searchPeopleResults = computed(() => this.peopleService.searchPeopleResults());
+  public id = input();
 
   ngOnInit() {
-    this.store.saveSearchPostersResults([]);
+    this.posterService.saveSearchPostersResults([]);
     this.peopleService.saveSearchPeopleResults([]);
 
     if (this.id() === 'multi') {
       this.searchControl.valueChanges
         .pipe(
-          debounceTime(300),
+          debounceTime(500),
           distinctUntilChanged(),
+          takeUntilDestroyed(this.destroyRef),
           switchMap((query) => {
             if (query && query.length > 0) {
               return this.http.searchMulti({ query });
@@ -45,7 +48,7 @@ export class SearchField implements OnInit {
           next: (response) => {
             this.peopleService.saveSearchPeopleResults([]);
             if (!response.results.length) {
-              this.store.saveSearchPostersResults([]);
+              this.posterService.saveSearchPostersResults([]);
             }
             const result = response.results
               .map((item) => {
@@ -67,7 +70,7 @@ export class SearchField implements OnInit {
               })
               .filter((item) => item !== null);
             if (result.length) {
-              this.store.saveSearchPostersResults(result);
+              this.posterService.saveSearchPostersResults(result);
             }
           },
         });
@@ -77,8 +80,9 @@ export class SearchField implements OnInit {
     if (this.id() === 'people') {
       this.searchControl.valueChanges
         .pipe(
-          debounceTime(300),
+          debounceTime(500),
           distinctUntilChanged(),
+          takeUntilDestroyed(this.destroyRef),
           switchMap((query) => {
             if (query && query.length > 0) {
               return this.http.searchPerson({ query });
@@ -88,7 +92,7 @@ export class SearchField implements OnInit {
         )
         .subscribe({
           next: (response) => {
-            this.store.saveSearchPostersResults([]);
+            this.posterService.saveSearchPostersResults([]);
             if (!response.results.length) {
               this.peopleService.saveSearchPeopleResults([]);
             }

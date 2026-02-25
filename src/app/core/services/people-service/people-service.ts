@@ -8,8 +8,8 @@ import { TmdbImageService } from '../tmdb-image.service';
   providedIn: 'root',
 })
 export class PeopleService {
-  private tmdbApi = inject(TmdbApiService);
-  private tmdbImageService = inject(TmdbImageService);
+  public tmdbApi = inject(TmdbApiService);
+  public tmdbImageService = inject(TmdbImageService);
   public people = signal<PersonI[]>([]);
   public searchPeopleResults = signal<PersonI[]>([]);
   public isLoading = signal(false);
@@ -31,7 +31,10 @@ export class PeopleService {
             const mappedPeople = response.results.map((person) => ({
               id: person.id,
               name: person.original_name,
-              profile_path: `https://image.tmdb.org/t/p/w500${person.profile_path}`,
+              profile_path: this.tmdbImageService.buildImageUrl({
+                path: person.profile_path,
+                size: 'w500',
+              }),
             }));
             this.people.set(mappedPeople);
             this.isLoading.set(false);
@@ -66,7 +69,10 @@ export class PeopleService {
             this.activePerson.set({
               id: response.id,
               name: response.name,
-              profile_path: `https://image.tmdb.org/t/p/w500${response.profile_path}`,
+              profile_path: this.tmdbImageService.buildImageUrl({
+                path: response.profile_path,
+                size: 'w500',
+              }),
               bio: response.biography,
               dateOfBirth: response.birthday,
               dateOfDead: response.deathday,

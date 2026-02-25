@@ -1,12 +1,16 @@
 <div class="preview-catalog-slider flex flex-column" #previewSlider>
-  <div class="track flex flex-row" [style.transform]="transform">
+  <div class="track flex flex-row" [style.transform]="transform()">
     @for (poster of this.previewSliderContent(); track poster.id) {
       <moviex-poster [posterData]="poster" #posterRef [id]="poster.id"></moviex-poster>
     }
   </div>
 
   <div class="slider-buttons flex flex-row">
-    <button matMiniFab (click)="showPrev()"><mat-icon>chevron_left</mat-icon></button>
-    <button matMiniFab (click)="showNext()"><mat-icon>chevron_right</mat-icon></button>
+    <button matMiniFab [disabled]="!canShowPrev()" (click)="showPrev()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <button matMiniFab [disabled]="!canShowNext()" (click)="showNext()">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
   </div>
 </div>
