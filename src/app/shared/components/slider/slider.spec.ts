@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { Slider } from './slider';
 import { Configuration } from 'tmdb-ts';
-import { Signal, signal } from '@angular/core';
+import { signal } from '@angular/core';
 import { Store } from '../../../core/store/store';
 import { By } from '@angular/platform-browser';
 import { PosterI } from '../../../core/services/poster-service/poster-service.model';
@@ -105,62 +105,62 @@ describe('Slider', () => {
 
   it('should disable prev button when canShowPrev is false', () => {
     fixture.detectChanges();
-    const prevButton = fixture.debugElement.queryAll(By.css('button'))[0].nativeElement as HTMLButtonElement;
+    const prevButton = fixture.debugElement.queryAll(By.css('button'))[0]
+      .nativeElement as HTMLButtonElement;
     expect(prevButton.disabled).toBe(true);
   });
 
   it('should call showNext when next button is clicked', () => {
     fixture.detectChanges();
     const showNextSpy = vi.spyOn(component, 'showNext');
-    const nextButton = fixture.debugElement.queryAll(By.css('button'))[1].nativeElement as HTMLButtonElement;
-    
+    const nextButton = fixture.debugElement.queryAll(By.css('button'))[1]
+      .nativeElement as HTMLButtonElement;
+
     nextButton.click();
-    
+
     expect(showNextSpy).toHaveBeenCalled();
   });
 
   it('should call showPrev when prev button is clicked', () => {
-
     const showPrevSpy = vi.spyOn(component, 'showPrev');
     component['index'].set(1);
     fixture.detectChanges();
-    
-    const prevButton = fixture.debugElement.queryAll(By.css('button'))[0].nativeElement as HTMLButtonElement;
+
+    const prevButton = fixture.debugElement.queryAll(By.css('button'))[0]
+      .nativeElement as HTMLButtonElement;
     prevButton.click();
-    
+
     expect(showPrevSpy).toHaveBeenCalled();
   });
 
   it('should update index when showNext is called', () => {
-
     component['quantitySliderSections'].set(2);
-        fixture.detectChanges();
+    fixture.detectChanges();
     const initialIndex = component['index']();
 
     component.showNext();
-    
+
     expect(component['index']()).toBe(initialIndex + 1);
   });
 
   it('should update index when showPrev is called', () => {
-
     component['index'].set(2);
-       fixture.detectChanges();
+    fixture.detectChanges();
     const initialIndex = component['index']();
- 
+
     component.showPrev();
-    
+
     expect(component['index']()).toBe(initialIndex - 1);
   });
 
   it('should not update index in showNext when canShowNext is false', () => {
     component['quantitySliderSections'].set(0);
     component['index'].set(1);
-        fixture.detectChanges();
+    fixture.detectChanges();
     const initialIndex = component['index']();
 
     component.showNext();
-    
+
     expect(component['index']()).toBe(initialIndex);
   });
 
@@ -168,7 +168,7 @@ describe('Slider', () => {
     component['index'].set(0);
     fixture.detectChanges();
     component.showPrev();
-    
+
     expect(component['index']()).toBe(0);
   });
 
