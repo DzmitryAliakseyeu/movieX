@@ -123,14 +123,18 @@ describe('SearchField', () => {
 
   it('searchPeopleResults should be empty if searchPostersResult is not empty', () => {
     mockPeopleService.searchPeopleResults?.set([]);
-    mockPosterService.searchPostersResults?.set([{ id: 1, title: 'Test Movie', date: '2020-01-01', imageUrl: 'url' }]);
+    mockPosterService.searchPostersResults?.set([
+      { id: 1, title: 'Test Movie', date: '2020-01-01', imageUrl: 'url' },
+    ]);
     fixture.detectChanges();
     expect(mockPeopleService.searchPeopleResults?.().length).toBe(0);
   });
 
   it('searchPosterResults should be empty if searchPeopleResult is not empty', () => {
     mockPosterService.searchPostersResults?.set([]);
-    mockPeopleService.searchPeopleResults?.set([{ id: 1, name: 'Test Person', profile_path: 'path/to/profile' }]);
+    mockPeopleService.searchPeopleResults?.set([
+      { id: 1, name: 'Test Person', profile_path: 'path/to/profile' },
+    ]);
     fixture.detectChanges();
     expect(mockPosterService.searchPostersResults?.().length).toBe(0);
   });
