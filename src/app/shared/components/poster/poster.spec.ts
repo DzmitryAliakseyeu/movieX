@@ -26,7 +26,7 @@ describe('Poster', () => {
   const mockStore = {
     tmdbApiConfiguration: signal<Partial<Configuration> | undefined>(mockConfig),
   };
-  
+
   const mockPeopleService: Partial<PeopleService> = {
     savePersonDetail: vi.fn(),
   };
@@ -53,7 +53,6 @@ describe('Poster', () => {
   it('should inject PeopleService', () => {
     expect(component.peopleService).toBeTruthy();
   });
-  
 
   it('should identify isPerson for rendering person poster', () => {
     const personPoster: PersonI = {
@@ -61,7 +60,7 @@ describe('Poster', () => {
       name: 'John Doe',
       profile_path: '/path/to/poster.jpg',
     };
-    
+
     const result = component.isPerson(personPoster);
     expect(result).toBe(true);
   });
@@ -73,18 +72,16 @@ describe('Poster', () => {
       date: '2023-01-01',
       imageUrl: '/path/to/poster.jpg',
     };
-    
+
     const result = component.isPerson(moviePoster);
     expect(result).toBe(false);
   });
 
   it('should call savePersonDetail when showInfo is called', () => {
     const id = 123;
-    
+
     component.showInfo(id);
-    
+
     expect(mockPeopleService.savePersonDetail).toHaveBeenCalledWith(id);
   });
-
-  
 });
