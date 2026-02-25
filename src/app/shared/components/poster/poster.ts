@@ -14,7 +14,7 @@ import { PosterI } from '../../../core/services/poster-service/poster-service.mo
 })
 export class Poster {
   public posterData = input<PosterI | PersonI>();
-  private peopleService = inject(PeopleService);
+  public peopleService = inject(PeopleService);
 
   isPerson(item: PersonI | PosterI): item is PersonI {
     return 'profile_path' in item;
