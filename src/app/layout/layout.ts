@@ -14,5 +14,5 @@ import { PeopleService } from '../core/services/people-service/people-service';
   styleUrl: './layout.scss',
 })
 export class Layout {
-  protected peopleService = inject(PeopleService);
+  public peopleService = inject(PeopleService);
 }
