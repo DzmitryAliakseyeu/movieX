@@ -11,15 +11,15 @@ A modern, production-ready Angular 21 application for browsing movies and TV sho
 
 ## ✨ Key Features
 
-- 🎯 **Modern Angular 21 Stack** - Standalone components, Signals, new control flow (@if, @for, @let)
-- 📡 **Type-Safe API Layer** - Fully typed TMDB API integration with 50+ endpoints
-- 🔄 **Signal-Based State** - NgRx Signals for efficient, reactive state management
-- 🎨 **Material Design System** - Dark/Light theme toggle with CSS custom properties
-- ⚡ **Lazy Loading** - 6 lazy-loaded routes for optimal performance
-- 🛡️ **HTTP Error Handling** - Retry logic, request cancellation, error states
-- ✅ **85% Test Coverage** - 171 unit tests across services & components
-- 📱 **Responsive Design** - Mobile-first approach with media queries
-- 🌙 **Dark Mode** - Theme persistence with localStorage
+- **Modern Angular 21 Stack** - Standalone components, Signals, new control flow (@if, @for, @let)
+- **Type-Safe API Layer** - Fully typed TMDB API integration with 50+ endpoints
+- **Signal-Based State** - NgRx Signals for efficient, reactive state management
+- **Material Design System** - Dark/Light theme toggle with CSS custom properties
+- **Lazy Loading** - 6 lazy-loaded routes for optimal performance
+- **HTTP Error Handling** - Retry logic, request cancellation, error states
+- **80% Test Coverage** - 171 unit tests across services & components
+- **Responsive Design** - Mobile-first approach with media queries
+- **Theme Switching Mode** - Theme persistence with localStorage
 
 ---
 
@@ -70,62 +70,31 @@ export const environment = {
 
 ## 📋 Available Scripts
 
-### Development
-
 ```bash
 # Start development server (http://localhost:4200)
 npm start
 # or
 npm run start
-
-# Auto-reload on file changes
-# Open browser and navigate to http://localhost:4200/
-```
-
-### Building
-
-```bash
 # Production build (optimized, minified)
 npm run build
+# Run unit tests with coverage
+npm test
+# Watch mode for development
+ng test --watch
 
-# Output directory: dist/movieX/
 
-# Build with optimizations:
-# • Code splitting (tree-shaking)
-# • Lazy loading chunks
-# • Performance budget: 500kB warning / 1MB error
 ```
 
 ### Testing
 
 ```bash
-# Run unit tests with coverage
-npm test
+
 
 # Output: Line coverage ~85%, Branch coverage ~78%
 # Test files: 23 spec files across services & components
 
-# Watch mode for development
-ng test --watch
+
 ```
-
-### Code Quality
-
-```bash
-# Run ESLint
-npm run lint
-
-# Fix ESLint issues
-npm run lint:fix
-
-# Format code with Prettier
-npm run format
-
-# Combined lint + format
-npm run lint:fix
-```
-
----
 
 ## 🏗️ Project Architecture
 
@@ -282,52 +251,6 @@ User Input (SearchField)
 
 ---
 
-## 📊 Architecture Details
-
-### State Management with Signals
-
-```typescript
-// Example: PeopleService
-class PeopleService {
-  // Signals (reactive state)
-  readonly people = signal<PersonI[]>([]);
-  readonly isLoading = signal(false);
-  readonly error = signal<string | null>(null);
-  readonly pagesLength = signal(0);
-  readonly activePerson = signal<PersonI | null>(null);
-
-  // Methods (actions)
-  loadPeople() {
-    /* ... */
-  }
-  saveSearchPeopleResults() {
-    /* ... */
-  }
-
-  // Why Signals?
-  // • Granular reactivity (no unnecessary renders)
-  // • Type-safe (no Observable subscriptions needed)
-  // • Computed values (automatic dependency tracking)
-}
-```
-
-### HTTP Layer with TypeScript Generics
-
-```typescript
-// Example: Generic API response
-getDetailsById<T extends MediaType>(
-  id: number,
-  appendToResponse?: AppendToResponseKey[],
-): Observable<AppendToResponse<MovieDetails, typeof appendToResponse, T>> {
-  // Response type depends on input parameters!
-  // • Movies get MovieDetails + related data
-  // • TV shows get TVDetails + related data
-  // Fully typed at compile time
-}
-```
-
----
-
 ## ✅ Testing
 
 ### Test Coverage
@@ -349,52 +272,8 @@ Guards/Interceptors:        90% ✅
   • catalog-guard.ts       (4 tests)
   • auth-interceptor.ts    (3 tests)
 
-TOTAL: 171 tests, ~85% coverage
+TOTAL: 171 tests, ~80% coverage
 ```
-
-### Running Tests
-
-```bash
-# Run all tests with coverage
-npm test
-
-# Watch mode (interactive)
-ng test --watch
-
-# Specific test file
-ng test -- catalog.spec.ts
-
-# Debug mode (Chrome DevTools)
-ng test --browsers=Chrome --watch
-```
-
----
-
-## 🎨 Styling & Theming
-
-### Material Design Tokens
-
-Application uses **Material Design 3 tokens** via CSS custom properties:
-
-```scss
-// Global available:
-background-color: var(--mat-sys-surface);
-color: var(--mat-sys-on-surface);
-border: 1px solid var(--mat-sys-outline-variant);
-
-// Theme toggle:
-light theme: RGB colors on white background
-dark theme:  RGB colors on dark background
-```
-
-### Dark/Light Mode
-
-- Toggle in header with ☀️/🌙 button
-- Persisted in `localStorage` under key `theme`
-- Auto-applies to `<body>` via `style` attribute
-- Material components auto-update
-
-**Code Location**: [theme-service.ts](src/app/core/services/theme/theme-service.ts)
 
 ---
 
@@ -417,23 +296,6 @@ Performance Metrics:
 └─ Lighthouse score: 83/100
 ```
 
-### Lazy Loading Routes
-
-```typescript
-// All 6 routes lazy-load components:
-app.routes.ts → {
-  { path: '', loadComponent: () => import(...) },
-  { path: 'catalog/:mediaType', loadComponent: () => import(...) },
-  // ... etc
-}
-```
-
-**Benefits:**
-
-- ✅ Fast initial load
-- ✅ Code split by route
-- ✅ Load only when needed
-
 ---
 
 ## 📝 Development Guidelines
@@ -446,165 +308,7 @@ app.routes.ts → {
 - **Git Hooks**: Husky (pre-commit checks)
 - **Commit Msgs**: CommitLint (conventional commits)
 
-### Component Development
-
-```typescript
-// Use standalone components
-@Component({
-  standalone: true,
-  selector: 'moviex-poster',
-  template: '...',
-  styleUrl: 'poster.scss',
-  imports: [CommonModule, MatIconModule, ...],
-  changeDetection: ChangeDetectionStrategy.OnPush
-})
-export class Poster {
-  // Signals for state
-  readonly posterData = input<PosterI>();
-
-  // Computed for derived state
-  protected isPerson = computed(() => 'profile_path' in this.posterData());
-
-  // New control flow (@if, @for, @let)
-}
-```
-
-### Testing Components
-
-```typescript
-describe('Poster', () => {
-  it('should show person details when isPerson is true', () => {
-    const fixture = TestBed.createComponent(Poster);
-    fixture.componentRef.setInput('posterData', mockPerson);
-    fixture.detectChanges();
-
-    expect(fixture.debugElement.query(By.css('.person'))).toBeTruthy();
-  });
-});
-```
-
 ---
 
-## 🌐 Deployment
-
-### Netlify (Current)
-
-Site is deployed to **Netlify** with automatic builds and deployments.
-
-**Config**: [netlify.toml](netlify.toml)
-
-```bash
-# Production build happens automatically on:
-# • Push to develop branch
-# • Pull request (preview deploy)
-
-# Manual build:
-npm run build
-
-# Output: dist/movieX/
-```
-
-### Environment Variables (Netlify UI)
-
-1. Go to Site Settings → Build & Deploy → Environment
-2. Add variables:
-   - `TMDB_API_KEY` = your API key
-   - `TMDB_BASE_URL` = https://api.themoviedb.org/3
-
----
-
-## 🤝 Contributing
-
-### Getting Started
-
-1. Fork the repository
-2. Create feature branch: `git checkout -b feature/amazing-feature`
-3. Make changes and commit: `git commit -m 'feat: add amazing feature'`
-4. Push to branch: `git push origin feature/amazing-feature`
-5. Open Pull Request
-
-### Code Standards
-
-```bash
-# Before committing:
-npm run lint:fix        # Fix ESLint issues
-npm run format          # Format code
-npm test                # Run tests (must pass)
-
-# Commit messages follow Conventional Commits:
-feat: add new feature
-fix: resolve bug
-docs: update documentation
-test: add unit tests
-refactor: improve code quality
-style: format code
-```
-
----
-
-## 📚 Documentation
-
-- **Full Assessment Report**: [ASSESSMENT_REPORT.md](ASSESSMENT_REPORT.md)
-- **PR Template**: [PR_TEMPLATE.md](PR_TEMPLATE.md)
-- **API Documentation**: [TMDB API](https://developers.themoviedb.org/3)
-- **Angular Docs**: [angular.io](https://angular.io)
-- **Material Docs**: [material.angular.io](https://material.angular.io)
-
----
-
-## 📦 Dependencies
-
-### Runtime
-
-- **@angular/core** (21.0.1) - Framework
-- **@angular/material** (21.1.2) - UI components
-- **@ngrx/signals** (21.0.1) - State management
-- **rxjs** (7.8.0) - Reactive programming
-
-### Development
-
-- **TypeScript** (5.9.2) - Language
-- **Vite** - Build tool
-- **Vitest** (4.0.18) - Test runner
-- **ESLint** (9.39.1) - Linting
-- **Prettier** (3.x) - Formatting
-- **Husky** (9.1.7) - Git hooks
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
-## 👥 Support
-
-For issues, questions, or suggestions:
-
-1. Check [ASSESSMENT_REPORT.md](ASSESSMENT_REPORT.md) for detailed project analysis
-2. Review [PR_TEMPLATE.md](PR_TEMPLATE.md) for architecture overview
-3. Open an issue in the repository
-
----
-
-## 📊 Project Status
-
-| Category           | Status       | Score     |
-| ------------------ | ------------ | --------- |
-| TypeScript         | ✅ Excellent | 100%      |
-| Signals & Reactive | ✅ Excellent | 88.9%     |
-| HTTP & Data        | ✅ Excellent | 81.3%     |
-| Architecture       | ✅ Good      | 66.7%     |
-| Routing            | ✅ Good      | 63.6%     |
-| Testing            | 🟡 Good      | 46.2%     |
-| Performance        | 🟡 Good      | 58.3%     |
-| Accessibility      | ⚠️ Fair      | 37.5%     |
-| **Overall**        | **✅ Good**  | **51.5%** |
-
----
-
-**Last Updated**: 27 февраля 2026  
-**Version**: 0.0.0  
 **Angular**: 21.0.1  
 **Node**: 20+
