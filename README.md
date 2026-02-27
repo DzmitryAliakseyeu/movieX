@@ -77,6 +77,7 @@ export const environment = {
   apiKey: 'YOUR_TMDB_API_KEY_HERE',
 };
 ```
+
 ---
 
 ## 📋 Available Scripts
