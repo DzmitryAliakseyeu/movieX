@@ -58,21 +58,19 @@ describe('About', () => {
 
   it('should render team members', () => {
     const teamMembers = fixture.debugElement.queryAll(By.css('.team-member'));
-    expect(teamMembers.length).toBe(3);
+    expect(teamMembers.length).toBe(2);
   });
 
   it('should have correct team members names', () => {
     const teamMembers = fixture.debugElement.queryAll(By.css('.team-member .name'));
     expect(teamMembers[0].nativeElement.textContent).toContain('Maria Parinova');
     expect(teamMembers[1].nativeElement.textContent).toContain('Dzmitry Aliakseyeu');
-    expect(teamMembers[2].nativeElement.textContent).toContain('Glib Shemenkov');
   });
 
   it('should have github links for team members', () => {
     const teamLinks = fixture.debugElement.queryAll(By.css('.team-members a'));
     expect(teamLinks[0].nativeElement.href).toContain('mariaparinova');
     expect(teamLinks[1].nativeElement.href).toContain('DzmitryAliakseyeu');
-    expect(teamLinks[2].nativeElement.href).toContain('kravius');
   });
 
   it('should have target blank for team member links', () => {

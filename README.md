@@ -23,7 +23,21 @@ A modern, production-ready Angular 21 application for browsing movies and TV sho
 
 ---
 
-## 🚀 Quick Start
+## � Why Signals vs RxJS?
+
+This project uses **Signals for component/app state** and **RxJS for async operations (HTTP, streams)**. This separation provides:
+
+- **Clarity**: Signals offer synchronous, direct value access (`theme()`) without subscription boilerplate, making component state more readable.
+- **Performance**: Computed signals (`catalogCards`, `canShowNext`) automatically track dependencies and update only affected views, avoiding unnecessary change detection cycles.
+- **Simplicity**: No manual `unsubscribe()` or `async` pipes for local state. Effects with `untracked()` prevent reactive loops (see `catalog.ts`).
+- **Developer Experience**: Type-safe signal API reduces bugs. RxJS remains where it excels: HTTP requests with retry/cancel logic, debounced search (`switchMap`, `takeUntilDestroyed`).
+- **Testing**: Signals simplify unit tests—direct assertions (`expect(signal()).toBe(value)`) vs async subscription mocks. All `computed` signals covered in `slider.spec.ts`, `people-service.spec.ts`.
+
+**Result**: 100% `track` usage in `@for` loops, zero reactive loops, clear separation between sync state (Signals) and async streams (RxJS).
+
+---
+
+## �����🚀 Quick Start
 
 ### Prerequisites
 

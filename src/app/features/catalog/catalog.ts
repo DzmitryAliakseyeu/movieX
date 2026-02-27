@@ -49,6 +49,8 @@ export class Catalog {
   });
 
   constructor() {
+    // Effect syncs URL params to form state
+    // Reactive loop prevention: untracked() + emitEvent:false ensure form updates don't trigger effect again
     effect(() => {
       const params = this.catalogService.queryParams();
       const genres = this.catalogService.genres();

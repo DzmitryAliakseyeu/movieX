@@ -20,6 +20,8 @@ export class ThemeService {
 
   constructor() {
     this.renderer = this.rendererFactory.createRenderer(null, null);
+    // Effect applies theme to DOM (side-effect only, no reactive loop)
+    // theme() is readonly, only updateTheme() mutates it -> no circular dependency
     effect(() => {
       this.renderer.setStyle(this.document.body, 'color-scheme', this.theme());
     });

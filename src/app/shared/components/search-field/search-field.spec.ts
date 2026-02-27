@@ -11,6 +11,7 @@ import { PosterService } from '../../../core/services/poster-service/poster-serv
 import { PersonI } from '../../../core/services/people-service/people.model';
 import { PosterI } from '../../../core/services/poster-service/poster-service.model';
 import { TmdbApiService } from '../../../core/services/tmdb-api.service';
+import { ActivatedRoute } from '@angular/router';
 
 describe('SearchField', () => {
   let component: SearchField;
@@ -53,6 +54,7 @@ describe('SearchField', () => {
         { provide: PeopleService, useValue: mockPeopleService },
         { provide: PosterService, useValue: mockPosterService },
         { provide: TmdbApiService, useValue: mockTmdbApiService },
+        { provide: ActivatedRoute, useValue: {} },
       ],
     }).compileComponents();
 
@@ -137,5 +139,58 @@ describe('SearchField', () => {
     ]);
     fixture.detectChanges();
     expect(mockPosterService.searchPostersResults?.().length).toBe(0);
+  });
+
+  it('should compute showPostersDropdown correctly when isFocusOnInput is true and has poster results', () => {
+    component.isFocusOnInput.set(true);
+    mockPosterService.searchPostersResults?.set([
+      { id: 1, title: 'Test Movie', date: '2020-01-01', imageUrl: 'url' },
+    ]);
+    mockPeopleService.searchPeopleResults?.set([]);
+    fixture.detectChanges();
+    expect(component['showPostersDropdown']()).toBe(true);
+  });
+
+  it('should compute showPostersDropdown as false when isFocusOnInput is false', () => {
+    component.isFocusOnInput.set(false);
+    mockPosterService.searchPostersResults?.set([
+      { id: 1, title: 'Test Movie', date: '2020-01-01', imageUrl: 'url' },
+    ]);
+    mockPeopleService.searchPeopleResults?.set([]);
+    fixture.detectChanges();
+    expect(component['showPostersDropdown']()).toBe(false);
+  });
+
+  it('should compute showPeopleDropdown correctly when isFocusOnInput is true and has people results', () => {
+    component.isFocusOnInput.set(true);
+    mockPeopleService.searchPeopleResults?.set([
+      { id: 1, name: 'Test Person', profile_path: 'path/to/profile' },
+    ]);
+    mockPosterService.searchPostersResults?.set([]);
+    fixture.detectChanges();
+    expect(component['showPeopleDropdown']()).toBe(true);
+  });
+
+  it('should compute showPeopleDropdown as false when isFocusOnInput is false', () => {
+    component.isFocusOnInput.set(false);
+    mockPeopleService.searchPeopleResults?.set([
+      { id: 1, name: 'Test Person', profile_path: 'path/to/profile' },
+    ]);
+    mockPosterService.searchPostersResults?.set([]);
+    fixture.detectChanges();
+    expect(component['showPeopleDropdown']()).toBe(false);
+  });
+
+  it('should compute showPostersDropdown as false when both poster and people results exist', () => {
+    component.isFocusOnInput.set(true);
+    mockPosterService.searchPostersResults?.set([
+      { id: 1, title: 'Test Movie', date: '2020-01-01', imageUrl: 'url' },
+    ]);
+    mockPeopleService.searchPeopleResults?.set([
+      { id: 1, name: 'Test Person', profile_path: 'path/to/profile' },
+    ]);
+    fixture.detectChanges();
+    expect(component['showPostersDropdown']()).toBe(false);
+    expect(component['showPeopleDropdown']()).toBe(false);
   });
 });

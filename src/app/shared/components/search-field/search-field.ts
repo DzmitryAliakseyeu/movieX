@@ -25,6 +25,20 @@ export class SearchField implements OnInit {
   protected searchControl = new FormControl('');
   protected searchPostersResults = computed(() => this.posterService.searchPostersResults());
   protected searchPeopleResults = computed(() => this.peopleService.searchPeopleResults());
+  
+  // Computed flags to control dropdown visibility - replaces template logic
+  protected showPostersDropdown = computed(() => 
+    this.isFocusOnInput() && 
+    this.searchPostersResults().length > 0 && 
+    this.searchPeopleResults().length === 0
+  );
+  
+  protected showPeopleDropdown = computed(() => 
+    this.isFocusOnInput() && 
+    this.searchPostersResults().length === 0 && 
+    this.searchPeopleResults().length > 0
+  );
+  
   public id = input();
 
   ngOnInit() {

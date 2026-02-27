@@ -15,7 +15,7 @@
   </mat-form-field>
 </form>
 
-@if (isFocusOnInput() && searchPostersResults().length > 0 && searchPeopleResults().length === 0) {
+@if (showPostersDropdown()) {
   <ul class="search-results flex flex-column">
     <mat-icon matPrefix class="close" (click)="this.isFocusOnInput.set(false)">close</mat-icon>
     @for (item of this.searchPostersResults(); track item.id) {
@@ -26,7 +26,7 @@
   </ul>
 }
 
-@if (isFocusOnInput() && searchPostersResults().length === 0 && searchPeopleResults().length > 0) {
+@if (showPeopleDropdown()) {
   <ul class="search-results flex flex-column">
     <mat-icon matPrefix class="close" (click)="this.isFocusOnInput.set(false)">close</mat-icon>
     @for (item of this.searchPeopleResults(); track item.id) {
