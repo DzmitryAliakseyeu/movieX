@@ -37,12 +37,14 @@
 **Location:** `src/app/features/catalog/services/catalog-service.ts`
 
 **State Management:**
+
 - ✅ 2+ тыс-экранов (фильтры, результаты, детали)
 - ✅ 3+ пользовательских действий (поиск, фильтр по жанру/году, пагинация)
 - ✅ Сохранение в URL query params (remote state)
 - ✅ Обработка ошибок через `rxResource`
 
 **Code:**
+
 ```typescript
 readonly queryParams = toSignal(this.route.queryParams);
 readonly mediaType = toSignal(...);
@@ -57,6 +59,7 @@ readonly catalogCards = computed(...);
 #### ✅ 3+ computed values — 15/15 pts
 
 Найдено 7 computed:
+
 1. `elCatalogSlider` - DOM element
 2. `canShowPrev` - button state
 3. `canShowNext` - button state
@@ -70,6 +73,7 @@ readonly catalogCards = computed(...);
 #### ⚠️ 2+ effect with clean-up — 10/15 pts
 
 **Effect #1:** ThemeService
+
 ```typescript
 effect(() => {
   this.renderer.setStyle(this.document.body, 'color-scheme', this.theme());
@@ -77,6 +81,7 @@ effect(() => {
 ```
 
 **Effect #2:** Catalog
+
 ```typescript
 effect(() => {
   const params = this.catalogService.queryParams();
@@ -105,6 +110,7 @@ effect(() => {
 #### ✅ Signal queries (viewChild) — 5/5 pts
 
 **Slider component:**
+
 ```typescript
 private catalogSlider = viewChild<ElementRef>('previewSlider');
 private postersList = viewChildren('posterRef', { read: ElementRef });
@@ -114,6 +120,7 @@ protected elCatalogSlider = computed(() => this.catalogSlider()?.nativeElement);
 #### ⚠️ untracked() с комментарием — 5/10 pts
 
 **Находится:** `catalog.ts:65`
+
 ```typescript
 untracked(() => {
   this.searchForm.patchValue(...);
@@ -159,6 +166,7 @@ untracked(() => {
 ```
 
 **Маршруты:**
+
 - ✅ Home page
 - ✅ 404 page
 - ✅ People
@@ -190,10 +198,11 @@ export const catalogGuard: CanActivateFn = (route) => {
 **Location:** `src/app/app.config.ts`
 
 ```typescript
-provideRouter(routes, withComponentInputBinding())
+provideRouter(routes, withComponentInputBinding());
 ```
 
 **Usage in component:**
+
 ```typescript
 protected mediaType = input<MediaType>();
 ```
@@ -228,15 +237,18 @@ protected mediaType = input<MediaType>();
 **23 test files**
 
 **Excellent:**
+
 - `tmdb-api.spec.ts` - **1956 строк**, 79 test suites, все endpoints
 - `people-service.spec.ts` - 200+ строк, state + errors
 - `catalog-guard.spec.ts` - 4 test cases с edge cases
 - `slider.spec.ts` - 187 строк, signal testing
 
 **Good:**
+
 - Header, Footer, Layout, SearchField, Poster, Modal
 
 **Weak:**
+
 - ❌ Нет тестов для computed values
 - ❌ Нет тестов для effects
 - ⚠️ Минимальные edge cases
@@ -249,15 +261,15 @@ protected mediaType = input<MediaType>();
 #### ✅ Mock HTTP, test interceptors and error states — 20/20 pts
 
 **HTTP Testing:**
+
 ```typescript
-import { HttpTestingController, provideHttpClientTesting } 
-  from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 
 httpTesting = TestBed.inject(HttpTestingController);
 
 const req = httpTesting.expectOne({
   method: 'GET',
-  url: `${baseUrl}/collection/${collectionId}`
+  url: `${baseUrl}/collection/${collectionId}`,
 });
 req.flush(collection);
 ```
@@ -267,16 +279,19 @@ req.flush(collection);
 - ✅ Retry policy testing
 
 **Interceptor test:**
+
 - ⚠️ Базовое (только creation)
 
 #### ⚠️ Component testing library/harness — 5/10 pts
 
 **Используется:**
+
 - ✅ `By.css()` для DOM queries
 - ✅ `fixture.debugElement.query()`
 - ⚠️ Material components testing
 
 **Missing:**
+
 - ❌ Нет Component Harness API
 - ❌ Нет @testing-library
 
@@ -289,6 +304,7 @@ req.flush(collection);
 #### ✅ strict: true — 20/20 pts
 
 **tsconfig.json:**
+
 ```json
 "strict": true,
 "noImplicitOverride": true,
@@ -298,6 +314,7 @@ req.flush(collection);
 ```
 
 **Angular strict:**
+
 ```json
 "strictInjectionParameters": true,
 "strictInputAccessModifiers": true,
@@ -309,6 +326,7 @@ req.flush(collection);
 #### ✅ Good domain models with generics — 15/15 pts
 
 **Generics in TMDB API:**
+
 ```typescript
 getDetailsById(
   id: number,
@@ -323,6 +341,7 @@ getDetailsById(
 ```
 
 **Type guard:**
+
 ```typescript
 isPerson(item: PersonI | PosterI): item is PersonI {
   return 'profile_path' in item;
@@ -330,6 +349,7 @@ isPerson(item: PersonI | PosterI): item is PersonI {
 ```
 
 **Models:**
+
 - ✅ PersonI, PosterI, PreviewSliderI
 - ✅ MediaType enum
 - ✅ Generic AppendToResponse<T, K, Type>
@@ -338,6 +358,7 @@ isPerson(item: PersonI | PosterI): item is PersonI {
 #### ✅ satisfies and utility types — 5/5 pts
 
 **Utility types:**
+
 - `Partial<Configuration>`
 - `PageOption & LanguageOption & RegionOption`
 - `Record<string, string>`
@@ -375,6 +396,7 @@ src/app/
 #### ⚠️ Reusable components with inputs/outputs — 15/20 pts
 
 **Inputs:** ✅ 5 компонентов
+
 - `posterData = input<PosterI | PersonI>()`
 - `previewSliderContent = input<PosterI[]>()`
 - И другие
@@ -382,6 +404,7 @@ src/app/
 **Outputs:** ❌ Нет `output()` или `@Output()`
 
 **Content projection:** ⚠️ Minimal
+
 - `Modal` с простым `<ng-content>`
 
 #### ❌ Directives — 0/20 pts
@@ -406,16 +429,18 @@ src/app/
 #### ✅ Typed HttpClient layer, interceptors — 25/25 pts
 
 **TmdbApiService:**
+
 - ✅ Полная типизация всех endpoints
 - ✅ Generics для dynamic response types
 - ✅ HttpParams через typed options
 
 **Auth Interceptor:**
+
 ```typescript
 export const authInterceptor: HttpInterceptorFn = (request, next) => {
   const apiKey = environment.apiKey;
-  authRequest = request.clone({ 
-    params: request.params.set('api_key', apiKey) 
+  authRequest = request.clone({
+    params: request.params.set('api_key', apiKey)
   });
   return next(authRequest).pipe(retry({...}), catchError(...));
 }
@@ -424,7 +449,7 @@ export const authInterceptor: HttpInterceptorFn = (request, next) => {
 #### ✅ Error handling with retry — 20/20 pts
 
 ```typescript
-retry({
+(retry({
   count: 2,
   delay: (error) => {
     if (error.status === 429) {
@@ -433,31 +458,32 @@ retry({
     return throwError(() => error);
   },
 }),
-catchError((error: HttpErrorResponse) => {
-  if (error.status === 429) {
-    console.warn('Your request count is over the allowed limit');
-  }
-  return throwError(() => error);
-})
+  catchError((error: HttpErrorResponse) => {
+    if (error.status === 429) {
+      console.warn('Your request count is over the allowed limit');
+    }
+    return throwError(() => error);
+  }));
 ```
 
 **UI Error States:**
+
 - ✅ User-friendly messages
 - ✅ Error signals в services
 
 #### ✅ Cancel in-flight requests — 20/20 pts
 
 **SearchField:**
+
 ```typescript
-this.searchControl.valueChanges
-  .pipe(
-    debounceTime(500),
-    distinctUntilChanged(),
-    takeUntilDestroyed(this.destroyRef),
-    switchMap((query) => {
-      return this.http.searchMulti({ query });
-    }),
-  )
+this.searchControl.valueChanges.pipe(
+  debounceTime(500),
+  distinctUntilChanged(),
+  takeUntilDestroyed(this.destroyRef),
+  switchMap((query) => {
+    return this.http.searchMulti({ query });
+  }),
+);
 ```
 
 - ✅ `switchMap` cancels previous
@@ -478,6 +504,7 @@ this.searchControl.valueChanges
 #### ⚠️ Complex form with validators — 10/40 pts
 
 **CatalogSearchForm:**
+
 ```typescript
 protected searchForm = this.formBuilder.nonNullable.group<CatalogForm>({
   keywords: '',
@@ -507,7 +534,7 @@ protected searchForm = this.formBuilder.nonNullable.group<CatalogForm>({
   <input matInput formControlName="year" />
 </mat-form-field>
 
-<button matFab aria-label="Button Search">
+<button matFab aria-label="Button Search"></button>
 ```
 
 - ✅ Labels
@@ -523,6 +550,7 @@ protected searchForm = this.formBuilder.nonNullable.group<CatalogForm>({
 #### ✅ Design tokens with theme switch — 25/25 pts
 
 **CSS Variables:**
+
 ```scss
 background-color: var(--mat-sys-surface);
 color: var(--mat-sys-on-surface);
@@ -533,6 +561,7 @@ border: 1px solid var(--mat-sys-outline-variant);
 - ✅ 19+ usages
 
 **Theme Service:**
+
 ```typescript
 private themeSignal = signal(localStorage.getItem('theme') || 'light');
 
@@ -561,27 +590,29 @@ updateTheme() {
 #### ⚠️ Loading/error/empty states — 10/20 pts
 
 **Loading:**
+
 ```html
 @if (catalogResource.isLoading()) {
-  <mat-spinner></mat-spinner>
+<mat-spinner></mat-spinner>
 }
 ```
 
 **Error:**
+
 ```html
-@else if (catalogResource.error()) {
-  Something went wrong :(
-}
+@else if (catalogResource.error()) { Something went wrong :( }
 ```
 
 **Empty:**
+
 ```html
 @empty {
-  <div>No items found</div>
+<div>No items found</div>
 }
 ```
 
 **Missing:**
+
 - ❌ Нет skeleton screens
 - ❌ Нет детализированных messages
 
@@ -594,6 +625,7 @@ updateTheme() {
 #### ⚠️ Content projection — 5/20 pts
 
 **Modal:**
+
 ```html
 <div class="modal">
   <button matButton (click)="closeModal()">
@@ -610,11 +642,9 @@ updateTheme() {
 #### ⚠️ ngTemplateOutlet, control flow — 5/20 pts
 
 **New control flow:** ✅
+
 ```html
-@if (condition) { }
-@for (item of items; track item.id) { }
-@empty { }
-@let variable = expression;
+@if (condition) { } @for (item of items; track item.id) { } @empty { } @let variable = expression;
 ```
 
 - ✅ 100% modern syntax
@@ -630,8 +660,7 @@ updateTheme() {
 #### ✅ Code-splitting, lazy loading — 20/20 pts
 
 ```typescript
-loadComponent: () => import('./features/catalog/catalog')
-  .then(m => m.Catalog)
+loadComponent: () => import('./features/catalog/catalog').then((m) => m.Catalog);
 ```
 
 - ✅ 6 lazy routes
@@ -647,6 +676,7 @@ loadComponent: () => import('./features/catalog/catalog')
 #### ⚠️ Performance budget — 5/20 pts
 
 **angular.json:**
+
 ```json
 "budgets": [
   {
@@ -680,12 +710,7 @@ loadComponent: () => import('./features/catalog/catalog')
 #### ⚠️ Keyboard navigation — 10/20 pts
 
 ```html
-<div
-  tabindex="0"
-  role="button"
-  (click)="showInfo(id)"
-  (keydown.enter)="showInfo(id)"
->
+<div tabindex="0" role="button" (click)="showInfo(id)" (keydown.enter)="showInfo(id)"></div>
 ```
 
 - ✅ tabindex, role, keyboard handlers
@@ -696,8 +721,10 @@ loadComponent: () => import('./features/catalog/catalog')
 
 ```html
 <button aria-label="Toggle Theme">
-<div role="button">
-<mat-paginator aria-label="Select page">
+  <div role="button">
+    <mat-paginator aria-label="Select page"></mat-paginator>
+  </div>
+</button>
 ```
 
 - ✅ 5 uses of aria-label, 1 role
@@ -719,6 +746,7 @@ loadComponent: () => import('./features/catalog/catalog')
 #### ⚠️ README — 10/20 pts
 
 **Текущий README:**
+
 - ✅ Run steps (serve, build, test)
 - ❌ Нет env documentation
 - ❌ Нет architecture diagram
@@ -751,23 +779,23 @@ loadComponent: () => import('./features/catalog/catalog')
 
 ### Финальная таблица
 
-| Категория | Баллы | Макс | % |
-|-----------|-------|------|---|
-| Signals | 80 | 90 | 88.9% |
-| Routing | 70 | 110 | 63.6% |
-| Testing | 60 | 130 | 46.2% |
-| TypeScript | 40 | 40 | **100%** |
-| Architecture | 60 | 90 | 66.7% |
-| HTTP & Data | 65 | 80 | 81.3% |
-| Forms | 15 | 80 | 18.8% |
-| UI/Theming | 45 | 70 | 64.3% |
-| Templates | 10 | 40 | 25% |
-| Performance | 35 | 60 | 58.3% |
-| Backend | 0 | 80 | 0% |
-| Accessibility | 15 | 40 | 37.5% |
-| DevOps/Docs | 15 | 60 | 25% |
-| i18n | 0 | 20 | 0% |
-| **ИТОГО** | **510** | **990** | **51.5%** |
+| Категория     | Баллы   | Макс    | %         |
+| ------------- | ------- | ------- | --------- |
+| Signals       | 80      | 90      | 88.9%     |
+| Routing       | 70      | 110     | 63.6%     |
+| Testing       | 60      | 130     | 46.2%     |
+| TypeScript    | 40      | 40      | **100%**  |
+| Architecture  | 60      | 90      | 66.7%     |
+| HTTP & Data   | 65      | 80      | 81.3%     |
+| Forms         | 15      | 80      | 18.8%     |
+| UI/Theming    | 45      | 70      | 64.3%     |
+| Templates     | 10      | 40      | 25%       |
+| Performance   | 35      | 60      | 58.3%     |
+| Backend       | 0       | 80      | 0%        |
+| Accessibility | 15      | 40      | 37.5%     |
+| DevOps/Docs   | 15      | 60      | 25%       |
+| i18n          | 0       | 20      | 0%        |
+| **ИТОГО**     | **510** | **990** | **51.5%** |
 
 ---
 
@@ -804,6 +832,7 @@ loadComponent: () => import('./features/catalog/catalog')
 ## 📈 KEY TAKEAWAYS
 
 ### ✅ What's Excellent
+
 - Modern Angular practices (Signals, new control flow)
 - Type-safe HTTP layer with proper error handling
 - Well-structured feature-sliced architecture
@@ -812,6 +841,7 @@ loadComponent: () => import('./features/catalog/catalog')
 - Theme switching with persistence
 
 ### ❌ What Needs Work
+
 - No backend or authentication
 - Minimal accessibility support
 - No E2E tests
@@ -820,6 +850,7 @@ loadComponent: () => import('./features/catalog/catalog')
 - Documentation gaps
 
 ### 🎯 Priority Improvements
+
 1. Add E2E tests (Cypress) - **+50 pts**
 2. Implement form validators - **+15 pts**
 3. Add custom directives and pipes - **+30 pts**
@@ -838,4 +869,4 @@ loadComponent: () => import('./features/catalog/catalog')
 
 ---
 
-*Этот отчет был автоматически сгенерирован на основе анализа всех файлов проекта.*
+_Этот отчет был автоматически сгенерирован на основе анализа всех файлов проекта._

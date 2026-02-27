@@ -10,88 +10,88 @@ A modern Angular 21 application for browsing movies and TV shows with advanced s
 
 ### Overview
 
-| Area | Item | Points | Evidence | Status |
-|------|------|--------|----------|--------|
-| **Signals & Reactive** | Signal usage | 20/20 | [catalog-service.ts](src/app/features/catalog/services/catalog-service.ts), [people-service.ts](src/app/core/services/people-service/people-service.ts) | ✅ |
-| | Computed values (7 found) | 15/15 | [slider.ts:45-52](src/app/shared/components/slider/slider.ts#L45-L52), [search-field.ts:30-35](src/app/shared/components/search-field/search-field.ts#L30-L35) | ✅ |
-| | Effects with cleanup | 10/15 | [theme-service.ts:28-32](src/app/core/services/theme/theme-service.ts#L28-L32), [catalog.ts:65-70](src/app/features/catalog/catalog.ts#L65-L70) | ⚠️ |
-| | toSignal() conversions (3) | 15/15 | [catalog-service.ts:22-24](src/app/features/catalog/services/catalog-service.ts#L22-L24) | ✅ |
-| | Signal inputs (5+) | 10/10 | [poster.ts:15](src/app/shared/components/poster/poster.ts#L15), [slider.ts:18](src/app/shared/components/slider/slider.ts#L18) | ✅ |
-| | ViewChild/ViewChildren | 5/5 | [slider.ts:28-30](src/app/shared/components/slider/slider.ts#L28-L30) | ✅ |
-| | untracked() usage | 5/10 | [catalog.ts:67](src/app/features/catalog/catalog.ts#L67) | ⚠️ Missing comment |
-| **SUBTOTAL** | **80/90** | **88.9%** | | 🟢 |
-| | | | | |
-| **Routing** | Lazy loading routes | 25/25 | [app.routes.ts:1-25](src/app/app.routes.ts#L1-L25) | ✅ |
-| | Guards with types | 20/20 | [catalog-guard.ts](src/app/core/guards/catalog-guard.ts) | ✅ |
-| | withComponentInputBinding() | 15/15 | [app.config.ts:8](src/app/app.config.ts#L8) | ✅ |
-| | Preloading strategy | 0/20 | Not implemented | ❌ |
-| | Error handling/404 | 10/10 | [app.routes.ts:20-25](src/app/app.routes.ts#L20-L25) | ✅ |
-| | Deep linking | 0/20 | Query params only | ⚠️ |
-| **SUBTOTAL** | **70/110** | **63.6%** | | 🟡 |
-| | | | | |
-| **Testing** | Unit tests (23 files) | 35/50 | [tmdb-api.spec.ts:1-79](src/app/core/services/tmdb-api.spec.ts) | ✅ |
-| | E2E tests | 0/50 | Not implemented | ❌ |
-| | HTTP mocking/Interceptors | 20/20 | [auth-interceptor.spec.ts](src/app/features/auth/interceptors/auth-interceptor.spec.ts) | ✅ |
-| | Component harness | 5/10 | Basic testing only | ⚠️ |
-| **SUBTOTAL** | **60/130** | **46.2%** | | 🟡 |
-| | | | | |
-| **TypeScript** | Strict mode | 20/20 | [tsconfig.json:5-12](tsconfig.json#L5-L12) | ✅ |
-| | Generics & domain models | 15/15 | [tmdb-api.service.ts:50-80](src/app/core/services/tmdb-api.service.ts#L50-L80) | ✅ |
-| | Utility types | 5/5 | [common.models.ts](src/app/shared/models/common.models.ts) | ✅ |
-| **SUBTOTAL** | **40/40** | **100%** | | 🟢 ⭐ |
-| | | | | |
-| **Architecture** | Feature-sliced structure | 30/30 | [src/app/](src/app/) directory layout | ✅ |
-| | Reusable components | 15/20 | [slider.ts](src/app/shared/components/slider/slider.ts), [poster.ts](src/app/shared/components/poster/poster.ts) | ✅ |
-| | Custom directives | 0/20 | Not implemented | ❌ |
-| | Custom pipes | 0/10 | Not implemented | ❌ |
-| | DI Tokens/Injection | 0/10 | Not implemented | ❌ |
-| **SUBTOTAL** | **60/90** | **66.7%** | | 🟡 |
-| | | | | |
-| **HTTP & Data** | Typed HttpClient | 25/25 | [tmdb-api.service.ts:1-100](src/app/core/services/tmdb-api.service.ts#L1-L100) | ✅ |
-| | Error handling & retry | 20/20 | [auth-interceptor.ts:12-25](src/app/features/auth/interceptors/auth-interceptor.ts#L12-L25) | ✅ |
-| | Request cancellation | 20/20 | [search-field.ts:40-45](src/app/shared/components/search-field/search-field.ts#L40-L45) | ✅ |
-| | HTTP caching | 0/15 | No shareReplay implemented | ❌ |
-| **SUBTOTAL** | **65/80** | **81.3%** | | 🟢 |
-| | | | | |
-| **Forms** | Complex forms/Validators | 10/40 | [catalog.ts:25-35](src/app/features/catalog/catalog.ts#L25-L35) | ⚠️ |
-| | Dynamic FormArray | 0/15 | Not implemented | ❌ |
-| | State persistence | 0/15 | Not implemented | ❌ |
-| | Accessibility label/aria | 5/10 | [catalog.html:8-12](src/app/features/catalog/catalog.html#L8-L12) | ⚠️ |
-| **SUBTOTAL** | **15/80** | **18.8%** | | 🔴 |
-| | | | | |
-| **UI/Theming** | Material Design tokens | 25/25 | [app.scss:1-15](src/app/app.scss#L1-L15), [theme-service.ts](src/app/core/services/theme/theme-service.ts) | ✅ |
-| | Responsive layout | 10/15 | [app.scss media queries](src/app/app.scss) | ✅ |
-| | Animations | 0/10 | CSS only, no @angular/animations | ⚠️ |
-| | Loading/Error states | 10/20 | [catalog.html:45-65](src/app/features/catalog/catalog.html#L45-L65) | ✅ |
-| **SUBTOTAL** | **45/70** | **64.3%** | | 🟡 |
-| | | | | |
-| **Content/Templates** | Content projection | 5/20 | [modal.html:5-7](src/app/shared/modal/modal.html#L5-L7) | ⚠️ |
-| | ngTemplateOutlet | 0/10 | Not used | ❌ |
-| | New control flow | 5/10 | [@if, @for, @empty](src/app/features/catalog/catalog.html) | ✅ |
-| **SUBTOTAL** | **10/40** | **25%** | | 🔴 |
-| | | | | |
-| **Performance** | Code-splitting/Lazy load | 20/20 | [app.routes.ts:1-25](src/app/app.routes.ts#L1-L25) | ✅ |
-| | Image lazy loading | 10/20 | Track optimization used | ⚠️ |
-| | Performance budget | 5/20 | [angular.json:65-70](angular.json#L65-L70) | ⚠️ |
-| **SUBTOTAL** | **35/60** | **58.3%** | | 🟡 |
-| | | | | |
-| **Backend/Auth** | Custom backend | 0/80 | TMDB API only | ❌ |
-| **SUBTOTAL** | **0/80** | **0%** | | 🔴 |
-| | | | | |
-| **Accessibility** | Keyboard navigation | 10/20 | [poster.ts:56-60](src/app/shared/components/poster/poster.ts#L56-L60) | ✅ |
-| | ARIA/Semantics | 5/20 | [poster.html:1-5](src/app/shared/components/poster/poster.html#L1-L5) | ⚠️ |
-| **SUBTOTAL** | **15/40** | **37.5%** | | 🟡 |
-| | | | | |
-| **DevOps/CI** | CI pipeline | 0/20 | Not implemented | ❌ |
-| | README documentation | 10/20 | [README.md](README.md) | ⚠️ |
-| | Release notes | 0/10 | Not implemented | ❌ |
-| | Error monitoring | 5/10 | console.log only | ⚠️ |
-| **SUBTOTAL** | **15/60** | **25%** | | 🔴 |
-| | | | | |
-| **i18n** | Internationalization | 0/20 | Not implemented | ❌ |
-| **SUBTOTAL** | **0/20** | **0%** | | 🔴 |
-| | | | | |
-| **🏆 TOTAL** | **510/990** | **51.5%** | | 🟡 |
+| Area                   | Item                        | Points    | Evidence                                                                                                                                                       | Status             |
+| ---------------------- | --------------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
+| **Signals & Reactive** | Signal usage                | 20/20     | [catalog-service.ts](src/app/features/catalog/services/catalog-service.ts), [people-service.ts](src/app/core/services/people-service/people-service.ts)        | ✅                 |
+|                        | Computed values (7 found)   | 15/15     | [slider.ts:45-52](src/app/shared/components/slider/slider.ts#L45-L52), [search-field.ts:30-35](src/app/shared/components/search-field/search-field.ts#L30-L35) | ✅                 |
+|                        | Effects with cleanup        | 10/15     | [theme-service.ts:28-32](src/app/core/services/theme/theme-service.ts#L28-L32), [catalog.ts:65-70](src/app/features/catalog/catalog.ts#L65-L70)                | ⚠️                 |
+|                        | toSignal() conversions (3)  | 15/15     | [catalog-service.ts:22-24](src/app/features/catalog/services/catalog-service.ts#L22-L24)                                                                       | ✅                 |
+|                        | Signal inputs (5+)          | 10/10     | [poster.ts:15](src/app/shared/components/poster/poster.ts#L15), [slider.ts:18](src/app/shared/components/slider/slider.ts#L18)                                 | ✅                 |
+|                        | ViewChild/ViewChildren      | 5/5       | [slider.ts:28-30](src/app/shared/components/slider/slider.ts#L28-L30)                                                                                          | ✅                 |
+|                        | untracked() usage           | 5/10      | [catalog.ts:67](src/app/features/catalog/catalog.ts#L67)                                                                                                       | ⚠️ Missing comment |
+| **SUBTOTAL**           | **80/90**                   | **88.9%** |                                                                                                                                                                | 🟢                 |
+|                        |                             |           |                                                                                                                                                                |                    |
+| **Routing**            | Lazy loading routes         | 25/25     | [app.routes.ts:1-25](src/app/app.routes.ts#L1-L25)                                                                                                             | ✅                 |
+|                        | Guards with types           | 20/20     | [catalog-guard.ts](src/app/core/guards/catalog-guard.ts)                                                                                                       | ✅                 |
+|                        | withComponentInputBinding() | 15/15     | [app.config.ts:8](src/app/app.config.ts#L8)                                                                                                                    | ✅                 |
+|                        | Preloading strategy         | 0/20      | Not implemented                                                                                                                                                | ❌                 |
+|                        | Error handling/404          | 10/10     | [app.routes.ts:20-25](src/app/app.routes.ts#L20-L25)                                                                                                           | ✅                 |
+|                        | Deep linking                | 0/20      | Query params only                                                                                                                                              | ⚠️                 |
+| **SUBTOTAL**           | **70/110**                  | **63.6%** |                                                                                                                                                                | 🟡                 |
+|                        |                             |           |                                                                                                                                                                |                    |
+| **Testing**            | Unit tests (23 files)       | 35/50     | [tmdb-api.spec.ts:1-79](src/app/core/services/tmdb-api.spec.ts)                                                                                                | ✅                 |
+|                        | E2E tests                   | 0/50      | Not implemented                                                                                                                                                | ❌                 |
+|                        | HTTP mocking/Interceptors   | 20/20     | [auth-interceptor.spec.ts](src/app/features/auth/interceptors/auth-interceptor.spec.ts)                                                                        | ✅                 |
+|                        | Component harness           | 5/10      | Basic testing only                                                                                                                                             | ⚠️                 |
+| **SUBTOTAL**           | **60/130**                  | **46.2%** |                                                                                                                                                                | 🟡                 |
+|                        |                             |           |                                                                                                                                                                |                    |
+| **TypeScript**         | Strict mode                 | 20/20     | [tsconfig.json:5-12](tsconfig.json#L5-L12)                                                                                                                     | ✅                 |
+|                        | Generics & domain models    | 15/15     | [tmdb-api.service.ts:50-80](src/app/core/services/tmdb-api.service.ts#L50-L80)                                                                                 | ✅                 |
+|                        | Utility types               | 5/5       | [common.models.ts](src/app/shared/models/common.models.ts)                                                                                                     | ✅                 |
+| **SUBTOTAL**           | **40/40**                   | **100%**  |                                                                                                                                                                | 🟢 ⭐              |
+|                        |                             |           |                                                                                                                                                                |                    |
+| **Architecture**       | Feature-sliced structure    | 30/30     | [src/app/](src/app/) directory layout                                                                                                                          | ✅                 |
+|                        | Reusable components         | 15/20     | [slider.ts](src/app/shared/components/slider/slider.ts), [poster.ts](src/app/shared/components/poster/poster.ts)                                               | ✅                 |
+|                        | Custom directives           | 0/20      | Not implemented                                                                                                                                                | ❌                 |
+|                        | Custom pipes                | 0/10      | Not implemented                                                                                                                                                | ❌                 |
+|                        | DI Tokens/Injection         | 0/10      | Not implemented                                                                                                                                                | ❌                 |
+| **SUBTOTAL**           | **60/90**                   | **66.7%** |                                                                                                                                                                | 🟡                 |
+|                        |                             |           |                                                                                                                                                                |                    |
+| **HTTP & Data**        | Typed HttpClient            | 25/25     | [tmdb-api.service.ts:1-100](src/app/core/services/tmdb-api.service.ts#L1-L100)                                                                                 | ✅                 |
+|                        | Error handling & retry      | 20/20     | [auth-interceptor.ts:12-25](src/app/features/auth/interceptors/auth-interceptor.ts#L12-L25)                                                                    | ✅                 |
+|                        | Request cancellation        | 20/20     | [search-field.ts:40-45](src/app/shared/components/search-field/search-field.ts#L40-L45)                                                                        | ✅                 |
+|                        | HTTP caching                | 0/15      | No shareReplay implemented                                                                                                                                     | ❌                 |
+| **SUBTOTAL**           | **65/80**                   | **81.3%** |                                                                                                                                                                | 🟢                 |
+|                        |                             |           |                                                                                                                                                                |                    |
+| **Forms**              | Complex forms/Validators    | 10/40     | [catalog.ts:25-35](src/app/features/catalog/catalog.ts#L25-L35)                                                                                                | ⚠️                 |
+|                        | Dynamic FormArray           | 0/15      | Not implemented                                                                                                                                                | ❌                 |
+|                        | State persistence           | 0/15      | Not implemented                                                                                                                                                | ❌                 |
+|                        | Accessibility label/aria    | 5/10      | [catalog.html:8-12](src/app/features/catalog/catalog.html#L8-L12)                                                                                              | ⚠️                 |
+| **SUBTOTAL**           | **15/80**                   | **18.8%** |                                                                                                                                                                | 🔴                 |
+|                        |                             |           |                                                                                                                                                                |                    |
+| **UI/Theming**         | Material Design tokens      | 25/25     | [app.scss:1-15](src/app/app.scss#L1-L15), [theme-service.ts](src/app/core/services/theme/theme-service.ts)                                                     | ✅                 |
+|                        | Responsive layout           | 10/15     | [app.scss media queries](src/app/app.scss)                                                                                                                     | ✅                 |
+|                        | Animations                  | 0/10      | CSS only, no @angular/animations                                                                                                                               | ⚠️                 |
+|                        | Loading/Error states        | 10/20     | [catalog.html:45-65](src/app/features/catalog/catalog.html#L45-L65)                                                                                            | ✅                 |
+| **SUBTOTAL**           | **45/70**                   | **64.3%** |                                                                                                                                                                | 🟡                 |
+|                        |                             |           |                                                                                                                                                                |                    |
+| **Content/Templates**  | Content projection          | 5/20      | [modal.html:5-7](src/app/shared/modal/modal.html#L5-L7)                                                                                                        | ⚠️                 |
+|                        | ngTemplateOutlet            | 0/10      | Not used                                                                                                                                                       | ❌                 |
+|                        | New control flow            | 5/10      | [@if, @for, @empty](src/app/features/catalog/catalog.html)                                                                                                     | ✅                 |
+| **SUBTOTAL**           | **10/40**                   | **25%**   |                                                                                                                                                                | 🔴                 |
+|                        |                             |           |                                                                                                                                                                |                    |
+| **Performance**        | Code-splitting/Lazy load    | 20/20     | [app.routes.ts:1-25](src/app/app.routes.ts#L1-L25)                                                                                                             | ✅                 |
+|                        | Image lazy loading          | 10/20     | Track optimization used                                                                                                                                        | ⚠️                 |
+|                        | Performance budget          | 5/20      | [angular.json:65-70](angular.json#L65-L70)                                                                                                                     | ⚠️                 |
+| **SUBTOTAL**           | **35/60**                   | **58.3%** |                                                                                                                                                                | 🟡                 |
+|                        |                             |           |                                                                                                                                                                |                    |
+| **Backend/Auth**       | Custom backend              | 0/80      | TMDB API only                                                                                                                                                  | ❌                 |
+| **SUBTOTAL**           | **0/80**                    | **0%**    |                                                                                                                                                                | 🔴                 |
+|                        |                             |           |                                                                                                                                                                |                    |
+| **Accessibility**      | Keyboard navigation         | 10/20     | [poster.ts:56-60](src/app/shared/components/poster/poster.ts#L56-L60)                                                                                          | ✅                 |
+|                        | ARIA/Semantics              | 5/20      | [poster.html:1-5](src/app/shared/components/poster/poster.html#L1-L5)                                                                                          | ⚠️                 |
+| **SUBTOTAL**           | **15/40**                   | **37.5%** |                                                                                                                                                                | 🟡                 |
+|                        |                             |           |                                                                                                                                                                |                    |
+| **DevOps/CI**          | CI pipeline                 | 0/20      | Not implemented                                                                                                                                                | ❌                 |
+|                        | README documentation        | 10/20     | [README.md](README.md)                                                                                                                                         | ⚠️                 |
+|                        | Release notes               | 0/10      | Not implemented                                                                                                                                                | ❌                 |
+|                        | Error monitoring            | 5/10      | console.log only                                                                                                                                               | ⚠️                 |
+| **SUBTOTAL**           | **15/60**                   | **25%**   |                                                                                                                                                                | 🔴                 |
+|                        |                             |           |                                                                                                                                                                |                    |
+| **i18n**               | Internationalization        | 0/20      | Not implemented                                                                                                                                                | ❌                 |
+| **SUBTOTAL**           | **0/20**                    | **0%**    |                                                                                                                                                                | 🔴                 |
+|                        |                             |           |                                                                                                                                                                |                    |
+| **🏆 TOTAL**           | **510/990**                 | **51.5%** |                                                                                                                                                                | 🟡                 |
 
 ---
 
@@ -244,7 +244,7 @@ User Types → SearchField
               ↓ distinctUntilChanged()
               ↓ switchMap()
          TmdbApiService.searchMulti()
-              ↓ HAS ERROR? 
+              ↓ HAS ERROR?
               ├─ YES → PosterService.error signal updated
               └─ NO → PosterService.searchResults updated
                       ↓
@@ -313,17 +313,17 @@ src/app/
 
 ### Unit Tests Summary
 
-| File | Tests | Coverage | Status |
-|------|-------|----------|--------|
-| [tmdb-api.spec.ts](src/app/core/services/tmdb-api.spec.ts) | **79 suites** | ~95% | ✅ |
-| [people-service.spec.ts](src/app/core/services/people-service/people-service.spec.ts) | 15 | ~90% | ✅ |
-| [slider.spec.ts](src/app/shared/components/slider/slider.spec.ts) | 12 | ~85% | ✅ |
-| [search-field.spec.ts](src/app/shared/components/search-field/search-field.spec.ts) | 10 | ~80% | ✅ |
-| [catalog-guard.spec.ts](src/app/core/guards/catalog-guard.spec.ts) | 4 | 100% | ✅ |
-| [poster.spec.ts](src/app/shared/components/poster/poster.spec.ts) | 8 | ~85% | ✅ |
-| [theme-service.spec.ts](src/app/core/services/theme/theme-service.spec.ts) | 3 | 100% | ✅ |
-| **Others** (16 more files) | ~40 | ~70% | ✅ |
-| **TOTAL** | **~171** | **~85%** | ✅ |
+| File                                                                                  | Tests         | Coverage | Status |
+| ------------------------------------------------------------------------------------- | ------------- | -------- | ------ |
+| [tmdb-api.spec.ts](src/app/core/services/tmdb-api.spec.ts)                            | **79 suites** | ~95%     | ✅     |
+| [people-service.spec.ts](src/app/core/services/people-service/people-service.spec.ts) | 15            | ~90%     | ✅     |
+| [slider.spec.ts](src/app/shared/components/slider/slider.spec.ts)                     | 12            | ~85%     | ✅     |
+| [search-field.spec.ts](src/app/shared/components/search-field/search-field.spec.ts)   | 10            | ~80%     | ✅     |
+| [catalog-guard.spec.ts](src/app/core/guards/catalog-guard.spec.ts)                    | 4             | 100%     | ✅     |
+| [poster.spec.ts](src/app/shared/components/poster/poster.spec.ts)                     | 8             | ~85%     | ✅     |
+| [theme-service.spec.ts](src/app/core/services/theme/theme-service.spec.ts)            | 3             | 100%     | ✅     |
+| **Others** (16 more files)                                                            | ~40           | ~70%     | ✅     |
+| **TOTAL**                                                                             | **~171**      | **~85%** | ✅     |
 
 ### Test Results
 
@@ -465,6 +465,7 @@ Navigation Performance:
 ## 🎨 Screenshots & UI
 
 ### 1. Home Page
+
 ```
 ┌─────────────────────────────────────────────────────┐
 │ 🎬 MovieX     [Search Field]     [☀️/🌙]  [Menu]   │
@@ -488,6 +489,7 @@ Navigation Performance:
 ```
 
 ### 2. Catalog (Movies/TV) Page
+
 ```
 ┌─────────────────────────────────────────────────────┐
 │ 🎬 MovieX     [Search Field]     [☀️/🌙]  [Menu]   │
@@ -515,6 +517,7 @@ Navigation Performance:
 ```
 
 ### 3. Theme Toggle
+
 ```
 Light Mode             Dark Mode
 ┌──────────────┐       ┌──────────────┐
@@ -525,6 +528,7 @@ Light Mode             Dark Mode
 ```
 
 ### 4. Search Results
+
 ```
 ┌──────────────────────────────────────────────────────┐
 │ Search: "Inception"                                  │
@@ -548,6 +552,7 @@ Light Mode             Dark Mode
 ## ✨ Key Features Implemented
 
 ### Signals & Reactive
+
 - ✅ 23 signals across services & components
 - ✅ 7 computed values with smart dependencies
 - ✅ 2 effects for side effects (theme, form sync)
@@ -555,6 +560,7 @@ Light Mode             Dark Mode
 - ✅ 100% track optimization in @for loops
 
 ### Routing & Navigation
+
 - ✅ 6 lazy-loaded routes
 - ✅ Route guards with validation
 - ✅ Component input binding
@@ -562,6 +568,7 @@ Light Mode             Dark Mode
 - ✅ Error routing to 404
 
 ### HTTP & API
+
 - ✅ 50+ typed TMDB endpoints
 - ✅ Generic response types (AppendToResponse)
 - ✅ Request retry with exponential backoff
@@ -569,6 +576,7 @@ Light Mode             Dark Mode
 - ✅ Error handling with user messages
 
 ### UI & Design
+
 - ✅ Material Design system
 - ✅ Dark/Light theme toggle
 - ✅ CSS custom properties
@@ -576,12 +584,14 @@ Light Mode             Dark Mode
 - ✅ Responsive layout
 
 ### State Management
+
 - ✅ NgRx Signals store
 - ✅ Service-based state
 - ✅ localStorage persistence
 - ✅ URL query params sync
 
 ### Testing
+
 - ✅ 23 test files
 - ✅ ~85% coverage
 - ✅ HTTP mocking
@@ -595,17 +605,20 @@ Light Mode             Dark Mode
 ### By Performance Level
 
 **🟢 Excellent (80%+)**
+
 - TypeScript: 100%
 - Signals: 88.9%
 - HTTP & Data: 81.3%
 
 **🟡 Good (60-79%)**
+
 - Routing: 63.6%
 - Architecture: 66.7%
 - UI/Theming: 64.3%
 - Performance: 58.3%
 
 **🔴 Needs Work (<60%)**
+
 - Testing: 46.2%
 - Accessibility: 37.5%
 - Content/Templates: 25%
@@ -619,6 +632,7 @@ Light Mode             Dark Mode
 ## 📝 Recommendations
 
 ### Priority 1: Critical Gaps
+
 1. **Add E2E Tests** (Cypress) → +50 pts
    - Happy path: browse catalog → view details
    - Error scenarios: API timeout, 404 not found
@@ -630,6 +644,7 @@ Light Mode             Dark Mode
    - File: [catalog.ts](src/app/features/catalog/catalog.ts)
 
 ### Priority 2: Enhanced Features
+
 3. **HTTP Response Caching** → +10 pts
    - Use `shareReplay()` for search results
    - Prevent duplicate API calls
@@ -639,6 +654,7 @@ Light Mode             Dark Mode
    - `@Directive` for image lazy loading
 
 ### Priority 3: Quality Improvements
+
 5. **Accessibility (ARIA)** → +15 pts
    - Add `aria-describedby` for form errors
    - Add `aria-live` for search results

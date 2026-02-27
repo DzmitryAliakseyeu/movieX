@@ -47,18 +47,20 @@ npm install
 Create or update environment files with your TMDB API credentials:
 
 **`src/environments/environment.ts`** (Production)
+
 ```typescript
 export const environment = {
   tmdbBaseUrl: 'https://api.themoviedb.org/3',
-  apiKey: 'YOUR_TMDB_API_KEY_HERE'
+  apiKey: 'YOUR_TMDB_API_KEY_HERE',
 };
 ```
 
 **`src/environments/environment.development.ts`** (Development)
+
 ```typescript
 export const environment = {
   tmdbBaseUrl: 'https://api.themoviedb.org/3',
-  apiKey: 'YOUR_TMDB_API_KEY_HERE'
+  apiKey: 'YOUR_TMDB_API_KEY_HERE',
 };
 ```
 
@@ -265,10 +267,10 @@ User Input (SearchField)
 
 ## 🔐 Environment Variables
 
-| Variable | Type | Description | Required | Example |
-|----------|------|-------------|----------|---------|
-| `tmdbBaseUrl` | string | TMDB API base URL | ✅ | `https://api.themoviedb.org/3` |
-| `apiKey` | string | TMDB API key (get from [themoviedb.org](https://www.themoviedb.org/settings/api)) | ✅ | `3c13fb7d134bb769836276755d7eae88` |
+| Variable      | Type   | Description                                                                       | Required | Example                            |
+| ------------- | ------ | --------------------------------------------------------------------------------- | -------- | ---------------------------------- |
+| `tmdbBaseUrl` | string | TMDB API base URL                                                                 | ✅       | `https://api.themoviedb.org/3`     |
+| `apiKey`      | string | TMDB API key (get from [themoviedb.org](https://www.themoviedb.org/settings/api)) | ✅       | `3c13fb7d134bb769836276755d7eae88` |
 
 ### Getting Your TMDB API Key
 
@@ -295,8 +297,12 @@ class PeopleService {
   readonly activePerson = signal<PersonI | null>(null);
 
   // Methods (actions)
-  loadPeople() { /* ... */ }
-  saveSearchPeopleResults() { /* ... */ }
+  loadPeople() {
+    /* ... */
+  }
+  saveSearchPeopleResults() {
+    /* ... */
+  }
 
   // Why Signals?
   // • Granular reactivity (no unnecessary renders)
@@ -423,6 +429,7 @@ app.routes.ts → {
 ```
 
 **Benefits:**
+
 - ✅ Fast initial load
 - ✅ Code split by route
 - ✅ Load only when needed
@@ -470,7 +477,7 @@ describe('Poster', () => {
     const fixture = TestBed.createComponent(Poster);
     fixture.componentRef.setInput('posterData', mockPerson);
     fixture.detectChanges();
-    
+
     expect(fixture.debugElement.query(By.css('.person'))).toBeTruthy();
   });
 });
@@ -548,12 +555,14 @@ style: format code
 ## 📦 Dependencies
 
 ### Runtime
+
 - **@angular/core** (21.0.1) - Framework
 - **@angular/material** (21.1.2) - UI components
 - **@ngrx/signals** (21.0.1) - State management
 - **rxjs** (7.8.0) - Reactive programming
 
 ### Development
+
 - **TypeScript** (5.9.2) - Language
 - **Vite** - Build tool
 - **Vitest** (4.0.18) - Test runner
@@ -572,6 +581,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 👥 Support
 
 For issues, questions, or suggestions:
+
 1. Check [ASSESSMENT_REPORT.md](ASSESSMENT_REPORT.md) for detailed project analysis
 2. Review [PR_TEMPLATE.md](PR_TEMPLATE.md) for architecture overview
 3. Open an issue in the repository
@@ -580,17 +590,17 @@ For issues, questions, or suggestions:
 
 ## 📊 Project Status
 
-| Category | Status | Score |
-|----------|--------|-------|
-| TypeScript | ✅ Excellent | 100% |
-| Signals & Reactive | ✅ Excellent | 88.9% |
-| HTTP & Data | ✅ Excellent | 81.3% |
-| Architecture | ✅ Good | 66.7% |
-| Routing | ✅ Good | 63.6% |
-| Testing | 🟡 Good | 46.2% |
-| Performance | 🟡 Good | 58.3% |
-| Accessibility | ⚠️ Fair | 37.5% |
-| **Overall** | **✅ Good** | **51.5%** |
+| Category           | Status       | Score     |
+| ------------------ | ------------ | --------- |
+| TypeScript         | ✅ Excellent | 100%      |
+| Signals & Reactive | ✅ Excellent | 88.9%     |
+| HTTP & Data        | ✅ Excellent | 81.3%     |
+| Architecture       | ✅ Good      | 66.7%     |
+| Routing            | ✅ Good      | 63.6%     |
+| Testing            | 🟡 Good      | 46.2%     |
+| Performance        | 🟡 Good      | 58.3%     |
+| Accessibility      | ⚠️ Fair      | 37.5%     |
+| **Overall**        | **✅ Good**  | **51.5%** |
 
 ---
 
